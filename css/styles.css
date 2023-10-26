@@ -1,0 +1,77 @@
+:root {
+  --primary-color-800: lch(20% 90 50);
+  --primary-color-600: lch(40% 90 50);
+  --primary-color-400: lch(60% 90 50);
+  --primary-color-200: lch(85% 90 50);
+  --on-primary-color-800: white;
+  --on-primary-color-600: white;
+  --on-primary-color-400: black;
+  --on-primary-color-200: black;
+  --canvas-color: var(--primary-color-200);
+  --on-canvas-color: var(--on-primary-color-200);
+
+  background-color: var(--canvas-color);
+  color: var(--on-canvas-color);
+  font-family: Neuton;
+  font-size: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Young Serif';
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  padding: 2rem;
+}
+
+.home-link {
+  text-decoration: none;
+}
+
+.page-heading {
+  font-size: 2rem;
+}
+
+.page-header a {
+  color: inherit;
+}
+
+.page-nav {
+  display: flex;
+  margin-bottom: 6rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  text-transform: lowercase;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.tagline {
+  font-size: 4rem;
+  margin-left: 3rem;
+  font-weight: 300;
+  text-decoration: underline dotted 0.5rem var(--on-canvas-color);
+  text-underline-offset: 0.35rem;
+}
+
+.home-main {
+  margin: auto;
+  max-width: 800px;
+  width: 80%;
+}
