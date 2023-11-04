@@ -25,6 +25,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Young Serif';
 }
 
+p {
+  font-size: 1.25rem;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -68,10 +72,16 @@ html, body {
   font-weight: 300;
   text-decoration: underline dotted 0.5rem var(--on-canvas-color);
   text-underline-offset: 0.35rem;
+  letter-spacing: 0.05rem;
+  max-width: 40rem;
+  margin-bottom: 8rem;
 }
 
 .home-main {
-  margin: auto;
-  max-width: 800px;
-  width: 80%;
+  margin-left: 5rem;
+  max-width: 40rem;
+}
+
+.home-main-section-heading {
+  font-size: 2rem;
 }
