@@ -47,10 +47,10 @@
         <a class="home-link" href="/">
           <h1 class="page-heading">Handle with Care</h1>
         </a>
-        <section class="nav-section">
+        <!-- <section class="nav-section">
           <a href="/about.html">About us</a>
           <a href="/contact.html">Contact us</a>
-        </section>
+        </section> -->
       </nav>
       <p class="tagline">A product development collective</p>
     </header>
@@ -62,7 +62,9 @@
         <p>
           We&apos;re an end-to-end product development team with years of
           experience bringing excellent ideas to life. We specialize in solving
-          complex problems for your users.
+          complex problems for your users, using iterative processes to
+          confidently identify product market fit. We know how to take your
+          vision and build robust, reliable solutions that will last.
         </p>
       </section>
       <section class="home-main-section">
@@ -92,6 +94,27 @@
         <header>
           <h2 class="home-main-section-heading">Contact us</h2>
         </header>
+        <form class="contact-form">
+          <label id="name-label" for="name">
+            Your name
+            <input id="name" name="name" type="text" />
+          </label>
+          <label id="email-label" for="email">
+            Your email
+            <input id="email" name="email" type="text" />
+          </label>
+          <label id="company-name-label" for="company-name">
+            Your company
+            <input id="company-name" name="company-name" type="text" />
+          </label>
+          <label id="message-label" for="message">
+            What can we do for you?
+            <textarea id="message" name="message"></textarea>
+          </label>
+          <div class="contact-button-group">
+            <button class="contact-send-button" type="submit">Send</button>
+          </div>
+        </form>
       </section>
     </main>
   </body>

@@ -83,5 +83,51 @@ html, body {
 }
 
 .home-main-section-heading {
+  margin: 2rem 0 1rem;
   font-size: 2rem;
+}
+
+.home-main-section h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.contact-form {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 1px 1px 8px var(--primary-color-800);
+  margin-bottom: 4rem;
+}
+
+.contact-form label {
+  display: block;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.contact-form input, .contact-form textarea {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  width: calc(100% - 1.5rem);
+  border: 1px solid black;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  min-height: 8rem;
+}
+
+.contact-send-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--primary-color-600);
+  color: white;
+}
+
+.contact-button-group {
+  display: flex;
+  flex-direction: row-reverse;
 }
