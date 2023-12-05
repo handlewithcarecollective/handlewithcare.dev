@@ -74,6 +74,7 @@ router.post("/contact", async (context) => {
     headers: {
       "Content-Type": "application/json",
     },
+    method: "POST",
   });
 
   const result = await response.json();
