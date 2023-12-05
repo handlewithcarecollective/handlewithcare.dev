@@ -39,6 +39,11 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- <meta name="theme-color" content="#FF00FF" /> -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
   </head>
 
   <body>
@@ -64,7 +69,11 @@
           experience bringing excellent ideas to life. We specialize in solving
           complex problems for your users, using iterative processes to
           confidently identify product market fit. We know how to take your
-          vision and build robust, reliable solutions that will last.
+          vision and build robust, reliable solutions that drive your product
+          strategy and development further. We&apos;re excited to work with you,
+          whether you&apos;re looking to reset product strategy on a years-old
+          product, hoping to address technical debt and sustainability, or
+          starting something brand new.
         </p>
       </section>
       <section class="home-main-section">
@@ -73,7 +82,14 @@
         </header>
         <article>
           <h3>Morgan Cohn - Product Manager</h3>
-          <p></p>
+          <p>
+            Morgan has worked on products for eleven years with deep experience
+            in engaging user-focused experiences and end-to-end workflow
+            solutions. She&apos;s led product for teams at places like New York
+            magazine, Vox Media, and the New York Times. She has a strong track
+            record of being able to translate needs into actionable problems
+            with solid outcomes.
+          </p>
         </article>
         <article>
           <h3>Shane Friedman - Software Engineer</h3>
@@ -92,9 +108,38 @@
       </section>
       <section class="home-main-section">
         <header>
+          <h2 class="home-main-section-heading">How we work together</h2>
+        </header>
+        <article>
+          <h3>Discovery and consultation</h3>
+          <p>
+            We partner with you to deep dive into your business goals and the
+            problems that you&apos;re trying to solve and ensure that
+            you&apos;re investing in the best solutions possible.
+          </p>
+        </article>
+        <article>
+          <h3>Architecting solutions</h3>
+          <p>
+            We utilize our experience and skills to design and build product
+            solutions that realize the power of your ideas, whether that means
+            building out new systems from the ground up or devising plans for
+            long term sustainability of existing products.
+          </p>
+        </article>
+        <article>
+          <h3>Looking to the future</h3>
+          <p>
+            We give you tools and strategies to be able to own and drive your
+            product forward, both in short term and long term strategy.
+          </p>
+        </article>
+      </section>
+      <section class="home-main-section contact-form-section">
+        <header>
           <h2 class="home-main-section-heading">Contact us</h2>
         </header>
-        <form class="contact-form">
+        <form class="contact-form" method="post" action="/contact">
           <label id="name-label" for="name">
             Your name
             <input id="name" name="name" type="text" />
@@ -111,6 +156,10 @@
             What can we do for you?
             <textarea id="message" name="message"></textarea>
           </label>
+          <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAAAOHBi9ArzoGAxf3"
+          ></div>
           <div class="contact-button-group">
             <button class="contact-send-button" type="submit">Send</button>
           </div>
