@@ -1,28 +1,21 @@
 :root {
-  --primary-color-800: #433200;
-  --primary-color-600: #b12800;
-  --primary-color-400: #f65c07;
-  --primary-color-200: #ffc9ae;
+  --primary-color-800: lch(20% 90 50);
+  --primary-color-600: lch(40% 90 50);
+  --primary-color-400: lch(60% 90 50);
+  --primary-color-200: lch(85% 90 50);
   --on-primary-color-800: white;
   --on-primary-color-600: white;
   --on-primary-color-400: black;
   --on-primary-color-200: black;
   --canvas-color: var(--primary-color-200);
   --on-canvas-color: var(--on-primary-color-200);
+
   --main-margin: 5rem;
+
   background-color: var(--canvas-color);
   color: var(--on-canvas-color);
   font-family: Neuton;
   font-size: 18px;
-}
-
-@supports (color: lab(0% 0 0)) {
-  :root {
-    --primary-color-800: lab(20% 57.8509 68.944);
-    --primary-color-600: lab(40% 57.8509 68.944);
-    --primary-color-400: lab(60% 57.8509 68.944);
-    --primary-color-200: lab(85% 57.8509 68.944);
-  }
 }
 
 * {
@@ -30,15 +23,21 @@
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: Young Serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Young Serif";
 }
 
 p {
   font-size: 1.25rem;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -60,36 +59,35 @@ html, body {
 }
 
 .page-nav {
-  text-transform: lowercase;
+  display: flex;
+  margin-bottom: 6rem;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 6rem;
-  display: flex;
+  text-transform: lowercase;
 }
 
 .nav-section {
+  display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 1.5rem;
-  display: flex;
 }
 
 .tagline {
-  -webkit-text-decoration: underline dotted .5rem var(--on-canvas-color);
-  text-decoration: underline dotted .5rem var(--on-canvas-color);
-  text-underline-offset: .35rem;
-  letter-spacing: .05rem;
+  font-size: 4rem;
+  margin-left: 3rem;
+  font-weight: 300;
+  text-decoration: underline dotted 0.5rem var(--on-canvas-color);
+  text-underline-offset: 0.35rem;
+  letter-spacing: 0.05rem;
   max-width: 40rem;
   margin-bottom: 8rem;
-  margin-left: 3rem;
-  font-size: 4rem;
-  font-weight: 300;
 }
 
 .home-main {
-  max-width: 40rem;
   margin: 0;
+  max-width: 40rem;
 }
 
 .home-main-section {
@@ -102,38 +100,40 @@ html, body {
 }
 
 .home-main-section h3 {
-  margin: 1rem 0 .5rem;
+  margin: 1rem 0 0.5rem;
 }
 
 .contact-form {
-  box-shadow: 1px 1px 8px var(--primary-color-800);
-  background-color: #fff;
+  background-color: white;
   border-radius: 1rem;
-  margin-bottom: 4rem;
   padding: 2rem;
+  box-shadow: 1px 1px 8px var(--primary-color-800);
+  margin-bottom: 4rem;
 }
 
 .contact-form label {
+  display: block;
   margin: 1rem 0;
   font-size: 1rem;
-  display: block;
 }
 
 .contact-form .required {
   color: red;
 }
 
-.contact-form input, .contact-form textarea {
-  border: 1px solid #000;
-  border-radius: 1rem;
-  width: calc(100% - 1.5rem);
-  margin-top: .75rem;
-  padding: .75rem;
-  font-size: 1rem;
+.contact-form input,
+.contact-form textarea {
   display: block;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  width: calc(100% - 1.5rem);
+  border: 1px solid black;
+  border-radius: 1rem;
+  font-size: 1rem;
 }
 
-.contact-form input:invalid, .contact-form textarea:invalid {
+.contact-form input:invalid,
+.contact-form textarea:invalid {
   border: 1px dashed red;
 }
 
@@ -142,16 +142,16 @@ html, body {
 }
 
 .contact-send-button {
-  background-color: var(--primary-color-600);
-  color: #fff;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 1rem;
-  padding: .75rem 1.5rem;
+  background-color: var(--primary-color-600);
+  color: white;
 }
 
 .contact-button-group {
-  flex-direction: row-reverse;
   display: flex;
+  flex-direction: row-reverse;
 }
 
 @media screen and (max-width: 535px) {
@@ -160,9 +160,8 @@ html, body {
   }
 
   .tagline {
-    -webkit-text-decoration: underline dotted .25rem var(--on-canvas-color);
-    text-decoration: underline dotted .25rem var(--on-canvas-color);
     font-size: 2rem;
+    text-decoration: underline dotted 0.25rem var(--on-canvas-color);
   }
 
   .home-main-section.contact-form-section {
