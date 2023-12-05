@@ -117,6 +117,10 @@ body {
   font-size: 1rem;
 }
 
+.contact-form .required {
+  color: red;
+}
+
 .contact-form input,
 .contact-form textarea {
   display: block;
@@ -126,6 +130,11 @@ body {
   border: 1px solid black;
   border-radius: 1rem;
   font-size: 1rem;
+}
+
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+  border: 1px dashed red;
 }
 
 .contact-form textarea {

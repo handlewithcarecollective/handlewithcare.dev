@@ -85,14 +85,24 @@ router.post("/contact", async (context) => {
     return;
   }
 
-  const plainTextContent = `
-From: ${params.get("name")} - ${params.get("email")}
+  const name = params.get("name");
+  const email = params.get("email");
+  const companyName = params.get("company-name");
+  const message = params.get("message");
 
-Company: ${params.get("company-name")}
+  if (!name || !email || !companyName || !message) {
+    context.response.status = Status.BadRequest;
+    return;
+  }
+
+  const plainTextContent = `
+From: ${name} - ${email}
+
+Company: ${companyName}
 
 Message:
 
-${params.get("message")}
+${message}
 `;
 
   const htmlContent = `
@@ -105,10 +115,10 @@ ${params.get("message")}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <p>From: ${params.get("name")} - ${params.get("email")}</p>
-    <p>Company: ${params.get("company-name")}</p>
+    <p>From: ${name} - ${email}</p>
+    <p>Company: ${companyName}</p>
     <p>Message:</p>
-    <p>${params.get("message")}</p>
+    <p>${message}</p>
   </body>
 </html>
 `;
