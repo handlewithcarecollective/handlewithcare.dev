@@ -80,6 +80,7 @@ router.post("/contact", async (context) => {
   const result = await response.json();
 
   if (!result.success) {
+    console.error(result);
     context.response.status = Status.Forbidden;
     context.response.body = "Failed turnstile verification";
     return;
