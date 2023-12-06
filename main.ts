@@ -42,7 +42,7 @@ const client = new SMTPClient({
       username: smtpUsername,
       password: smtpPassword,
     },
-    tls: false,
+    tls: smtpAuth === "tls",
   },
 });
 
