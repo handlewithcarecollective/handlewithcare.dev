@@ -126,14 +126,22 @@ ${message}
 
   console.log("Received contact submission");
 
-  await client.send({
+  const sendConfig = {
     from: contactSender,
     to: contactRecipients,
     replyTo: params.get("email")!,
     subject: "Handle with Care - new message!",
     content: plainTextContent,
     html: htmlContent,
-  });
+  };
+
+  console.log(JSON.stringify(sendConfig, null, 2));
+
+  try {
+    await client.send(sendConfig);
+  } catch (e) {
+    console.error(e);
+  }
 
   context.response.redirect("/");
 });
