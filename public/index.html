@@ -6,16 +6,6 @@
 
     <title>Handle with Care Collective</title>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Young+Serif"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Neuton"
-    />
-
     <link rel="stylesheet" href="/css/styles.css" />
 
     <meta
@@ -53,124 +43,171 @@
   </head>
 
   <body>
-    <header class="page-header">
-      <nav class="page-nav">
-        <a class="home-link" href="/">
-          <h1 class="page-heading">Handle with Care</h1>
-        </a>
-        <!-- <section class="nav-section">
-          <a href="/about.html">About us</a>
-          <a href="/contact.html">Contact us</a>
-        </section> -->
-      </nav>
-      <p class="tagline">A product development collective</p>
-    </header>
     <main class="home-main">
-      <section class="home-main-section">
-        <header>
-          <h2 class="home-main-section-heading">What we offer</h2>
-        </header>
-        <p>
-          We&apos;re an end-to-end product development team with years of
-          experience bringing excellent ideas to life. We specialize in solving
-          complex problems for your users, using iterative processes to
-          confidently identify product market fit. We know how to take your
-          vision and build robust, reliable solutions that drive your product
-          strategy and development further. We&apos;re excited to work with you,
-          whether you&apos;re looking to reset product strategy on a years-old
-          product, hoping to address technical debt and sustainability, or
-          starting something brand new.
-        </p>
+      <section class="tagline">
+        <div class="section-wrapper">
+          <header class="page-header">
+            <nav class="page-nav">
+              <h1 class="page-heading">
+                Handle<br />
+                with Care
+              </h1>
+              <a class="get-in-touch" href="#get-in-touch">Get in touch</a>
+            </nav>
+          </header>
+          <hr />
+          <article class="tagline-content">
+            <h2 class="tagline-heading">
+              A product development collective with years of experience bringing
+              excellent ideas to life.
+            </h2>
+            <div class="tagline-description">
+              <div>
+                <h3>An end-to-end team</h3>
+                <p>
+                  We know how to take your vision and build robust, reliable
+                  selutions that drive your product strategy and development
+                  further.
+                </p>
+              </div>
+              <div>
+                <h3>For your thorniest technical systems</h3>
+                <p>
+                  We specialize in solving complex, systems-level problems,
+                  using iterative processes to confidently identify product
+                  market fit.
+                </p>
+              </div>
+              <div>
+                <h3>Any size, any stage</h3>
+                <p>
+                  Whether you&apos;re looking to reset strategy on a years-old
+                  product, address technical debt and sustainability, or start
+                  something brand new, we&apos;re excited to work with you.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
-      <section class="home-main-section">
-        <header>
-          <h2 class="home-main-section-heading">Who we are</h2>
-        </header>
-        <article>
-          <h3>Morgan Cohn - Product Manager</h3>
-          <p>
-            Morgan has worked on products for eleven years with deep experience
-            in engaging user-focused experiences and end-to-end workflow
-            solutions. She&apos;s led product for teams at places like New York
-            magazine, Vox Media, and the New York Times. She has a strong track
-            record of being able to translate needs into actionable problems
-            with solid outcomes.
-          </p>
-        </article>
-        <article>
-          <h3>Shane Friedman - Software Engineer</h3>
-          <p>
-            Shane has been architecting and building complex user-facing systems
-            for his entire career. After working on content management systems
-            and dashboards for Amazon Music and YouTube Music, he led the New
-            York Times engineering team responsible for the collaborative rich
-            text editor that the newsroom used to produce stories for
-            nytimes.com. He has worked in small, rapidly moving startup
-            environments as well as large tech giants, and knows how to work
-            alongside product, design, and other stakeholders to come up with
-            the right solution for any problem.
-          </p>
-        </article>
-      </section>
-      <section class="home-main-section">
-        <header>
-          <h2 class="home-main-section-heading">How we work together</h2>
-        </header>
-        <article>
-          <h3>Discovery and consultation</h3>
-          <p>
-            We partner with you to deep dive into your business goals and the
-            problems that you&apos;re trying to solve and ensure that
-            you&apos;re investing in the best solutions possible.
-          </p>
-        </article>
-        <article>
-          <h3>Architecting solutions</h3>
-          <p>
-            We utilize our experience and skills to design and build product
-            solutions that realize the power of your ideas, whether that means
-            building out new systems from the ground up or devising plans for
-            long term sustainability of existing products.
-          </p>
-        </article>
-        <article>
-          <h3>Looking to the future</h3>
-          <p>
-            We give you tools and strategies to be able to own and drive your
-            product forward, both in short term and long term strategy.
-          </p>
-        </article>
-      </section>
-      <section class="home-main-section contact-form-section">
-        <header>
-          <h2 class="home-main-section-heading">Contact us</h2>
-        </header>
-        <form class="contact-form" method="post" action="/contact">
-          <label id="name-label" for="name">
-            Your name <span class="required">*</span>
-            <input id="name" name="name" type="text" required />
-          </label>
-          <label id="email-label" for="email">
-            Your email <span class="required">*</span>
-            <input id="email" name="email" type="email" required />
-          </label>
-          <label id="company-name-label" for="company-name">
-            Your company
-            <input id="company-name" name="company-name" type="text" />
-          </label>
-          <label id="message-label" for="message">
-            What can we do for you? <span class="required">*</span>
-            <textarea id="message" name="message" required></textarea>
-          </label>
-          <div
-            class="cf-turnstile"
-            data-sitekey="0x4AAAAAAAOHBi9ArzoGAxf3"
-          ></div>
-          <div class="contact-button-group">
-            <button class="contact-send-button" type="submit">Send</button>
+      <section class="who-we-are">
+        <div class="section-wrapper">
+          <header>
+            <h2 class="who-we-are-heading">Who we are</h2>
+          </header>
+          <div class="hrs">
+            <hr />
+            <hr />
           </div>
-        </form>
+          <article>
+            <div class="partner-bio">
+              <h3 class="partner-name">Morgan<br />Cohn</h3>
+              <p class="partner-title">Product &amp; Strategy</p>
+              <p>
+                Morgan has worked on products for eleven years with deep
+                experience in engaging user-focused experiences and end-to-end
+                workflow solutions. She&apos;s led product for teams at places
+                like New York magazine, Vox Media, and the New York Times. She
+                has a strong track record of being able to translate needs into
+                actionable problems with solid outcomes.
+              </p>
+            </div>
+            <div class="vr"></div>
+            <div class="partner-bio">
+              <h3 class="partner-name">Shane<br />Friedman</h3>
+              <p class="partner-title">Engineering &amp; Architecture</p>
+              <p>
+                Shane has been architecting and building complex user-facing
+                systems for his entire career. After working on content
+                management systems and dashboards for Amazon Music and YouTube
+                Music, he led the New York Times engineering team responsible
+                for the collaborative rich text editor that the newsroom used to
+                produce stories for nytimes.com. He has worked in small, rapidly
+                moving startup environments as well as large tech giants, and
+                knows how to work alongside product, design, and other
+                stakeholders to come up with the right solution for any problem.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="how-we-work">
+        <div class="section-wrapper">
+          <div class="spacer">
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="100"
+                y2="100"
+                vector-effect="non-scaling-stroke"
+              />
+            </svg>
+          </div>
+          <div class="how-we-work-content">
+            <header>
+              <h2 class="how-we-work-heading">How we work<br />together</h2>
+            </header>
+            <ol>
+              <li>
+                <h3>Discovery &amp; consultation</h3>
+                <p>
+                  We partner with you to deep dive into your business goals and
+                  the problems that you&apos;re trying to solve and ensure that
+                  you&apos;re investing in the best solutions possible.
+                </p>
+              </li>
+              <li>
+                <h3>Architecting solutions</h3>
+                <p>
+                  We utilize our experience and skills to design and build
+                  product solutions that realize the power of your ideas,
+                  whether that means building out new systems from the ground up
+                  or devising plans for long term sustainability of existing
+                  products.
+                </p>
+              </li>
+              <li>
+                <h3>Looking to the future</h3>
+                <p>
+                  We give you tools and strategies to be able to own and drive
+                  your product forward, both in short term and long term
+                  strategy.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <section id="get-in-touch" class="get-in-touch-section">
+        <hr />
+        <div class="section-wrapper">
+          <header>
+            <h2 class="get-in-touch-heading">Get in touch</h2>
+          </header>
+          <div class="copy-email">
+            <button data-copy-email-button type="button">
+              <p data-copy-email-description class="copy-description">Copy</p>
+              <span data-xor-decoded="false"
+                >171a1313103f171e111b131a08160b171c1e0d1a511b1a09</span
+              >
+            </button>
+          </div>
+          <div class="times">
+            <p class="time" data-time="princeton"></p>
+            <p class="time" data-time="los_angeles"></p>
+          </div>
+        </div>
+        <hr />
       </section>
     </main>
+    <script src="/js/updateTimes.mjs"></script>
+    <script src="/js/copyToClipboard.mjs"></script>
+    <script src="/js/xor.mjs"></script>
   </body>
 </html>

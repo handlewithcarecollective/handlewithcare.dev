@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev:server": "deno run --allow-read --allow-net --allow-env --watch main.ts",
+    "dev:server": "deno run --allow-read --allow-net --watch main.ts",
     "dev:css": "deno run --allow-read --allow-write --allow-net watchcss.ts",
     "dev": "deno task dev:server & deno task dev:css",
     "build:css": "deno run --allow-read --allow-write --allow-net css.ts"
