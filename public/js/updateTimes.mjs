@@ -1,10 +1,6 @@
 function updateTimes() {
-  const princetonElement = document.querySelector(
-    '[data-time="princeton"]'
-  );
-  const losAngelosElement = document.querySelector(
-    '[data-time="los_angeles"]'
-  );
+  const princetonElement = document.querySelector('[data-time="princeton"]');
+  const losAngelosElement = document.querySelector('[data-time="los_angeles"]');
 
   const now = Date.now();
 
@@ -13,8 +9,10 @@ function updateTimes() {
       new Intl.DateTimeFormat("en-US", {
         timeStyle: "short",
         timeZone: "America/New_York",
-      }).format(now) + " Princeton"
-    )
+      }).format(now)
+    ),
+    document.createElement("br"),
+    document.createTextNode(" Princeton")
   );
 
   losAngelosElement.replaceChildren(
@@ -22,8 +20,10 @@ function updateTimes() {
       new Intl.DateTimeFormat("en-US", {
         timeStyle: "short",
         timeZone: "America/Los_Angeles",
-      }).format(now) + " Los Angeles"
-    )
+      }).format(now)
+    ),
+    document.createElement("br"),
+    document.createTextNode(" Los Angeles")
   );
 }
 

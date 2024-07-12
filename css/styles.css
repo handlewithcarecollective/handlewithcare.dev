@@ -1,9 +1,9 @@
 :root {
-  --canvas-color: #F3EFEA;
+  --canvas-color: #f3efea;
   --brown-color: #351900;
-  --orange-color: #FF8A35;
-  --gray-color: #7E6F62;
-  --green-color: #29F462;
+  --orange-color: #ff8a35;
+  --gray-color: #7e6f62;
+  --green-color: #29f462;
 
   --on-canvas-color: var(--brown-color);
   --on-brown-color: var(--canvas-color);
@@ -19,9 +19,7 @@
   --headings-font: "GT-Alpina-Typewriter";
   --body-font: FTHabit;
 
-  background-color: var(--background-color);
-  color: var(--foreground-color);
-  font-family: var(--body-font);
+  --border: 3px solid var(--foreground-color);
 }
 
 * {
@@ -31,17 +29,19 @@
 
 @font-face {
   font-family: "GT-Alpina-Typewriter";
-  src:
-    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.otf") format(opentype),
-    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.ttf") format(truetype),
-    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.woff") format(woff),
-    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.woff2") format(woff2);
+  src: url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.otf")
+      format(opentype),
+    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.ttf")
+      format(truetype),
+    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.woff")
+      format(woff),
+    url("/fonts/GT-Alpina-Typewriter/GT-Alpina-Typewriter-Thin.woff2")
+      format(woff2);
 }
 
 @font-face {
   font-family: "FTHabit";
-  src:
-    url("/fonts/FTHabit/FTHabit-Regular.otf") format(opentype),
+  src: url("/fonts/FTHabit/FTHabit-Regular.otf") format(opentype),
     url("/fonts/FTHabit/FTHabit-Regular.woff") format(woff),
     url("/fonts/FTHabit/FTHabit-Regular.woff2") format(woff2);
 }
@@ -49,8 +49,7 @@
 @font-face {
   font-family: "FTHabit";
   font-style: italic;
-  src:
-    url("/fonts/FTHabit/FTHabit-RegularItalic.otf") format(opentype),
+  src: url("/fonts/FTHabit/FTHabit-RegularItalic.otf") format(opentype),
     url("/fonts/FTHabit/FTHabit-RegularItalic.woff") format(woff),
     url("/fonts/FTHabit/FTHabit-RegularItalic.woff2") format(woff2);
 }
@@ -58,8 +57,7 @@
 @font-face {
   font-family: "FTHabit";
   font-weight: bold;
-  src:
-    url("/fonts/FTHabit/FTHabit-Medium.otf") format(opentype),
+  src: url("/fonts/FTHabit/FTHabit-Medium.otf") format(opentype),
     url("/fonts/FTHabit/FTHabit-Medium.woff") format(woff),
     url("/fonts/FTHabit/FTHabit-Medium.woff2") format(woff2);
 }
@@ -68,8 +66,7 @@
   font-family: "FTHabit";
   font-weight: bold;
   font-style: italic;
-  src:
-    url("/fonts/FTHabit/FTHabit-MediumItalic.otf") format(opentype),
+  src: url("/fonts/FTHabit/FTHabit-MediumItalic.otf") format(opentype),
     url("/fonts/FTHabit/FTHabit-MediumItalic.woff") format(woff),
     url("/fonts/FTHabit/FTHabit-MediumItalic.woff2") format(woff2);
 }
@@ -97,9 +94,23 @@ body {
   padding: 0;
 }
 
-section {
-  padding: 2.5rem;
+body {
   background-color: var(--background-color);
+  color: var(--foreground-color);
+  font-family: var(--body-font);
+}
+
+section {
+  padding: 0 2.5rem;
+  background-color: var(--background-color);
+}
+
+section:first-of-type {
+  padding-top: 2.5rem;
+}
+
+section:first-of-type .section-wrapper > header {
+  padding-top: 0.125rem;
 }
 
 .section-wrapper {
@@ -107,24 +118,26 @@ section {
   flex-direction: column;
 }
 
-.section-wrapper > article, .section-wrapper > header {
-  border-left: 3px solid var(--foreground-color);
-  border-right: 3px solid var(--foreground-color);
+.section-wrapper > article,
+.section-wrapper > header {
+  border-left: var(--border);
+  border-right: var(--border);
   padding: 0.125rem 1.75rem;
 }
 
 .section-wrapper > header {
   margin-bottom: 2rem;
+  padding-top: 2.5rem;
 }
 
 .section-wrapper > article {
   margin-top: 2rem;
+  padding-bottom: 2.5rem;
 }
 
 hr {
   border-top: 0;
-  border-bottom-color: var(--foreground-color);
-  border-width: 3px;
+  border-bottom: var(--border);
   width: calc(100% - 4rem);
   align-self: center;
 }
@@ -188,7 +201,7 @@ a.get-in-touch:visited {
 
 .who-we-are {
   --background-color: var(--orange-color);
-  padding-bottom:0;
+  padding-bottom: 0;
 }
 
 .who-we-are-heading {
@@ -198,6 +211,7 @@ a.get-in-touch:visited {
 .who-we-are article {
   display: flex;
   gap: 2rem;
+  padding-bottom: 0;
 }
 
 .partner-bio {
@@ -218,7 +232,7 @@ a.get-in-touch:visited {
 }
 
 .vr {
-  border-left: 3px solid var(--foreground-color);
+  border-left: var(--border);
 }
 
 .partner-name {
@@ -238,15 +252,15 @@ a.get-in-touch:visited {
 .how-we-work > .section-wrapper {
   display: flex;
   flex-direction: row;
-  border-left: 3px solid var(--foreground-color);
-  border-right: 3px solid var(--foreground-color);
+  border-left: var(--border);
+  border-right: var(--border);
 }
 
 .how-we-work .spacer {
   position: relative;
   flex-basis: calc(50% - 1px - 4rem);
   flex-shrink: 0;
-  border-right: 3px solid var(--foreground-color);
+  border-right: var(--border);
   padding: 2rem;
 }
 
@@ -254,7 +268,6 @@ a.get-in-touch:visited {
   stroke: var(--foreground-color);
   stroke-width: 3px;
 }
-
 
 .how-we-work-content {
   padding: 2rem;
@@ -295,15 +308,19 @@ a.get-in-touch:visited {
 .get-in-touch-section {
   --background-color: var(--brown-color);
   --foreground-color: var(--on-brown-color);
+  --border: 3px solid var(--foreground-color);
   color: var(--foreground-color);
 }
 
 .get-in-touch-section {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
   height: 40rem;
 }
 
 .get-in-touch-section .section-wrapper {
-  border-left: 3px solid var(--foreground-color);
+  border-left: var(--border);
   height: calc(100% - 4rem);
   display: flex;
   flex-direction: column;
@@ -319,7 +336,7 @@ a.get-in-touch:visited {
 }
 
 .get-in-touch-section hr:last-of-type {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .get-in-touch-section hr {
@@ -329,7 +346,6 @@ a.get-in-touch:visited {
 
 .copy-email {
   display: flex;
-  flex-direction: c;
   align-items: center;
   justify-content: center;
 }
@@ -350,13 +366,12 @@ a.get-in-touch:visited {
   font-size: 2.5rem;
 }
 
-
 .copy-email button:active {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .copy-email button::before {
-  content: '';
+  content: "";
   display: block;
   height: 1.5rem;
   width: 1.5rem;
@@ -375,6 +390,12 @@ a.get-in-touch:visited {
   font-family: var(--headings-font);
   text-transform: uppercase;
   padding: 0 1rem;
+  position: relative;
+  top: 1rem;
+}
+
+.times br {
+  display: none;
 }
 
 .copy-description {
@@ -392,4 +413,236 @@ a.get-in-touch:visited {
 
 .copy-email button:hover .copy-description {
   opacity: 1;
+}
+
+@media screen and (max-width: 750px) {
+  :root {
+    --border: 1px solid var(--foreground-color);
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1.825rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 0.75rem;
+  }
+
+  section {
+    padding: 0 0.75rem;
+    background-color: var(--background-color);
+  }
+
+  section:first-of-type {
+    padding-top: 1rem;
+  }
+
+  section:first-of-type .section-wrapper > header {
+    padding-top: 0.125rem;
+  }
+
+  .section-wrapper > article,
+  .section-wrapper > header {
+    padding: 0.125rem 1.75rem;
+  }
+
+  .section-wrapper > header {
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+  }
+
+  .section-wrapper > article {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  hr {
+    width: calc(100% - 2rem);
+  }
+
+  .section-wrapper > :is(header, article) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .section-wrapper > header {
+    margin-bottom: 1rem;
+  }
+
+  .section-wrapper > article {
+    margin-top: 1rem;
+  }
+
+  .page-header {
+    height: 12rem;
+  }
+
+  a.get-in-touch {
+    top: 11rem;
+    right: 2rem;
+    position: absolute;
+    font-size: 1rem;
+  }
+
+  .tagline-heading {
+    text-align: left;
+    margin-bottom: 6rem;
+  }
+
+  .tagline-description {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .tagline-description h3 {
+    font-size: 1rem;
+  }
+
+  .who-we-are-heading {
+    height: 7rem;
+  }
+
+  .hrs {
+    gap: 0;
+    width: calc(100% - 2rem);
+  }
+
+  .who-we-are article {
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+    padding: 0;
+  }
+
+  .partner-bio:last-of-type {
+    padding-bottom: 3rem;
+  }
+
+  .partner-bio {
+    padding-bottom: 1rem;
+    border-left: var(--border);
+    border-right: var(--border);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .partner-name {
+    margin-bottom: 0.5rem;
+  }
+
+  .partner-title {
+    margin-bottom: 1rem;
+  }
+
+  .partner-name br {
+    display: none;
+  }
+
+  .vr {
+    height: 0;
+    width: calc(100% - 2rem);
+    border-left: 0;
+    border-bottom: var(--border);
+    align-self: center;
+  }
+
+  .how-we-work .spacer {
+    display: none;
+  }
+
+  .how-we-work-content header {
+    margin-bottom: 6rem;
+  }
+
+  .how-we-work-content ol {
+    padding-left: 0;
+  }
+
+  .how-we-work-content li::before {
+    position: absolute;
+    font-size: 1.25rem;
+    left: 0;
+    top: -2rem;
+  }
+
+  .how-we-work-content {
+    padding: 1rem;
+  }
+
+  .how-we-work-content li {
+    margin-bottom: 4rem;
+  }
+
+  .get-in-touch-section {
+    --border: 1px solid var(--foreground-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 35rem;
+  }
+
+  .get-in-touch-section .section-wrapper {
+    border-left: var(--border);
+    height: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .get-in-touch-section header {
+    border: none;
+  }
+
+  .get-in-touch-section hr:first-of-type {
+    margin-bottom: 1rem;
+  }
+
+  .get-in-touch-section hr:last-of-type {
+    margin-top: 1rem;
+  }
+
+  .get-in-touch-section hr {
+    width: calc(100% - 2rem);
+    transform: translateX(1rem);
+  }
+
+  .copy-email button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 3.75rem;
+    transition: color 300ms, background-color 300ms;
+    font-size: 1.25rem;
+  }
+
+  .copy-email button::before {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+
+  .times {
+    top: 0;
+  }
+
+  .times br {
+    display: initial;
+  }
+
+  .copy-description {
+    font-size: 1rem;
+    position: absolute;
+    top: -2rem;
+  }
 }
