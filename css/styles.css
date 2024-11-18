@@ -86,6 +86,7 @@ h6 {
 
 p {
   font-size: 1.25rem;
+  line-height: 1.4;
 }
 
 html,
@@ -214,6 +215,10 @@ a.get-in-touch:visited {
   padding-bottom: 0;
 }
 
+.who-we-are article:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
 .partner-bio {
   flex-basis: 50%;
   flex-grow: 1;
@@ -256,7 +261,7 @@ a.get-in-touch:visited {
   border-right: var(--border);
 }
 
-.how-we-work .spacer {
+.spacer {
   position: relative;
   flex-basis: calc(50% - 1px - 4rem);
   flex-shrink: 0;
@@ -264,7 +269,12 @@ a.get-in-touch:visited {
   padding: 2rem;
 }
 
-.how-we-work .spacer svg line {
+.spacer.right {
+  border-right: none;
+  border-left: var(--border);
+}
+
+.spacer svg line {
   stroke: var(--foreground-color);
   stroke-width: 3px;
 }
@@ -528,7 +538,7 @@ a.get-in-touch:visited {
     padding: 0;
   }
 
-  .partner-bio:last-of-type {
+  .who-we-are article:last-of-type .partner-bio {
     padding-bottom: 3rem;
   }
 
@@ -560,7 +570,7 @@ a.get-in-touch:visited {
     align-self: center;
   }
 
-  .how-we-work .spacer {
+  .spacer {
     display: none;
   }
 

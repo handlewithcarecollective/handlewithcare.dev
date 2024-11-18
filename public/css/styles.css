@@ -61,6 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   font-size: 1.25rem;
+  line-height: 1.4;
 }
 
 html, body {
@@ -187,6 +188,10 @@ a.get-in-touch:visited {
   display: flex;
 }
 
+.who-we-are article:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
 .partner-bio {
   flex-grow: 1;
   flex-basis: 50%;
@@ -229,7 +234,7 @@ a.get-in-touch:visited {
   display: flex;
 }
 
-.how-we-work .spacer {
+.spacer {
   border-right: var(--border);
   flex-shrink: 0;
   flex-basis: calc(50% - 1px - 4rem);
@@ -237,7 +242,12 @@ a.get-in-touch:visited {
   position: relative;
 }
 
-.how-we-work .spacer svg line {
+.spacer.right {
+  border-right: none;
+  border-left: var(--border);
+}
+
+.spacer svg line {
   stroke: var(--foreground-color);
   stroke-width: 3px;
 }
@@ -488,7 +498,7 @@ a.get-in-touch:visited {
     padding: 0;
   }
 
-  .partner-bio:last-of-type {
+  .who-we-are article:last-of-type .partner-bio {
     padding-bottom: 3rem;
   }
 
@@ -520,7 +530,7 @@ a.get-in-touch:visited {
     height: 0;
   }
 
-  .how-we-work .spacer {
+  .spacer {
     display: none;
   }
 
