@@ -1,13 +1,25 @@
 {
-  description = "Example JavaScript development environment for Zero to Nix";
+  description = "Development environment for handlewithcare.dev";
 
   # Flake inputs
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs.url = "nixpkgs";
+    devenv.url = "github:cachix/devenv";
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
   };
 
   # Flake outputs
-  outputs = { self, nixpkgs }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      devenv,
+      ...
+    }@inputs:
     let
       # Systems supported
       allSystems = [
@@ -18,19 +30,39 @@
       ];
 
       # Helper to provide system-specific attributes
-      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
-        pkgs = import nixpkgs { inherit system; };
-      });
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs allSystems (
+          system:
+          f {
+            pkgs = import nixpkgs { inherit system; };
+          }
+        );
     in
     {
-      # Development environment output
-      devShells = forAllSystems ({ pkgs }: {
-        default = pkgs.mkShell {
-          # The Nix packages provided in the environment
-          packages = with pkgs; [
-            deno
-          ];
-        };
+      packages = nixpkgs.lib.genAttrs allSystems (system: {
+        devenv-up = self.devShells.${system}.default.config.procfileScript;
       });
+
+      # Development environment output
+      devShells = forAllSystems (
+        { pkgs }:
+        {
+          default = devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [
+              (
+                { pkgs, config, ... }:
+                {
+                  # This is your devenv configuration
+                  packages = [
+                    pkgs.deno
+                  ];
+                }
+              )
+            ];
+          };
+        }
+      );
     };
 }
