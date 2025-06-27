@@ -123,7 +123,7 @@ export default function HomePage() {
                 problem.
               </HomeParagraph>
             </PartnerBio>
-            <Rule vertical />
+            <Rule vertical className="hidden md:block" />
             <Spacer direction="right" />
           </HomeSectionArticle>
         </HomeSectionWrapper>
@@ -193,7 +193,9 @@ export default function HomePage() {
         <Rule className="mb-8 translate-x-4 md:w-[calc(100%-2rem)]" />
         <HomeSectionWrapper className="border-blueprint flex h-[calc(100%-4rem)] flex-col justify-between border-l-3">
           <HomeSectionHeader className="h-auto border-none md:h-auto">
-            <HomeHeading order={2}>Get in touch</HomeHeading>
+            <HomeHeading id="get-in-touch" order={2}>
+              Get in touch
+            </HomeHeading>
           </HomeSectionHeader>
           <div className="flex items-center justify-center">
             <CopyEmailButton />
