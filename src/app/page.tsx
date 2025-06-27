@@ -26,7 +26,7 @@ export default function HomePage() {
                 with Care
               </HomeHeading>
               <a
-                className="text-brown font-headings fixed top-[2.625rem] right-[4.25rem] z-50 rounded-[1.25rem] bg-white px-5 py-2 text-xl leading-[normal] uppercase"
+                className="text-brown font-headings absolute top-44 right-8 z-50 rounded-[1.25rem] bg-white px-5 py-2 text-base leading-[normal] uppercase md:fixed md:top-[2.625rem] md:right-[4.25rem] md:text-xl"
                 href="#get-in-touch"
               >
                 Get in touch
