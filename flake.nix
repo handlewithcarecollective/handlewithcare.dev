@@ -52,11 +52,12 @@
             inherit inputs pkgs;
             modules = [
               (
-                { pkgs, config, ... }:
+                { pkgs, ... }:
                 {
                   # This is your devenv configuration
                   packages = [
-                    pkgs.deno
+                    pkgs.nodejs_24
+                    pkgs.corepack_24
                   ];
                 }
               )

@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --color-blueprint: var(--color-brown);
+}
+
+@theme {
+  --font-headings: var(--font-typewriter);
+  --font-body: var(--font-fthabit);
+
+  --color-canvas: #f3efea;
+  --color-brown: #351900;
+  --color-orange: #ff8a35;
+  --color-gray: #7e6f62;
+  --color-green: #29f462;
+}
+
+@utility border-blueprint {
+  @apply border-solid border-[var(--color-blueprint)];
+}
+
+@utility border-x-blueprint {
+  @apply border-blueprint border-x-3;
+}
+
+@utility border-b-blueprint {
+  @apply border-blueprint border-b-3;
+}
