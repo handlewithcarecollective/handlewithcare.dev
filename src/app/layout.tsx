@@ -54,8 +54,6 @@ export const metadata: Metadata = {
   },
 };
 
-console.log(typewriter.variable);
-
 export default function RootLayout({
   children,
 }: Readonly<{
