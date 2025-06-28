@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   webpack: (config, { dev }) => {
-    // if (!dev) {
     // Disable caching for postcss in production
     // Without this, the TailwindCSS output gets
     // cached and newly added utility classes
@@ -31,7 +30,6 @@ const nextConfig: NextConfig = {
         }
       });
     }
-    // }
     return config;
   },
 };

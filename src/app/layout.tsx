@@ -60,10 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${typewriter.variable} ${fthabit.variable} h-full`}
-    >
+    <html lang="en" className={`${typewriter.variable} ${fthabit.variable}`}>
       <body
         suppressHydrationWarning
         className={`font-body text-brown bg-canvas h-full antialiased`}

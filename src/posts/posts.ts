@@ -1,16 +1,9 @@
-import { z } from "zod";
+import { parseRoot } from "codehike/blocks";
 import NoSuchThingIsomorphicLayoutEffect from "./mdx/NoSuchThingIsomorphicLayoutEffect.mdx";
+import { Schema } from "./schema";
+import { WhyIRebuiltProseMirrorView } from "./tsx/WhyIRebuiltProseMirrorView/WhyIRebuiltProseMirrorView";
 
-import { Block, parseRoot } from "codehike/blocks";
-
-const Schema = Block.extend({
-  title: z.string(),
-  date: z.string(),
-  author: z.string(),
-  canonical: z.optional(z.string()),
-  snippet: z.string(),
-  slug: z.string(),
-  sections: z.array(Block),
-});
-
-export const posts = [parseRoot(NoSuchThingIsomorphicLayoutEffect, Schema)];
+export const posts = [
+  parseRoot(NoSuchThingIsomorphicLayoutEffect, Schema),
+  WhyIRebuiltProseMirrorView,
+];

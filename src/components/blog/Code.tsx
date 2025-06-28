@@ -7,7 +7,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
       lang={codeblock.lang}
       title={codeblock.meta}
       theme="dracula"
-      className="text-base"
+      className="text-sm md:text-base"
     >
       {codeblock.value}
     </BrightCode>

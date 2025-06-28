@@ -7,7 +7,7 @@ interface Props {
 
 export default function BlogLayout({ children }: Props) {
   return (
-    <div className="border-x-blueprint m-8 h-full px-10">
+    <div className="border-x-blueprint m-2 h-full px-3 md:m-8 md:px-10">
       <header className="py-8">
         <h1 className="font-headings text-[1.825rem] leading-[0.9] font-extralight uppercase md:text-[2.825rem]">
           <Link href="/">

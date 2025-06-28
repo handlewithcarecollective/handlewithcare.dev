@@ -1,12 +1,14 @@
+import { Link } from "@/components/blog/Link";
+import { BlogSection } from "@/components/blog/Section";
 import { posts } from "@/posts/posts";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface Props {
   params: Promise<{ slug: string }>;
+  serverOnly?: boolean;
 }
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params, serverOnly }: Props) {
   const { slug } = await params;
   const post = posts.find((post) => post.slug === slug);
   if (!post) notFound();
@@ -14,26 +16,23 @@ export default async function PostPage({ params }: Props) {
   return (
     <main className="mx-auto mt-20 flex max-w-prose flex-col gap-4">
       <p>{post.date}</p>
-      <h3 className="font-headings text-center text-2xl leading-[0.9] font-extralight uppercase md:text-4xl">
+      <h2 className="font-headings text-center text-2xl leading-[1] font-extralight uppercase md:text-4xl">
         {post.title}
-      </h3>
+      </h2>
       <p className="text-base font-bold md:text-xl">by {post.author}</p>
       {post.canonical && (
         <p>
           Originally published to{" "}
-          <Link className="font-bold underline" href={post.canonical}>
-            {new URL(post.canonical).hostname}
-          </Link>
+          <Link href={post.canonical}>{new URL(post.canonical).hostname}</Link>
         </p>
       )}
-      {post.sections.map((section) => (
-        <section
-          className="flex flex-col gap-4 text-base md:text-xl"
-          id={section.title}
-        >
-          {section.children}
-        </section>
-      ))}
+      {"sections" in post ? (
+        post.sections.map((section) => (
+          <BlogSection id={section.title}>{section.children}</BlogSection>
+        ))
+      ) : (
+        <post.Component serverOnly={serverOnly} />
+      )}
     </main>
   );
 }
