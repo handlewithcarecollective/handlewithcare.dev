@@ -2924,6 +2924,7 @@ __metadata:
     escape-html: "npm:^1.0.3"
     eslint: "npm:^8"
     eslint-config-next: "npm:15.1.1"
+    lucide-react: "npm:^0.525.0"
     next: "npm:15.1.7"
     postcss: "npm:^8"
     prettier: "npm:^3.3.3"
@@ -3692,6 +3693,15 @@ __metadata:
   bin:
     loose-envify: cli.js
   checksum: 10c0/655d110220983c1a4b9c0c679a2e8016d4b67f6e9c7b5435ff5979ecdb20d0813f4dec0a08674fcbdd4846a3f07edbb50a36811fd37930b94aaa0d9daceb017e
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.525.0":
+  version: 0.525.0
+  resolution: "lucide-react@npm:0.525.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/81c4438e2cf1c86ea2ebe0a97b378201512450894283cccce766a89bc6a4e47c8df1d9115d845d98f582bb0a10be31c454aa232520fea35018dac1cd8466ea9b
   languageName: node
   linkType: hard
 
