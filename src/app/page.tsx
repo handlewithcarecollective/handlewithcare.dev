@@ -12,6 +12,8 @@ import { HomeSectionHeader } from "@/components/home/SectionHeader";
 import { HomeSectionWrapper } from "@/components/home/SectionWrapper";
 import { TaglineDescription } from "@/components/home/TaglineDescription";
 import { Times } from "@/components/home/Times";
+import { Testimonial } from "@/components/home/Testimonial";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -72,12 +74,17 @@ export default function HomePage() {
               title="Product & Strategy"
             >
               <HomeParagraph>
-                Morgan has worked on products for eleven years with deep
-                experience in engaging user-focused experiences and end-to-end
-                workflow solutions. She&rsquo;s led product for teams at places
-                like New York magazine, Vox Media, and the New York Times. She
-                has a strong track record of being able to translate needs into
-                actionable problems with solid outcomes.
+                Morgan has spent over a decade in product leadership building
+                everything from publishing platforms to e-commerce sites and
+                audience experiences that scale. With experience at places like
+                The New York Times and Vox Media, she brings deep expertise in
+                both transforming legacy systems and building entirely new
+                products from the ground up, with a proven track record of
+                taking ambitious ideas and translating them into sustainable,
+                high-impact solutions. Her approach combines strategic product
+                vision with hands-on execution, leading cross-functional teams
+                through complex technical challenges while maintaining focus on
+                user outcomes and business goals.
               </HomeParagraph>
             </PartnerBio>
             <Rule vertical />
@@ -124,12 +131,12 @@ export default function HomePage() {
               </HomeParagraph>
             </PartnerBio>
             <Rule vertical className="hidden md:block" />
-            <Spacer direction="right" />
+            <Spacer direction="right" className="mb-8" />
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
       <HomeSection>
-        <HomeSectionWrapper className="border-x-blueprint flex flex-row">
+        <HomeSectionWrapper className="border-x-blueprint flex flex-row pb-8">
           <Spacer direction="left" className="p-8 pb-0" />
           <Rule vertical className="hidden md:block" />
           <div className="md:basis-1/2">
@@ -184,6 +191,64 @@ export default function HomePage() {
               </OrderedList.Item>
             </OrderedList>
           </div>
+        </HomeSectionWrapper>
+      </HomeSection>
+      <HomeSection variant="orange">
+        <HomeSectionWrapper>
+          <HomeSectionHeader>
+            <HomeHeading order={2}>Testimonials</HomeHeading>
+          </HomeSectionHeader>
+          <Rules />
+          <HomeSectionArticle className="flex flex-col gap-4 md:flex-row">
+            <Testimonial name="Alex Ulmer" title="Co-founder, dskrpt">
+              Working with Handle with Care might be the best thing you can do
+              for your project! Shane is a brilliant engineer whose virtually
+              endless knowledge of ProseMirror and React helped us realise
+              things we thought to be impossible. His library —
+              react-prosemirror — was our missing link for building a modern,
+              text editing application. But even more importantly, Handle with
+              Care has always kept the project as a whole in mind. Shane is the
+              type of engineer who you can explain the business problem, who
+              will ask the right questions, and who will help you find the best
+              solution ranging from a single feature to the application’s
+              architecture. The quality of Handle with Care’s work is beyond
+              reproach and will in fact help your team to become better.
+            </Testimonial>
+            <Rule vertical />
+            <Testimonial
+              name="Alex Clemmer"
+              title="Co-founder & CEO, Moment Technologies"
+            >
+              Handle with Care is the best team in the world at what they do. We
+              came to them when our product was a prototype with huge missing
+              piece: collaborative text editing in a highly customized editor,
+              well-known to be one of the hardest problems in computer science.
+              There is no one-size-fits-all solution to this problem, and
+              solving it requires the very best from all parts of the product
+              team—architecture, boots-on-the-ground engineering, ops, etc.
+              Handle was an enormous benefit at each of these steps, helping us
+              break the problem into something that could be implemented and
+              maintained by a small team of mostly infrastructure engineers.
+              Within a few weeks we had completely retooled the frontend
+              architecture, and had a production-grade build. Without Handle, I
+              think this would have taken 10x longer, and we would have ended up
+              with a noticeably worse experience.
+            </Testimonial>
+          </HomeSectionArticle>
+        </HomeSectionWrapper>
+      </HomeSection>
+      <HomeSection>
+        <HomeSectionWrapper>
+          <HomeSectionHeader>
+            <div className="flex flex-row justify-between">
+              <HomeHeading order={2}>Writing</HomeHeading>
+              <Link href="/blog" className="text-base underline md:text-xl">
+                Read it all
+              </Link>
+            </div>
+          </HomeSectionHeader>
+          <Rule />
+          <HomeSectionArticle>Text</HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
       <HomeSection
