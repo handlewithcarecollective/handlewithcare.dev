@@ -14,6 +14,8 @@ import { TaglineDescription } from "@/components/home/TaglineDescription";
 import { Times } from "@/components/home/Times";
 import { Testimonial } from "@/components/home/Testimonial";
 import Link from "next/link";
+import { posts } from "@/posts/posts";
+import { PostSnippet } from "@/components/blog/PostSnippet";
 
 export default function HomePage() {
   return (
@@ -248,7 +250,18 @@ export default function HomePage() {
             </div>
           </HomeSectionHeader>
           <Rule />
-          <HomeSectionArticle>Text</HomeSectionArticle>
+          <HomeSectionArticle className="min-h-0 gap-10">
+            {posts.slice(0, 2).map((post) => (
+              <PostSnippet
+                key={post.slug}
+                title={post.title}
+                date={post.date}
+                author={post.author}
+                snippet={post.snippet}
+                slug={post.slug}
+              />
+            ))}
+          </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
       <HomeSection
