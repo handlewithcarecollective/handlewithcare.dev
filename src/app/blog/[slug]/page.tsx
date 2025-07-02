@@ -7,14 +7,15 @@ import { Attributes, Children, cloneElement, isValidElement } from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
-  serverOnly?: boolean;
 }
 
-export default async function PostPage({ params, serverOnly }: Props) {
-  const { slug } = await params;
-  const post = getPosts({ serverOnly }).find((post) => post.slug === slug);
-  if (!post) notFound();
-
+export function Post({
+  post,
+  serverOnly,
+}: {
+  post: ReturnType<typeof getPosts>[number];
+  serverOnly?: boolean;
+}) {
   return (
     <main className="mx-auto mt-20 flex max-w-prose flex-col gap-4">
       <header className="flex flex-col gap-8">
@@ -48,6 +49,14 @@ export default async function PostPage({ params, serverOnly }: Props) {
       )}
     </main>
   );
+}
+
+export default async function PostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getPosts().find((post) => post.slug === slug);
+  if (!post) notFound();
+
+  return <Post post={post} />;
 }
 
 export async function generateStaticParams() {

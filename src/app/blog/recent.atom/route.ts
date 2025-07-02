@@ -7,7 +7,7 @@ import type {
   ReactDOMServerReadableStream,
   RenderToReadableStreamOptions,
 } from "react-dom/server";
-import PostPage from "../[slug]/page";
+import PostPage, { Post } from "../[slug]/page";
 
 export const dynamic = "force-static";
 
@@ -24,8 +24,8 @@ export async function GET() {
   const postEntries = [];
   for (const post of getPosts({ serverOnly: true })) {
     const markupBytesStream = await renderToReadableStream(
-      createElement(PostPage, {
-        params: Promise.resolve({ slug: post.slug }),
+      createElement(Post, {
+        post,
         serverOnly: true,
       }),
     );

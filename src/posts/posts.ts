@@ -5,7 +5,7 @@ import { WhyIRebuiltProseMirrorView } from "./tsx/WhyIRebuiltProseMirrorView/Why
 import TechDebtAsProductStrategy from "./mdx/TechDebtAsProductStrategy/TechDebtAsProductStrategy.mdx";
 import { RicedCalculator } from "./mdx/TechDebtAsProductStrategy/components/RicedCalculator";
 
-export function getPosts({ serverOnly }: { serverOnly?: boolean }) {
+export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
     parseRoot(TechDebtAsProductStrategy, Schema, {
       components: {

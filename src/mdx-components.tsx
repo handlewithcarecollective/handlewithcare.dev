@@ -6,6 +6,7 @@ import { Heading3 } from "./components/blog/Heading3";
 import { Heading4 } from "./components/blog/Heading4";
 import { Link } from "./components/blog/Link";
 import { NumberedList } from "./components/blog/NumberedList";
+import { BulletList } from "./components/blog/BulletList";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -17,5 +18,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: Heading4,
     a: Link,
     ol: NumberedList,
+    ul: BulletList,
   };
 }
