@@ -1,5 +1,5 @@
 import { PostSnippet } from "@/components/blog/PostSnippet";
-import { posts } from "@/posts/posts";
+import { getPosts } from "@/posts/posts";
 import { Metadata } from "next";
 
 export default async function BlogHomePage() {
@@ -9,7 +9,7 @@ export default async function BlogHomePage() {
         Our writing
       </h2>
       <section className="mt-48 flex flex-col gap-10">
-        {posts.map((post) => (
+        {getPosts({ serverOnly: false }).map((post) => (
           <PostSnippet
             key={post.slug}
             slug={post.slug}

@@ -1,5 +1,3 @@
-import { RicedCalculator } from "./components/RicedCalculator";
-
 !title Tech Debt as Product Strategy
 
 !date July 2, 2025
@@ -18,47 +16,59 @@ As a product manager, I've seen firsthand how technical debt can break critical 
 
 But here's the core problem: We treat features like investments, and tech debt like a nuisance.
 This one-size-fits-all approach fails because not all technical debt is created equal:
-* **Systemic Debt**: The kind that threatens your entire platform's stability—like that aging authentication system that could take down your whole product, or the database architecture that won't scale past your next growth milestone.
-* **Annoying Debt**: The friction that slows teams down but doesn't risk catastrophe—think clunky deployment processes, outdated testing frameworks, or that one API everyone hates but still works.
-* **Strategic Debt**: The debt you choose to take on deliberately—like shipping a quick-but-imperfect solution to validate the busin, or maintaining legacy systems until you're certain about their replacement.
+
+- **Systemic Debt**: The kind that threatens your entire platform's stability—like that aging authentication system that could take down your whole product, or the database architecture that won't scale past your next growth milestone.
+- **Annoying Debt**: The friction that slows teams down but doesn't risk catastrophe—think clunky deployment processes, outdated testing frameworks, or that one API everyone hates but still works.
+- **Strategic Debt**: The debt you choose to take on deliberately—like shipping a quick-but-imperfect solution to validate the busin, or maintaining legacy systems until you're certain about their replacement.
 
 So we punt. We bundle debt into feature work "when we can." We hope the refactor will justify itself in the long run. Or we wait until a bug becomes a crisis.
 
 Instead of treating tech debt as a necessary evil, let's evaluate it with the same rigor we bring to feature development. Here's a framework I've used (and evolved) to bring structure, context, and business alignment to these decisions—one that works whether you're facing systemic risks, daily annoyances, or strategic trade-offs.
-***
+
+---
+
 ### !!sections framework
+
 ## The RICE+D Framework
+
 Adapted from the classic RICE model, this adds a critical dimension: **Cost of Delay**.
 
 We score technical debt initiatives across:
-* **Reach**: How many people or systems are affected? Does it unlock future features?
-* **Impact**: How much will resolving this move the business forward?
-* **Confidence**: How certain are we about the upside or the pain of not doing it?
-* **Effort**: Estimated engineering cost
-* **Cost of Delay**: What gets worse over time if we don’t do this?
+
+- **Reach**: How many people or systems are affected? Does it unlock future features?
+- **Impact**: How much will resolving this move the business forward?
+- **Confidence**: How certain are we about the upside or the pain of not doing it?
+- **Effort**: Estimated engineering cost
+- **Cost of Delay**: What gets worse over time if we don’t do this?
 
 ## !!sections calculator
 
 <RicedCalculator />
 
 This allows PMs to compare tech debt work directly with feature requests—not as apples to oranges, but as different forms of investment.
+
 ### Example: Refactoring Our Editing Experience
+
 Consider a common scenario in digital publishing: A custom content management system where early architectural decisions have created a challenging foundation. Writers face daily frustrations like disappearing text, jumping cursors, and unpredictable formatting. Meanwhile, the engineering team sees how this technical foundation blocks strategic priorities like collaborative editing and AI-assisted writing.
 
 Let's apply our framework to a proposed architectural overhaul:
-* **Reach**: High — impacts hundreds of writers daily and enables multiple strategic initiatives
-* **Impact**: High — resolves persistent UX issues and unlocks next-gen capabilities
-* **Confidence**: 80% — based on technical assessment and prototype
-* **Effort**: High — 2-3 engineers, ~12 weeks
-* **Cost of Delay**: High — each sprint on the unstable foundation:
-  * Extends feature development timelines
-  * Creates ongoing debugging overhead
-  * Increases regression risks
-  * Blocks innovation opportunities
+
+- **Reach**: High — impacts hundreds of writers daily and enables multiple strategic initiatives
+- **Impact**: High — resolves persistent UX issues and unlocks next-gen capabilities
+- **Confidence**: 80% — based on technical assessment and prototype
+- **Effort**: High — 2-3 engineers, ~12 weeks
+- **Cost of Delay**: High — each sprint on the unstable foundation:
+  - Extends feature development timelines
+  - Creates ongoing debugging overhead
+  - Increases regression risks
+  - Blocks innovation opportunities
 
 The key insight here isn't just fixing bugs—it's reframing technical work as a strategic platform investment that enables future capabilities. When teams make this mindset shift, they often find that what looked like "cleanup" was actually laying the groundwork for their next phase of innovation.
-***
+
+---
+
 ### !!sections measuringvibes
+
 ## Measuring the Intangible: Vibes as a Key Result
 
 We always want to quantify the value of our work, but sometimes we can't. When overhauling our data sync architecture, we faced this challenge: reducing lines of code or counting fewer pager duty alerts might show change, but they couldn't tell us if we were achieving our actual goal—building a system engineers could confidently work with.
@@ -68,29 +78,41 @@ So we got creative with "vibes." We asked engineers to submit images representin
 These visual metaphors resonated instantly with non-technical stakeholders. Everyone understood why an architecture that felt like a "flaming clown car" needed fixing, and they celebrated reaching "serene landscape" status.
 
 The result? Better release confidence, less operational overhead, and a transformed relationship with the platform. Most importantly, it helped justify work that might have been dismissed as mere maintenance.
+
 > Don't be afraid to measure what matters, even if it's not a number. Sometimes the most meaningful metrics are the ones that capture how it feels to build with your tools.
-***
+
+---
+
 ### !!sections bundling
+
 ## When to Bundle, When to Separate
+
 Not all tech debt justifies a standalone initiative. But not all debt can be safely bundled into feature work either. The key is understanding when each approach serves your team best.
 
 **Before deciding, evaluate:**
-* Dependencies: Can the feature succeed without addressing this debt?
-* Solution clarity: Do we understand the technical approach well enough to bundle, or do we need space to iterate?
-* Risk profile: Would combining create too much change at once?
-* Political timing: Is there an opportunity to "ride along" with a high-priority initiative?
-* Team capacity: Do we have the right bandwidth for combined vs. separate tracks?
+
+- Dependencies: Can the feature succeed without addressing this debt?
+- Solution clarity: Do we understand the technical approach well enough to bundle, or do we need space to iterate?
+- Risk profile: Would combining create too much change at once?
+- Political timing: Is there an opportunity to "ride along" with a high-priority initiative?
+- Team capacity: Do we have the right bandwidth for combined vs. separate tracks?
 
 > Pro tip: When bundling, be explicit about the technical work in your feature specs. Don't hide the debt work—highlight how it enables better outcomes.
 
 This approach helps teams move beyond the false choice between "pure maintenance" and "pure features," creating space for thoughtful integration of technical and product priorities.
-***
+
+---
+
 ### !!sections takeaways
+
 ## Final Takeaway
+
 Product managers are decision-makers. That includes owning the foundation we build on. If you treat technical debt as a second-class citizen—hard to explain, impossible to measure—it will always lose to shinier work.
 
 But if you treat it as a **strategic bet**, and evaluate it with the same discipline you bring to features, something changes. Engineers feel heard. Stakeholders feel confident. Using tools like the RICE+D framework, you transform murky maintenance requests into clear investment opportunities. And your platform becomes something you can build on, not build around.
 
 Sometimes, the best feature you can ship is the ability to build the next one faster.
-***
+
+---
+
 Want help applying this framework to your team's technical debt decisions? I'd love to hear about your challenges and share more detailed strategies. [Let's connect](mailto:hello@handlewithcare.dev) and explore how to make these principles work in your context.

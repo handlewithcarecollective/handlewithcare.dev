@@ -1,8 +1,9 @@
 import { Link } from "@/components/blog/Link";
 import { BlogSection } from "@/components/blog/Section";
-import { posts } from "@/posts/posts";
+import { getPosts } from "@/posts/posts";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Attributes, Children, cloneElement, isValidElement } from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -11,7 +12,7 @@ interface Props {
 
 export default async function PostPage({ params, serverOnly }: Props) {
   const { slug } = await params;
-  const post = posts.find((post) => post.slug === slug);
+  const post = getPosts({ serverOnly }).find((post) => post.slug === slug);
   if (!post) notFound();
 
   return (
@@ -35,7 +36,11 @@ export default async function PostPage({ params, serverOnly }: Props) {
       {"sections" in post ? (
         post.sections.map((section) => (
           <BlogSection key={section.title} id={section.title}>
-            {section.children}
+            {Children.map(section.children, (child) =>
+              isValidElement(child)
+                ? cloneElement(child, { serverOnly } as unknown as Attributes)
+                : child,
+            )}
           </BlogSection>
         ))
       ) : (
@@ -46,14 +51,16 @@ export default async function PostPage({ params, serverOnly }: Props) {
 }
 
 export async function generateStaticParams() {
-  return posts.map((post) => ({
+  return getPosts({ serverOnly: true }).map((post) => ({
     slug: post.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((post) => post.slug === slug);
+  const post = getPosts({ serverOnly: true }).find(
+    (post) => post.slug === slug,
+  );
   if (!post) notFound();
 
   return {

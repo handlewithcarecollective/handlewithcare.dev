@@ -3,9 +3,16 @@ import NoSuchThingIsomorphicLayoutEffect from "./mdx/NoSuchThingIsomorphicLayout
 import { Schema } from "./schema";
 import { WhyIRebuiltProseMirrorView } from "./tsx/WhyIRebuiltProseMirrorView/WhyIRebuiltProseMirrorView";
 import TechDebtAsProductStrategy from "./mdx/TechDebtAsProductStrategy/TechDebtAsProductStrategy.mdx";
+import { RicedCalculator } from "./mdx/TechDebtAsProductStrategy/components/RicedCalculator";
 
-export const posts = [
-  parseRoot(TechDebtAsProductStrategy, Schema),
-  parseRoot(NoSuchThingIsomorphicLayoutEffect, Schema),
-  WhyIRebuiltProseMirrorView,
-];
+export function getPosts({ serverOnly }: { serverOnly?: boolean }) {
+  return [
+    parseRoot(TechDebtAsProductStrategy, Schema, {
+      components: {
+        RicedCalculator: serverOnly ? () => null : RicedCalculator,
+      },
+    }),
+    parseRoot(NoSuchThingIsomorphicLayoutEffect, Schema),
+    WhyIRebuiltProseMirrorView,
+  ];
+}

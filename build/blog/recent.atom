@@ -7,7 +7,7 @@
   </author>
   <icon>https://handlewithcare.dev/favicon.ico</icon>
   <id>https://handlewithcare.dev/blog/recent.atom</id>
-  <updated>2025-02-22T05:00:00.000Z</updated>
+  <updated>2025-07-02T04:00:00.000Z</updated>
   <link href="https://handlewithcare.dev/" />
   <link href="https://handlewithcare.dev/blog/recent.atom" rel="self" />
   <entry>
@@ -252,6 +252,46 @@ understandings to build up and slowly shift our intuition over time,
 until we find that our mental model of our problem space doesn’t match
 reality any longer.&lt;/p&gt;&lt;p&gt;Oh, and React ProseMirror doesn’t trigger the layout effect warning
 during server-side rendering anymore!&lt;/p&gt;&lt;/section&gt;&lt;/main&gt;
+    </content>
+  </entry>
+
+  <entry>
+    <title type="text">Tech Debt as Product Strategy</title>
+    <id>https://handlewithcare.dev/blog/tech_debt_as_product_strategy/</id>
+    <updated>2025-07-02T04:00:00.000Z</updated>
+    <published>2025-07-02T04:00:00.000Z</published>
+    <link href="https://handlewithcare.dev/blog/tech_debt_as_product_strategy/" />
+    <author>
+      <name>Morgan Cohn</name>
+      <uri>https://handlewithcare.dev/#Morgan Cohn</uri>
+    </author>
+    <summary type="text">Most teams treat technical debt as inevitable maintenance rather than strategic investment—but this approach fails because not all debt is created equal. Let's break down a framework for evaluating tech debt decisions with the same rigor as feature development.</summary>
+    <content type="html" xml:lang="en" xml:base="http://handlewithcare.dev/blog/tech_debt_as_product_strategy/">
+      &lt;main class=&quot;mx-auto mt-20 flex max-w-prose flex-col gap-4&quot;&gt;&lt;header class=&quot;flex flex-col gap-8&quot;&gt;&lt;a class=&quot;font-bold underline&quot; href=&quot;/blog&quot;&gt;Back to all writing&lt;/a&gt;&lt;p&gt;July 2, 2025&lt;/p&gt;&lt;h2 class=&quot;font-headings text-center text-2xl leading-[1] font-extralight uppercase md:text-4xl&quot;&gt;Tech Debt as Product Strategy&lt;/h2&gt;&lt;p class=&quot;text-base font-bold md:text-xl&quot;&gt;by &lt;!-- --&gt;Morgan Cohn&lt;/p&gt;&lt;/header&gt;&lt;section id=&quot;intro&quot; class=&quot;flex flex-col gap-4 text-base md:text-xl&quot;&gt;&lt;p&gt;It&amp;#x27;s a familiar product dilemma: Engineering teams spot infrastructure challenges that threaten velocity and stability, but business stakeholders are expecting new features and visible progress. This tension creates a classic product prioritization challenge: should you invest a quarter&amp;#x27;s worth of work in &amp;quot;invisible&amp;quot; improvements—and if so, how do you justify it?&lt;/p&gt;&lt;p&gt;As a product manager, I&amp;#x27;ve seen firsthand how technical debt can break critical systems at the worst possible moments. While I&amp;#x27;ve spent much of my career building editorial tools—where every minute of downtime has real consequences—the pattern is universal: in any business-critical software, technical debt isn&amp;#x27;t just a developer headache—it&amp;#x27;s a product blocker, a velocity drag, and the kind of reliability issue that can destroy trust between product teams and their users.&lt;/p&gt;&lt;p&gt;But here&amp;#x27;s the core problem: We treat features like investments, and tech debt like a nuisance.
+This one-size-fits-all approach fails because not all technical debt is created equal:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Systemic Debt&lt;/strong&gt;: The kind that threatens your entire platform&amp;#x27;s stability—like that aging authentication system that could take down your whole product, or the database architecture that won&amp;#x27;t scale past your next growth milestone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Annoying Debt&lt;/strong&gt;: The friction that slows teams down but doesn&amp;#x27;t risk catastrophe—think clunky deployment processes, outdated testing frameworks, or that one API everyone hates but still works.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strategic Debt&lt;/strong&gt;: The debt you choose to take on deliberately—like shipping a quick-but-imperfect solution to validate the busin, or maintaining legacy systems until you&amp;#x27;re certain about their replacement.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;So we punt. We bundle debt into feature work &amp;quot;when we can.&amp;quot; We hope the refactor will justify itself in the long run. Or we wait until a bug becomes a crisis.&lt;/p&gt;&lt;p&gt;Instead of treating tech debt as a necessary evil, let&amp;#x27;s evaluate it with the same rigor we bring to feature development. Here&amp;#x27;s a framework I&amp;#x27;ve used (and evolved) to bring structure, context, and business alignment to these decisions—one that works whether you&amp;#x27;re facing systemic risks, daily annoyances, or strategic trade-offs.&lt;/p&gt;&lt;hr/&gt;&lt;/section&gt;&lt;section id=&quot;framework&quot; class=&quot;flex flex-col gap-4 text-base md:text-xl&quot;&gt;&lt;h2&gt;The RICE+D Framework&lt;/h2&gt;&lt;p&gt;Adapted from the classic RICE model, this adds a critical dimension: &lt;strong&gt;Cost of Delay&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;We score technical debt initiatives across:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reach&lt;/strong&gt;: How many people or systems are affected? Does it unlock future features?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: How much will resolving this move the business forward?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Confidence&lt;/strong&gt;: How certain are we about the upside or the pain of not doing it?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Effort&lt;/strong&gt;: Estimated engineering cost&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost of Delay&lt;/strong&gt;: What gets worse over time if we don’t do this?&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section id=&quot;calculator&quot; class=&quot;flex flex-col gap-4 text-base md:text-xl&quot;&gt;&lt;p&gt;This allows PMs to compare tech debt work directly with feature requests—not as apples to oranges, but as different forms of investment.&lt;/p&gt;&lt;h3 class=&quot;font-headings text-xl leading-[1] font-extralight uppercase md:text-3xl&quot;&gt;Example: Refactoring Our Editing Experience&lt;/h3&gt;&lt;p&gt;Consider a common scenario in digital publishing: A custom content management system where early architectural decisions have created a challenging foundation. Writers face daily frustrations like disappearing text, jumping cursors, and unpredictable formatting. Meanwhile, the engineering team sees how this technical foundation blocks strategic priorities like collaborative editing and AI-assisted writing.&lt;/p&gt;&lt;p&gt;Let&amp;#x27;s apply our framework to a proposed architectural overhaul:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reach&lt;/strong&gt;: High — impacts hundreds of writers daily and enables multiple strategic initiatives&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: High — resolves persistent UX issues and unlocks next-gen capabilities&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Confidence&lt;/strong&gt;: 80% — based on technical assessment and prototype&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Effort&lt;/strong&gt;: High — 2-3 engineers, ~12 weeks&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost of Delay&lt;/strong&gt;: High — each sprint on the unstable foundation:&lt;!-- --&gt;
+&lt;ul&gt;
+&lt;li&gt;Extends feature development timelines&lt;/li&gt;
+&lt;li&gt;Creates ongoing debugging overhead&lt;/li&gt;
+&lt;li&gt;Increases regression risks&lt;/li&gt;
+&lt;li&gt;Blocks innovation opportunities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;The key insight here isn&amp;#x27;t just fixing bugs—it&amp;#x27;s reframing technical work as a strategic platform investment that enables future capabilities. When teams make this mindset shift, they often find that what looked like &amp;quot;cleanup&amp;quot; was actually laying the groundwork for their next phase of innovation.&lt;/p&gt;&lt;hr/&gt;&lt;/section&gt;&lt;/main&gt;
     </content>
   </entry>
 

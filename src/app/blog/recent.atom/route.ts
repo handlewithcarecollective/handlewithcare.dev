@@ -1,4 +1,4 @@
-import { posts } from "@/posts/posts";
+import { getPosts } from "@/posts/posts";
 import escapeHTML from "escape-html";
 import { NextResponse } from "next/server";
 import { ReadableStream } from "node:stream/web";
@@ -22,7 +22,7 @@ export async function GET() {
   ).renderToReadableStream;
 
   const postEntries = [];
-  for (const post of posts) {
+  for (const post of getPosts({ serverOnly: true })) {
     const markupBytesStream = await renderToReadableStream(
       createElement(PostPage, {
         params: Promise.resolve({ slug: post.slug }),
