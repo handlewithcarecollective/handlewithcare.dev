@@ -36,9 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(post.canonical && { alternates: { canonical: post.canonical } }),
     openGraph: {
       ...openGraph,
+      type: "article",
       title: post.title,
       description: post.snippet,
       siteName: openGraph.title,
+      url: `https://handlewithcare.dev/blog/${post.slug}`,
+      authors: post.author,
+      publishedTime: post.date,
+      modifiedTime: post.updated,
     },
   };
 }
