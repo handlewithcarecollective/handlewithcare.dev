@@ -7,7 +7,7 @@ import type {
   ReactDOMServerReadableStream,
   RenderToReadableStreamOptions,
 } from "react-dom/server";
-import PostPage, { Post } from "../[slug]/page";
+import { Post } from "../[slug]/Post";
 
 export const dynamic = "force-static";
 
@@ -50,7 +50,8 @@ export async function GET() {
       path,
       author: post.author,
       summary: post.snippet,
-      content: escapeHTML(markup),
+      content: escapeHTML(""),
+      // content: escapeHTML(markup),
     });
   }
 

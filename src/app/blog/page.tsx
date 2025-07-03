@@ -1,6 +1,7 @@
 import { PostSnippet } from "@/components/blog/PostSnippet";
 import { getPosts } from "@/posts/posts";
 import { Metadata } from "next";
+import { openGraph } from "../metadata";
 
 export default async function BlogHomePage() {
   return (
@@ -26,20 +27,9 @@ export default async function BlogHomePage() {
 
 export const metadata: Metadata = {
   title: "Handle with Care Collective — Writing",
-  description: "Writings from worker-owned product development cooperative.",
-  alternates: {
-    types: {
-      "application/atom+xml": [
-        {
-          url: "https://handlewithcare.dev/blog/recent.atom",
-          title: "Handle with Care Collective — Writing",
-        },
-      ],
-    },
-  },
+  description: "Writing from a worker-owned product development cooperative.",
   openGraph: {
-    locale: "en_US",
-    type: "website",
+    ...openGraph,
     url: "https://handlewithcare.dev/blog",
   },
 };

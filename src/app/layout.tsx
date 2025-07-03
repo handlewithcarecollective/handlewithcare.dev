@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
+import { openGraph } from "./metadata";
 
 const typewriter = localFont({
   src: [
@@ -37,21 +38,17 @@ const fthabit = localFont({
 export const metadata: Metadata = {
   title: "Handle with Care Collective",
   description: "A worker-owned product development cooperative.",
-  // alternates: {
-  //   types: {
-  //     "application/atom+xml": [
-  //       {
-  //         url: "https://handlewithcare.dev/blog/recent.atom",
-  //         title: "Handle with Care Collective Blog",
-  //       },
-  //     ],
-  //   },
-  // },
-  openGraph: {
-    locale: "en_US",
-    type: "website",
-    url: "https://handlewithcare.dev",
+  alternates: {
+    types: {
+      "application/atom+xml": [
+        {
+          url: "https://handlewithcare.dev/blog/recent.atom",
+          title: "Handle with Care Collective — Writing",
+        },
+      ],
+    },
   },
+  openGraph,
 };
 
 export default function RootLayout({
