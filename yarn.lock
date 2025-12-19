@@ -111,18 +111,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@handlewithcare/react-prosemirror@npm:^2.4.4":
-  version: 2.4.4
-  resolution: "@handlewithcare/react-prosemirror@npm:2.4.4"
+"@handlewithcare/react-prosemirror@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "@handlewithcare/react-prosemirror@npm:2.7.0"
   dependencies:
     classnames: "npm:^2.3.2"
   peerDependencies:
     prosemirror-model: ^1.0.0
     prosemirror-state: ^1.0.0
     prosemirror-view: 1.39.2
-    react: ">=17 <=19.1.0"
-    react-dom: ">=17 <=19.1.0"
-  checksum: 10c0/a00ba210d4982b60aeedc4ea6010a837b77b4feadeb645d8653f23651d14c4be9e2af5e23c5eae51a386cd79150b64d17dc8e0e18576ecd4f3935ed98eda8815
+    react: ">=17 <20"
+    react-dom: ">=17 <20"
+    react-reconciler: ">=0.26.1 <=0.33.0"
+  checksum: 10c0/c3136d40b0a76fef76be287d1aff43f96664c99ed82641d26fb086f179c2943efacc7eb38550df8c36cc41ae9f54a0c1a0adedf609018e54d23be9f16ad7a70a
   languageName: node
   linkType: hard
 
@@ -2919,7 +2920,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "handlewithcare.dev@workspace:."
   dependencies:
-    "@handlewithcare/react-prosemirror": "npm:^2.4.4"
+    "@handlewithcare/react-prosemirror": "npm:^2.7.0"
     "@mdx-js/loader": "npm:^3.1.0"
     "@mdx-js/react": "npm:^3.1.0"
     "@next/mdx": "npm:^15.3.4"
@@ -2951,6 +2952,7 @@ __metadata:
     prosemirror-state: "npm:^1.4.3"
     prosemirror-view: "npm:1.39.2"
     react: "npm:19.1.0"
+    react-best-merge-refs: "npm:^1.0.2"
     react-dom: "npm:19.1.0"
     react-reconciler: "npm:^0.32.0"
     tailwind-merge: "npm:^3.3.1"
@@ -4819,6 +4821,15 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10c0/900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
+  languageName: node
+  linkType: hard
+
+"react-best-merge-refs@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-best-merge-refs@npm:1.0.2"
+  peerDependencies:
+    react: ^19
+  checksum: 10c0/9851d793a63aa38bbc24643d1bc78751e869625d25b4d41f77e9f2711ab6d1df44bb3a5061124f05ac4ae54f83f154d436ad56cec6ac8a9e028f0acb56d16d84
   languageName: node
   linkType: hard
 

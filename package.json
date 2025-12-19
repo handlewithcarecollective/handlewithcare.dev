@@ -11,7 +11,7 @@
     "types": "tsc"
   },
   "dependencies": {
-    "@handlewithcare/react-prosemirror": "^2.4.4",
+    "@handlewithcare/react-prosemirror": "^2.7.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.4",
@@ -32,6 +32,7 @@
     "prosemirror-state": "^1.4.3",
     "prosemirror-view": "1.39.2",
     "react": "19.1.0",
+    "react-best-merge-refs": "^1.0.2",
     "react-dom": "19.1.0",
     "react-reconciler": "^0.32.0",
     "tailwind-merge": "^3.3.1",
