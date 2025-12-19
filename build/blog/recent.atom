@@ -7,7 +7,7 @@
   </author>
   <icon>https://handlewithcare.dev/favicon.ico</icon>
   <id>https://handlewithcare.dev/blog/recent.atom</id>
-  <updated>2025-07-02T04:00:00.000Z</updated>
+  <updated>2025-12-18T05:00:00.000Z</updated>
   <link href="https://handlewithcare.dev/" />
   <link href="https://handlewithcare.dev/blog/recent.atom" rel="self" />
   <entry>
@@ -54,6 +54,25 @@
     </author>
     <summary type="text">Most teams treat technical debt as inevitable maintenance rather than strategic investment—but this approach fails because not all debt is created equal. Let's break down a framework for evaluating tech debt decisions with the same rigor as feature development.</summary>
     <content type="html" xml:lang="en" xml:base="http://handlewithcare.dev/blog/tech_debt_as_product_strategy/">
+      
+    </content>
+  </entry>
+
+  <entry>
+    <title type="text">Using React Transitions for low priority text editor updates</title>
+    <id>https://handlewithcare.dev/blog/transition_low_priority_editor_updates/</id>
+    <updated>2025-12-18T05:00:00.000Z</updated>
+    <published>2025-12-18T05:00:00.000Z</published>
+    <link href="https://handlewithcare.dev/blog/transition_low_priority_editor_updates/" />
+    <author>
+      <name>Shane Friedman</name>
+      <uri>https://handlewithcare.dev/#Shane Friedman</uri>
+    </author>
+    <summary type="text">React ProseMirror can really be quite fast, but what happens if we need
+to render it multiple times? Let’s walk through how to use React’s Transition
+APIs to speed up perceived performance by ensuring that only the critical
+interactive elements are updated immediately following user input.</summary>
+    <content type="html" xml:lang="en" xml:base="http://handlewithcare.dev/blog/transition_low_priority_editor_updates/">
       
     </content>
   </entry>

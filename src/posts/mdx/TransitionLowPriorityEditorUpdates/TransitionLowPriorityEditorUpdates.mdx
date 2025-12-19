@@ -1,7 +1,3 @@
-import { EditorWithoutTransition } from "./components/EditorWithoutTransition.tsx";
-import { EditorWithTransition } from "./components/EditorWithTransition.tsx";
-import { LeadIn } from "@/components/blog/LeadIn.tsx";
-
 !slug transition_low_priority_editor_updates
 
 !title Using React Transitions for low priority text editor updates
@@ -10,7 +6,10 @@ import { LeadIn } from "@/components/blog/LeadIn.tsx";
 
 !author Shane Friedman
 
-!snippet TODO: write snippet
+!snippet React ProseMirror can really be quite fast, but what happens if we need
+to render it multiple times? Let’s walk through how to use React’s Transition
+APIs to speed up perceived performance by ensuring that only the critical
+interactive elements are updated immediately following user input.
 
 ### !!sections intro
 
@@ -88,8 +87,8 @@ export function Editor() {
 
 <div className="bg-blue-100 text-sm p-4 rounded-lg">
 
-We're using the new `static` prop to render our preview editor as a static
-document. This means that it won't mount an EditorView or any of the event
+We’re using the new `static` prop to render our preview editor as a static
+document. This means that it won’t mount an EditorView or any of the event
 listeners, and that `contenteditable` will be set to `false`.
 
 </div>
@@ -101,7 +100,7 @@ updated, the preview editor will also need to be re-rendered, because its
 `state` prop will also have changed.
 
 To resolve this, we need to introduce a second piece of state, the “deferred”
-EditorState. We'll update this state with a Transition, so that any re-renders
+EditorState. We’ll update this state with a Transition, so that any re-renders
 it triggers will be deprioritized and interruptible.
 
 ```tsx
@@ -166,8 +165,8 @@ This means that it is absolutely crucial that we do not produce transactions
 from the deferred EditorState. It may be arbitrarily stale, meaning that its
 doc, selection, and plugin state may all be completely incorrect.
 
-This seems straightforward enough at first glance — just don't access
-`deferredEditorState.tr` — but there is some subtlety here. It's not enough to
+This seems straightforward enough at first glance — just don’t access
+`deferredEditorState.tr` — but there is some subtlety here. It’s not enough to
 avoid directly producing a transaction from the deferred EditorState, we must
 also avoid using any data from the deferred EditorState as an input to any
 transactions that we produce. Instead, we should use the
