@@ -10,7 +10,7 @@ export function Rule({ className, vertical }: Props) {
     return (
       <div
         className={twMerge(
-          "border-b-blueprint md:border-blueprint h-0 w-[calc(100%-2rem)] self-center border-l-0 md:h-[initial] md:w-0 md:self-auto md:border-r-[1.5px] md:border-l-[1.5px]",
+          "border-b-blueprint bg-brown h-0 w-[calc(100%-2rem)] self-center border-l-0 md:h-[initial] md:w-[3px] md:self-auto md:border-b-0",
           className,
         )}
       />

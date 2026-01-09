@@ -10,13 +10,11 @@ export function Spacer({ className, direction }: Props) {
     <div
       className={twMerge(
         "border-blueprint relative hidden grow basis-1/2 pt-0 md:block",
-        direction === "left" && "pr-8",
         className,
       )}
     >
       <svg
-        width="100%"
-        height="100%"
+        className="absolute inset-0 h-full w-full"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >

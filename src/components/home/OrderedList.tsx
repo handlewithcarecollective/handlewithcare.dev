@@ -5,7 +5,7 @@ interface Props {
 }
 
 export function OrderedList({ children }: Props) {
-  return <ol className="px-8 [counter-reset:item]">{children}</ol>;
+  return <ol className="pr-8 [counter-reset:item]">{children}</ol>;
 }
 
 function Item({ children }: Props) {

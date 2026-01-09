@@ -69,7 +69,7 @@ export default function HomePage() {
             <HomeHeading order={2}>Who we are</HomeHeading>
           </HomeSectionHeader>
           <Rules />
-          <HomeSectionArticle className="md:border-x-blueprint mb-4 flex flex-col gap-4 border-none p-0 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
+          <HomeSectionArticle className="md:border-x-blueprint mb-4 flex flex-col gap-4 border-none p-0 md:mb-8 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
             <PartnerBio
               firstName="Morgan"
               lastName="Cohn"
@@ -109,7 +109,7 @@ export default function HomePage() {
             </PartnerBio>
           </HomeSectionArticle>
           <Rules />
-          <HomeSectionArticle className="md:border-x-blueprint mb-0 flex flex-col gap-4 border-none p-0 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
+          <HomeSectionArticle className="md:border-x-blueprint mb-4 flex flex-col gap-4 border-none p-0 md:mb-8 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
             <PartnerBio
               className="basis-1/2"
               firstName="Phillip"
@@ -132,17 +132,54 @@ export default function HomePage() {
                 problem.
               </HomeParagraph>
             </PartnerBio>
+            <Rule vertical />
+            <PartnerBio
+              className="basis-1/2"
+              firstName="Randall"
+              lastName="Leeds"
+              title="Engineering & Architecture"
+            >
+              <HomeParagraph>
+                Randall builds tools and infrastructure for communities and the
+                open web. He has worked on publishing platforms at The New York
+                Times, mapping and schedule optimization tools for public
+                transit professionals at Remix, and open web annotation
+                standards at Hypothes.is. Randall believes deeply in the power
+                of maintenance to create sustainable foundations for technical
+                excellence.
+              </HomeParagraph>
+            </PartnerBio>
+          </HomeSectionArticle>
+          <Rules />
+          <HomeSectionArticle className="md:border-x-blueprint mb-0 flex flex-col gap-4 border-none p-0 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
+            <PartnerBio
+              className="basis-1/2"
+              firstName="Angela"
+              lastName="Guo"
+              title="Engineering & Architecture"
+            >
+              <HomeParagraph>
+                Angela is a software engineer and technical lead. She has built
+                many CMSes (including the tool used to program The New York
+                Times’s web homepage and the recipe editor used to author
+                recipes for NYT Cooking) and has worked across the web
+                development stack from improving search systems to enhancing web
+                SEO. She has experience with both building greenfield systems
+                and working within elaborate existing architectures and a track
+                record of bringing structure and clarity to complex projects.
+              </HomeParagraph>
+            </PartnerBio>
             <Rule vertical className="hidden md:block" />
-            <Spacer direction="right" className="mb-8" />
+            <Spacer direction="right" className="mb-8 hidden md:block" />
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
       <HomeSection>
-        <HomeSectionWrapper className="border-x-blueprint flex flex-row pb-8">
-          <Spacer direction="left" className="p-8 pb-0" />
+        <HomeSectionWrapper className="border-x-blueprint flex flex-row gap-8 px-8 pb-8">
+          <Spacer direction="left" className="mt-8" />
           <Rule vertical className="hidden md:block" />
           <div className="md:basis-1/2">
-            <header className="p-8">
+            <header className="py-8 pr-8">
               <HomeHeading order={2}>
                 How we work
                 <br />
