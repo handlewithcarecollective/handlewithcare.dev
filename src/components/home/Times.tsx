@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function Times() {
   const [princeton, setPrinceton] = useState("");
-  const [losAngelos, setLosAngelos] = useState("");
+  const [losAngeles, setLosAngeles] = useState("");
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -17,7 +17,7 @@ export function Times() {
         }).format(now),
       );
 
-      setLosAngelos(
+      setLosAngeles(
         new Intl.DateTimeFormat("en-US", {
           timeStyle: "short",
           timeZone: "America/Los_Angeles",
@@ -33,8 +33,8 @@ export function Times() {
         <br className="block md:hidden" /> Princeton
       </p>
       <p className="text-xl">
-        {losAngelos}
-        <br className="block md:hidden" /> Los Angelos
+        {losAngeles}
+        <br className="block md:hidden" /> Los Angeles
       </p>
     </div>
   );
