@@ -22,7 +22,7 @@ export default function HomePage() {
     <main>
       <HomeSection className="pt-4 md:pt-10">
         <HomeSectionWrapper>
-          <HomeSectionHeader className="pt-0.5">
+          <HomeSectionHeader className="flex flex-col justify-between pt-0.5">
             <nav>
               <HomeHeading order={1}>
                 Handle
@@ -36,6 +36,13 @@ export default function HomePage() {
                 Get in touch
               </a>
             </nav>
+            <a
+              href="#pitter-patter"
+              className="text-brown flex translate-y-0 flex-row items-center gap-2 self-center rounded-[1.25rem] bg-white px-5 py-2 text-2xl transition-shadow hover:shadow-md active:translate-y-1 active:bg-white/50 active:shadow-none"
+            >
+              <div className="bg-green animate-breathe h-4 w-4 rounded-full drop-shadow-[0_0_calc(var(--spacing)/2)__var(--color-green)]" />
+              <p>We’re building something new</p>
+            </a>
           </HomeSectionHeader>
           <Rule />
           <HomeSectionArticle>
@@ -169,15 +176,49 @@ export default function HomePage() {
                 record of bringing structure and clarity to complex projects.
               </HomeParagraph>
             </PartnerBio>
-            <Rule vertical className="hidden md:block" />
+            <Rule vertical className="mb-8 hidden md:block" />
             <Spacer direction="right" className="mb-8 hidden md:block" />
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
-      <HomeSection>
+      <HomeSection id="pitter-patter">
+        <HomeSectionWrapper>
+          <HomeSectionHeader>
+            <HomeHeading order={2}>What we’re building</HomeHeading>
+          </HomeSectionHeader>
+          <Rule />
+          <HomeSectionArticle>
+            <div className="flex flex-col items-center">
+              <HomeHeading order={2} className="mb-4 max-w-[880px] text-center">
+                Pitter Patter
+              </HomeHeading>
+              <HomeParagraph>
+                A rich text editing framework that works <em>with</em> you.
+              </HomeParagraph>
+            </div>
+            <div className="mx-auto flex max-w-[880px] flex-col gap-4">
+              <HomeParagraph>
+                Over the past two years, the appetite for collaborative rich
+                text editing has grown dramatically. More products need it, but
+                the available solutions are either expensive, opaque, or both.
+                Development teams get stuck with little insight into how their
+                application actually works, or how to improve it.
+              </HomeParagraph>
+              <HomeParagraph>
+                We know there’s a better way, and we’re in a good position to
+                build it.{" "}
+                <Link href="/pitter-patter" className="underline">
+                  Want to learn more?
+                </Link>
+              </HomeParagraph>
+            </div>
+          </HomeSectionArticle>
+        </HomeSectionWrapper>
+      </HomeSection>
+      <HomeSection variant="brown">
         <HomeSectionWrapper className="border-x-blueprint flex flex-row gap-8 px-8 pb-8">
           <Spacer direction="left" className="mt-8" />
-          <Rule vertical className="hidden md:block" />
+          <Rule vertical className="mt-8 hidden bg-white md:block" />
           <div className="md:basis-1/2">
             <header className="py-8 pr-8">
               <HomeHeading order={2}>
@@ -232,7 +273,7 @@ export default function HomePage() {
           </div>
         </HomeSectionWrapper>
       </HomeSection>
-      <HomeSection variant="orange">
+      <HomeSection>
         <HomeSectionWrapper>
           <HomeSectionHeader>
             <HomeHeading order={2}>Testimonials</HomeHeading>
@@ -276,7 +317,7 @@ export default function HomePage() {
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
-      <HomeSection>
+      <HomeSection variant="orange">
         <HomeSectionWrapper>
           <HomeSectionHeader>
             <div className="flex flex-row justify-between">
@@ -305,7 +346,7 @@ export default function HomePage() {
       </HomeSection>
       <HomeSection
         variant="brown"
-        className="mt-10 h-[35rem] pt-10 pb-10 md:h-[40rem]"
+        className="h-[35rem] pt-10 pb-10 md:h-[40rem]"
       >
         <Rule className="mb-8 translate-x-4 md:w-[calc(100%-2rem)]" />
         <HomeSectionWrapper className="border-blueprint flex h-[calc(100%-4rem)] flex-col justify-between border-l-3">

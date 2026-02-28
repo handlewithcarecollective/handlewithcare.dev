@@ -57,7 +57,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${typewriter.variable} ${fthabit.variable}`}>
+    <html
+      lang="en"
+      className={`${typewriter.variable} ${fthabit.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <body
         suppressHydrationWarning
         className={`font-body text-brown bg-canvas h-full antialiased`}

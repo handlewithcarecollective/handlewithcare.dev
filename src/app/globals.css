@@ -13,7 +13,27 @@
   --color-orange: #ff8a35;
   --color-gray: #7e6f62;
   --color-green: #29f462;
+
+  --animate-breathe: breathe 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  --animate-click: click 3s step-end infinite;
 }
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    opacity: 100%;
+    filter: drop-shadow(0 0 calc(var(--spacing)/2) var(--color-green));
+  }
+
+  50% {
+    opacity: 25%;
+    filter: drop-shadow(0 0 0 var(--color-green));
+  }
+}
+
+@keyframes click {}
 
 @utility border-blueprint {
   @apply border-solid border-[var(--color-blueprint)];
