@@ -26,7 +26,7 @@ export default function PitterPatterPage() {
               </div>
             </h1>
             <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
-              towards new collaborative editing tools
+              better collaborative editing
             </p>
           </PageHeader>
           <Rule className="border-b-green border-b-1 lg:border-b-2" />
@@ -135,22 +135,23 @@ export default function PitterPatterPage() {
           <Rule className="border-b-1 lg:hidden" />
           <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-8 md:px-16 lg:basis-1/2 lg:border-x-2 lg:px-24 lg:py-34">
             <Paragraph className="mb-2">
-              At Handle With Care, we’ve [quick setence about our experience and
-              credentials in the space].
+              At Handle With Care, we’ve built text editors for the most
+              demanding publishing platforms, and we’ve seen quite a lot of
+              limitations and challenges in this space.
             </Paragraph>
             <Paragraph className="mb-2">
               We built{" "}
               <a
-                href="https://github.com/handlewithcarecollective/react-prosemirror"
+                href="/blog/why_i_rebuilt_prosemirror_view/"
                 className="underline"
               >
                 React ProseMirror
               </a>{" "}
-              because the other solutions (including the ones we had worked on!)
-              just weren’t correct. They relied on antipatterns, often in both
-              React and ProseMirror, which had real consequences for both
-              development and user experience. This wasn’t enough for us. We
-              wanted to build something that did it right.
+              because the other solutions (including ours!) just weren’t
+              correct. They relied on antipatterns, often in both React and
+              ProseMirror, which had real consequences for both development and
+              user experience. This wasn’t enough for us. We wanted to build
+              something that did it right.
             </Paragraph>
             <Paragraph className="mb-8">
               Pitter Patter is that same philosophy applied at a larger scale.{" "}
