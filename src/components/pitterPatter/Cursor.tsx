@@ -17,14 +17,14 @@ export function Cursor({ targetId }: Props) {
 
     const rect = target.getBoundingClientRect();
 
-    setLeft(rect.left);
+    setLeft(rect.right);
     setTop(rect.top);
   }, []);
 
   return (
     <div
       style={{ top, left }}
-      className="bg-brown absolute h-[1em] w-1"
+      className="bg-green absolute h-[1em] w-1"
       ref={ref}
     />
   );
