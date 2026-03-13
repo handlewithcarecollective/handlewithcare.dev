@@ -8,7 +8,12 @@ interface Props {
 
 export function Paragraph({ className, children }: Props) {
   return (
-    <p className={twMerge("md:text-md text-base lg:text-lg", className)}>
+    <p
+      className={twMerge(
+        "md:text-md text-base leading-[135%] lg:text-lg",
+        className,
+      )}
+    >
       {children}
     </p>
   );

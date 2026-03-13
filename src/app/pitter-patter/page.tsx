@@ -10,29 +10,30 @@ import { TaglineDescription } from "@/components/pitterPatter/TaglineDescription
 import { SectionHeader } from "@/components/pitterPatter/SectionHeader";
 import { HomeHeading } from "@/components/home/Heading";
 import { SectionContent } from "@/components/pitterPatter/SectionContent";
+import { FundingStatus } from "@/components/pitterPatter/FundingStatus";
 
 export default function PitterPatterPage() {
   return (
     <main>
       <Section className="pt-4 md:pt-10">
         <HomeSectionWrapper>
-          <Rule className="border-b-green border-b-3" />
+          <Rule className="border-b-green border-b-1" />
           <PageHeader className="flex flex-col justify-center pt-0.5">
-            <h1 className="font-headings mx-auto text-2xl leading-[0.9] font-extralight md:text-3xl">
+            <h1 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl">
               <div className="justify-self-center">
                 <PitterPatterLogo id="pp-logo" height="1em" className="w-fit" />
                 <Cursor targetId="pp-logo" />
               </div>
-              <p className="justify-self-center text-center leading-normal opacity-60">
-                towards new collaborative editing tools
-              </p>
             </h1>
+            <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl">
+              towards new collaborative editing tools
+            </p>
           </PageHeader>
-          <Rule className="border-b-green border-b-3" />
+          <Rule className="border-b-green border-b-1" />
         </HomeSectionWrapper>
-        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-3 pt-20 md:mb-8 md:pt-20 lg:pt-30">
+        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-1 pt-10 md:mb-8 md:pt-12 lg:pt-30">
           <SectionContent>
-            <Paragraph>
+            <Paragraph className="mb-4">
               Over the past two years, the appetite for collaborative rich text
               editing has grown dramatically. More products need it, but the
               available solutions are either expensive, opaque, or both.
@@ -40,12 +41,12 @@ export default function PitterPatterPage() {
               control over how collaboration actually works in their
               applications.
             </Paragraph>
-            <Paragraph className="pt-4 font-bold">
+            <Paragraph className="font-bold">
               We know there’s a better way. And we’re in a good position to
-              build it. 
+              build it.
             </Paragraph>
           </SectionContent>
-          <SectionContent className="py-12 lg:py-24">
+          <SectionContent className="my-9 lg:my-24">
             <SectionHeader>what we're building</SectionHeader>
             <Paragraph>
               Pitter Patter is an ecosystem of ProseMirror-native libraries.
@@ -55,7 +56,7 @@ export default function PitterPatterPage() {
               access to the thing underneath. This includes:
             </Paragraph>
           </SectionContent>
-          <div className="flex flex-col flex-wrap gap-y-16 px-4 md:flex-row md:px-10 lg:max-w-[1030px]">
+          <div className="flex flex-col flex-wrap gap-y-10 px-4 md:flex-row md:px-10 lg:max-w-[1030px]">
             <TaglineDescription
               heading="Collaboration server"
               content="Self-hosted real-time co-editing with presence, version history, and no conflicts."
@@ -112,62 +113,72 @@ export default function PitterPatterPage() {
         </HomeSectionArticle>
       </Section>
       <Section variant="orange" className="w-full">
-        <HomeSectionWrapper className="flex-row">
+        <HomeSectionWrapper className="flex-col">
           <div className="flex grow basis-1/2 flex-col">
-            <div className="border-x-brown my-2 my-4 flex grow basis-1/2 items-center justify-center border-x-3 px-4 md:my-8">
-              <SectionHeader className="lg:text-4xl">who we are</SectionHeader>
+            <div className="border-x-brown mb-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8">
+              <SectionHeader className="mb-0 flex flex-col justify-center lg:text-4xl">
+                who we are
+              </SectionHeader>
             </div>
-            <Rule />
-            <div className="border-x-brown my-2 my-4 flex grow basis-1/2 items-center justify-center border-x-3 px-4 md:my-8 lg:text-[4.825rem]">
-              <HomeHeading order={2}>
+            <Rule className="border-b-1" />
+            <div className="border-x-brown my-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 lg:text-[4.825rem]">
+              <HomeHeading order={2} className="text-[2.325rem] leading-[0.9]">
                 Handle
                 <br />
                 with Care
               </HomeHeading>
             </div>
           </div>
-          <div className="border-r-brown my-2 flex grow basis-1/2 flex-col gap-4 border-r-3 px-16 py-24 md:my-4 lg:px-24 lg:py-34">
-            <Paragraph>
+          <Rule className="border-b-1" />
+          <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-4 lg:px-24 lg:py-34">
+            <Paragraph className="mb-2">
               At Handle With Care, we’ve [quick setence about our experience and
               credentials in the space].
             </Paragraph>
-            <Paragraph className="pt-4">
-              We built <span className="underline">React ProseMirror</span>{" "}
+            <Paragraph className="mb-2">
+              We built{" "}
+              <a
+                href="https://github.com/handlewithcarecollective/react-prosemirror"
+                className="underline"
+              >
+                React ProseMirror
+              </a>{" "}
               because the other solutions (including the ones we had worked on!)
               just weren’t correct. They relied on antipatterns, often in both
               React and ProseMirror, which had real consequences for both
               development and user experience. This wasn’t enough for us. We
               wanted to build something that did it right.
             </Paragraph>
-            <Paragraph className="pt-4">
-              Pitter Patter is that same philosophy applied at a larger scale.
-              <b>And we need your help to build it.</b>
+            <Paragraph>
+              Pitter Patter is that same philosophy applied at a larger scale.{" "}
+              <strong>And we need your help to build it.</strong>
             </Paragraph>
           </div>
         </HomeSectionWrapper>
       </Section>
       <Section>
-        <HomeSectionArticle className="border-x-green my-4 items-center border-x-3 pb-10 md:my-8">
+        <HomeSectionArticle className="border-x-green my-4 items-center border-x-1 py-3 pb-10 md:my-8">
           <SectionContent>
             <SectionHeader>funding</SectionHeader>
             <Paragraph>
-              <b>
+              <strong>
                 We're raising $80,000/mo for six months to fund focused
                 development on Pitter Patter.
-              </b>{" "}
+              </strong>{" "}
               Following initial commitments from two companies, we’re opening
               this round to additional funders now.
             </Paragraph>
-            <Paragraph className="pt-4">
+            <FundingStatus className="my-7" value="$21,000" sponsorCount={2} />
+            <Paragraph>
               After hitting our goal, we'll transition to a sustainable
               enterprise support model for teams building on the ecosystem.
             </Paragraph>
           </SectionContent>
-          <SectionContent className="py-8 md:py-16">
+          <SectionContent className="pt-14 md:py-16">
             <SectionHeader>why sponsor?</SectionHeader>
             <Paragraph>
               Sponsors will get regular updates about development progress,
-              including previews of upcoming features. 
+              including previews of upcoming features.
             </Paragraph>
             <Paragraph className="pt-4">
               Sponsors will also get priority in getting issues addressed as we
@@ -183,8 +194,8 @@ export default function PitterPatterPage() {
         </HomeSectionArticle>
       </Section>
       <Section variant="brown" className="gap-0 pt-10">
-        <Rule className="border-b-green border-b-3" />
-        <HomeSectionArticle className="border-l-green my-4 items-center justify-center border-r-0 border-l-3 pb-10 md:my-8">
+        <Rule className="border-b-green border-b-1" />
+        <HomeSectionArticle className="border-l-green my-4 h-80 items-center justify-center border-r-0 border-l-1 pb-10 md:my-8">
           <SectionContent>
             <SectionHeader>become a sponsor</SectionHeader>
             <Paragraph>
@@ -195,7 +206,7 @@ export default function PitterPatterPage() {
             </Paragraph>
           </SectionContent>
         </HomeSectionArticle>
-        <Rule className="border-b-green border-b-3" />
+        <Rule className="border-b-green mb-8 border-b-1" />
       </Section>
     </main>
   );

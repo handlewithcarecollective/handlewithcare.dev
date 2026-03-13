@@ -10,7 +10,7 @@ export function SectionHeader({ className, children }: Props) {
   return (
     <header
       className={twMerge(
-        "font-headings mb-2 text-2xl md:mb-4 md:text-3xl",
+        "font-headings mb-5 text-2xl md:mb-4 md:text-3xl",
         className,
       )}
     >

@@ -24,7 +24,7 @@ export function Cursor({ targetId }: Props) {
   return (
     <div
       style={{ top, left }}
-      className="bg-green absolute h-[1em] w-1"
+      className="bg-green animate-click absolute ml-0.5 h-[1.1em] w-0.5"
       ref={ref}
     />
   );

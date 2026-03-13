@@ -16,7 +16,7 @@
 
   --animate-breathe: breathe 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
-  --animate-click: click 3s step-end infinite;
+  --animate-click: click 4s step-end infinite;
 }
 
 @keyframes breathe {
@@ -33,7 +33,22 @@
   }
 }
 
-@keyframes click {}
+@keyframes click {
+
+  0%,
+  100% {
+    opacity: 100%;
+  }
+
+  25%,
+  75% {
+    opacity: 25%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+}
 
 @utility border-blueprint {
   @apply border-solid border-[var(--color-blueprint)];
