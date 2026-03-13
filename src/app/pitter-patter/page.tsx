@@ -31,7 +31,7 @@ export default function PitterPatterPage() {
           </PageHeader>
           <Rule className="border-b-green border-b-1" />
         </HomeSectionWrapper>
-        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-1 pt-10 md:mb-8 md:pt-12 lg:pt-30">
+        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-1 pt-10 md:mb-8 md:px-8 md:pt-4 lg:pt-30">
           <SectionContent>
             <Paragraph className="mb-4">
               Over the past two years, the appetite for collaborative rich text
@@ -46,7 +46,7 @@ export default function PitterPatterPage() {
               build it.
             </Paragraph>
           </SectionContent>
-          <SectionContent className="my-9 lg:my-24">
+          <SectionContent className="my-9 md:my-13 lg:my-24">
             <SectionHeader>what we're building</SectionHeader>
             <Paragraph>
               Pitter Patter is an ecosystem of ProseMirror-native libraries.
@@ -95,7 +95,7 @@ export default function PitterPatterPage() {
               content="We’ve got a roadmap to build the best developer experience for rich text editors, ever."
             />
           </div>
-          <SectionContent className="py-12 lg:py-24">
+          <SectionContent className="py-12 md:py-16 lg:py-24">
             <SectionHeader>why now?</SectionHeader>
             <Paragraph className="pb-2">
               The ProseMirror ecosystem is mature. The underlying primitives are
@@ -121,8 +121,11 @@ export default function PitterPatterPage() {
               </SectionHeader>
             </div>
             <Rule className="border-b-1" />
-            <div className="border-x-brown my-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 lg:text-[4.825rem]">
-              <HomeHeading order={2} className="text-[2.325rem] leading-[0.9]">
+            <div className="border-x-brown my-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 md:h-38 lg:text-[4.825rem]">
+              <HomeHeading
+                order={2}
+                className="text-[2.325rem] leading-[0.9] md:text-[3rem]"
+              >
                 Handle
                 <br />
                 with Care
@@ -130,7 +133,7 @@ export default function PitterPatterPage() {
             </div>
           </div>
           <Rule className="border-b-1" />
-          <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-4 lg:px-24 lg:py-34">
+          <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-8 md:px-16 lg:px-24 lg:py-34">
             <Paragraph className="mb-2">
               At Handle With Care, we’ve [quick setence about our experience and
               credentials in the space].
@@ -149,7 +152,7 @@ export default function PitterPatterPage() {
               development and user experience. This wasn’t enough for us. We
               wanted to build something that did it right.
             </Paragraph>
-            <Paragraph>
+            <Paragraph className="mb-8">
               Pitter Patter is that same philosophy applied at a larger scale.{" "}
               <strong>And we need your help to build it.</strong>
             </Paragraph>
@@ -157,7 +160,7 @@ export default function PitterPatterPage() {
         </HomeSectionWrapper>
       </Section>
       <Section>
-        <HomeSectionArticle className="border-x-green my-4 items-center border-x-1 py-3 pb-10 md:my-8">
+        <HomeSectionArticle className="border-x-green my-4 items-center border-x-1 py-3 pb-10 md:my-8 md:px-8 md:py-5">
           <SectionContent>
             <SectionHeader>funding</SectionHeader>
             <Paragraph>
@@ -168,7 +171,11 @@ export default function PitterPatterPage() {
               Following initial commitments from two companies, we’re opening
               this round to additional funders now.
             </Paragraph>
-            <FundingStatus className="my-7" value="$21,000" sponsorCount={2} />
+            <FundingStatus
+              className="my-7 md:my-12"
+              value="$21,000"
+              sponsorCount={2}
+            />
             <Paragraph>
               After hitting our goal, we'll transition to a sustainable
               enterprise support model for teams building on the ecosystem.

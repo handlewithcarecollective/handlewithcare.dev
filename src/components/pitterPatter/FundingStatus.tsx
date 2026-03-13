@@ -10,7 +10,7 @@ export function FundingStatus({ value, sponsorCount, className }: Props) {
   return (
     <div
       className={cx(
-        "border-green font-headings flex w-full flex-col gap-5 rounded-[2.5rem] border-2 bg-white px-8 py-6",
+        "border-green font-headings flex w-full flex-col justify-between gap-5 rounded-[2.5rem] border-2 bg-white px-8 py-6 md:flex-row",
         className,
       )}
     >

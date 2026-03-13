@@ -10,7 +10,7 @@ export function PageHeader({ className, children }: Props) {
   return (
     <header
       className={twMerge(
-        "border-green my-4 h-62 border-x-1 border-solid px-7 py-0.5 pt-10 md:my-6 md:h-72",
+        "border-green my-4 h-62 border-x-1 border-solid px-7 py-0.5 pt-10 md:my-6 md:h-50",
         className,
       )}
     >

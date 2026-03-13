@@ -10,7 +10,7 @@ export function Paragraph({ className, children }: Props) {
   return (
     <p
       className={twMerge(
-        "md:text-md text-base leading-[135%] lg:text-lg",
+        "text-base leading-[135%] md:text-lg lg:text-lg",
         className,
       )}
     >
