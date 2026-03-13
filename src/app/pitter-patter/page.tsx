@@ -11,6 +11,9 @@ import { SectionHeader } from "@/components/pitterPatter/SectionHeader";
 import { HomeHeading } from "@/components/home/Heading";
 import { SectionContent } from "@/components/pitterPatter/SectionContent";
 import { FundingStatus } from "@/components/pitterPatter/FundingStatus";
+import { CopyEmailButton } from "@/components/home/CopyEmailButton";
+import { ContributeDirectlyButton } from "@/components/pitterPatter/ContributeDirectlyButton";
+import { StayConnectedForm } from "@/components/pitterPatter/StayConnectedForm";
 
 export default function PitterPatterPage() {
   return (
@@ -214,7 +217,35 @@ export default function PitterPatterPage() {
             </Paragraph>
           </SectionContent>
         </HomeSectionArticle>
+        <Rule className="border-b-green border-b-1" />
+      </Section>
+      <Section variant="brown" className="gap-0">
+        <HomeSectionArticle className="border-r-green mb-4 h-80 items-center justify-center gap-8 border-r-1 border-l-0 pb-10 md:mb-8 lg:flex-row lg:gap-16">
+          <div className="flex flex-col items-center justify-center">
+            <SectionHeader className="text-xl lg:text-2xl">
+              REACH OUT
+            </SectionHeader>
+            <CopyEmailButton />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <SectionHeader className="mb-10 text-xl lg:text-2xl">
+              OR
+            </SectionHeader>
+            <ContributeDirectlyButton />
+          </div>
+        </HomeSectionArticle>
         <Rule className="border-b-green mb-8 border-b-1" />
+      </Section>
+      <Section
+        variant="brown"
+        className="flex-row justify-between gap-0 pb-4 lg:pb-8"
+      >
+        <div className="ml-4 flex items-center justify-center gap-3 md:ml-8">
+          <PitterPatterLogo height="1em" color="white" />
+          <span className="text-md lg:text-md">by</span>
+          <span className="font-headings">HANDLE WITH CARE</span>
+        </div>
+        <StayConnectedForm />
       </Section>
     </main>
   );
