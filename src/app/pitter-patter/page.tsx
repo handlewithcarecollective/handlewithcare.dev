@@ -17,21 +17,21 @@ export default function PitterPatterPage() {
     <main>
       <Section className="pt-4 md:pt-10">
         <HomeSectionWrapper>
-          <Rule className="border-b-green border-b-1" />
+          <Rule className="border-b-green border-b-1 lg:border-b-2" />
           <PageHeader className="flex flex-col justify-center pt-0.5">
-            <h1 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl">
+            <h1 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl lg:text-4xl">
               <div className="justify-self-center">
                 <PitterPatterLogo id="pp-logo" height="1em" className="w-fit" />
                 <Cursor targetId="pp-logo" />
               </div>
             </h1>
-            <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl">
+            <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
               towards new collaborative editing tools
             </p>
           </PageHeader>
-          <Rule className="border-b-green border-b-1" />
+          <Rule className="border-b-green border-b-1 lg:border-b-2" />
         </HomeSectionWrapper>
-        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-1 pt-10 md:mb-8 md:px-8 md:pt-4 lg:pt-30">
+        <HomeSectionArticle className="border-l-green mb-4 items-center border-r-0 border-l-1 pt-10 md:mb-8 md:px-8 md:pt-4 lg:border-l-2 lg:pt-20">
           <SectionContent>
             <Paragraph className="mb-4">
               Over the past two years, the appetite for collaborative rich text
@@ -46,7 +46,7 @@ export default function PitterPatterPage() {
               build it.
             </Paragraph>
           </SectionContent>
-          <SectionContent className="my-9 md:my-13 lg:my-24">
+          <SectionContent className="my-9 md:my-13 lg:my-28">
             <SectionHeader>what we're building</SectionHeader>
             <Paragraph>
               Pitter Patter is an ecosystem of ProseMirror-native libraries.
@@ -113,18 +113,18 @@ export default function PitterPatterPage() {
         </HomeSectionArticle>
       </Section>
       <Section variant="orange" className="w-full">
-        <HomeSectionWrapper className="flex-col">
-          <div className="flex grow basis-1/2 flex-col">
-            <div className="border-x-brown mb-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8">
+        <HomeSectionWrapper className="flex-col lg:flex-row">
+          <div className="flex grow flex-col lg:basis-1/2">
+            <div className="border-x-brown mb-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 lg:border-r-0 lg:border-l-2">
               <SectionHeader className="mb-0 flex flex-col justify-center lg:text-4xl">
                 who we are
               </SectionHeader>
             </div>
-            <Rule className="border-b-1" />
-            <div className="border-x-brown my-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 md:h-38 lg:text-[4.825rem]">
+            <Rule className="border-b-1 lg:border-b-2" />
+            <div className="border-x-brown my-4 flex h-30 grow items-center justify-center border-x-1 px-4 md:my-8 md:h-38 lg:border-r-0 lg:border-l-2 lg:text-[4.825rem]">
               <HomeHeading
                 order={2}
-                className="text-[2.325rem] leading-[0.9] md:text-[3rem]"
+                className="text-[2.325rem] leading-[0.9] md:text-[3rem] lg:text-[4rem]"
               >
                 Handle
                 <br />
@@ -132,8 +132,8 @@ export default function PitterPatterPage() {
               </HomeHeading>
             </div>
           </div>
-          <Rule className="border-b-1" />
-          <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-8 md:px-16 lg:px-24 lg:py-34">
+          <Rule className="border-b-1 lg:hidden" />
+          <div className="border-x-brown my-2 flex grow flex-col gap-4 border-x-1 px-3 pt-6 md:my-8 md:px-16 lg:basis-1/2 lg:border-x-2 lg:px-24 lg:py-34">
             <Paragraph className="mb-2">
               At Handle With Care, we’ve [quick setence about our experience and
               credentials in the space].

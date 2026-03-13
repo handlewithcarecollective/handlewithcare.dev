@@ -14,10 +14,10 @@ export function TaglineDescription({ heading, content, light = false }: Props) {
     >
       <PitterPatterStar className="mt-1 shrink-0" />
       <div>
-        <h3 className="mb-3 text-base leading-[normal] md:mb-3 md:text-lg">
+        <h3 className="mb-3 text-base leading-[normal] md:mb-3 md:text-lg lg:text-xl">
           {heading}
         </h3>
-        <Paragraph className="text-sm leading-[135%] md:max-w-[250px] md:text-[0.9375rem]">
+        <Paragraph className="text-sm leading-[135%] md:max-w-[250px] md:text-[0.9375rem] lg:text-base">
           {content}
         </Paragraph>
       </div>
