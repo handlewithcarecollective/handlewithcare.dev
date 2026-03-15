@@ -1,6 +1,7 @@
 export function PitterPatterLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
+      aria-label="pitter patter"
       viewBox="0 0 274 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
