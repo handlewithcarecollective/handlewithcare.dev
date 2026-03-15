@@ -14,6 +14,19 @@ import { FundingStatus } from "@/components/pitterPatter/FundingStatus";
 import { CopyEmailButton } from "@/components/home/CopyEmailButton";
 import { ContributeDirectlyButton } from "@/components/pitterPatter/ContributeDirectlyButton";
 import { StayConnectedForm } from "@/components/pitterPatter/StayConnectedForm";
+import { Metadata } from "next";
+import { openGraph } from "../metadata";
+
+export const metadata: Metadata = {
+  title: "Pitter Patter from Handle with Care",
+  description: "Better collaborative editing",
+  openGraph: {
+    ...openGraph,
+    title: "Pitter Patter from Handle with Care",
+    description: "Better collaborative editing",
+    url: "https://handlewithcare.dev/pitter-patter",
+  },
+};
 
 export default function PitterPatterPage() {
   return (
@@ -50,11 +63,11 @@ export default function PitterPatterPage() {
             </Paragraph>
           </SectionContent>
           <SectionContent className="my-9 md:my-13 lg:my-28">
-            <SectionHeader>what we're building</SectionHeader>
+            <SectionHeader>what we’re building</SectionHeader>
             <Paragraph>
               Pitter Patter is an ecosystem of ProseMirror-native libraries.
               Each piece is useful on its own, and you can use what you need,
-              when you need it. Every library is built directly on ProseMirror's
+              when you need it. Every library is built directly on ProseMirror’s
               APIs, not on top of an abstraction layer. You always have full
               access to the thing underneath. This includes:
             </Paragraph>
@@ -70,7 +83,7 @@ export default function PitterPatterPage() {
             />
             <TaglineDescription
               heading="Annotations"
-              content="Comments with threading, resolution, and persistence. We're working through the right approach to keep comment marks coherent when the content beneath them changes (or is deleted!)."
+              content="Comments with threading, resolution, and persistence. We’re working through the right approach to keep comment marks coherent when the content beneath them changes (or is deleted!)."
             />
             <TaglineDescription
               heading="Suggest changes"
@@ -102,13 +115,13 @@ export default function PitterPatterPage() {
             <SectionHeader>why now?</SectionHeader>
             <Paragraph className="pb-2">
               The ProseMirror ecosystem is mature. The underlying primitives are
-              excellent. What's been missing is a suite of libraries that treats
+              excellent. What’s been missing is a suite of libraries that treats
               the ecosystem — and the developers building on it — with the same
               respect. Something you can adopt incrementally, without buying
-              into a stack you didn't choose.
+              into a stack you didn’t choose.
             </Paragraph>
             <Paragraph className="pt-4">
-              We've spent years close enough to these problems to know what that
+              We’ve spent years close enough to these problems to know what that
               looks like, and we have a track record of shipping things that
               other developers actually use.
             </Paragraph>
@@ -169,7 +182,7 @@ export default function PitterPatterPage() {
             <SectionHeader>funding</SectionHeader>
             <Paragraph>
               <strong>
-                We're raising $80,000/mo for six months to fund focused
+                We’re raising $80,000/mo for six months to fund focused
                 development on Pitter Patter.
               </strong>{" "}
               Following initial commitments from two companies, we’re opening
@@ -181,7 +194,7 @@ export default function PitterPatterPage() {
               sponsorCount={2}
             />
             <Paragraph>
-              After hitting our goal, we'll transition to a sustainable
+              After hitting our goal, we’ll transition to a sustainable
               enterprise support model for teams building on the ecosystem.
             </Paragraph>
           </SectionContent>
@@ -210,10 +223,10 @@ export default function PitterPatterPage() {
           <SectionContent>
             <SectionHeader>become a sponsor</SectionHeader>
             <Paragraph>
-              If you're building on ProseMirror and want to help shape this, or
-              if you're a company that would benefit from having genuine
+              If you’re building on ProseMirror and want to help shape this, or
+              if you’re a company that would benefit from having genuine
               influence over the future of open-source collaborative editing
-              infrastructure, we'd like to talk.
+              infrastructure, we’d like to talk.
             </Paragraph>
           </SectionContent>
         </HomeSectionArticle>
