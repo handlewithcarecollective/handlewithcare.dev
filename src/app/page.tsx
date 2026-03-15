@@ -16,6 +16,7 @@ import { Testimonial } from "@/components/home/Testimonial";
 import Link from "next/link";
 import { getPosts } from "@/posts/posts";
 import { PostSnippet } from "@/components/blog/PostSnippet";
+import { PitterPatterLogo } from "@/components/pitterPatter/PitterPatterLogo";
 
 export default function HomePage() {
   return (
@@ -188,15 +189,17 @@ export default function HomePage() {
           </HomeSectionHeader>
           <Rule />
           <HomeSectionArticle>
-            <div className="flex flex-col items-center">
-              <HomeHeading order={2} className="mb-4 max-w-[880px] text-center">
-                Pitter Patter
-              </HomeHeading>
-              <HomeParagraph>
-                A rich text editing framework that works <em>with</em> you.
-              </HomeParagraph>
+            <div className="flex h-62 flex-col items-center justify-center px-7 py-0.5">
+              <h2 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl lg:text-4xl">
+                <div className="justify-self-center">
+                  <PitterPatterLogo height="1em" className="w-fit" />
+                </div>
+              </h2>
+              <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
+                better collaborative editing
+              </p>
             </div>
-            <div className="mx-auto flex max-w-[880px] flex-col gap-4">
+            <div className="mx-auto flex max-w-[640px] flex-col gap-4">
               <HomeParagraph>
                 Over the past two years, the appetite for collaborative rich
                 text editing has grown dramatically. More products need it, but
@@ -204,7 +207,7 @@ export default function HomePage() {
                 Development teams get stuck with little insight into how their
                 application actually works, or how to improve it.
               </HomeParagraph>
-              <HomeParagraph>
+              <HomeParagraph className="font-bold">
                 We know there’s a better way, and we’re in a good position to
                 build it.{" "}
                 <Link href="/pitter-patter" className="underline">
