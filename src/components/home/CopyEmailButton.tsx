@@ -47,7 +47,7 @@ class Xor {
   }
 }
 
-export function CopyEmailButton() {
+export function CopyEmailButton({ short = false }: { short?: boolean }) {
   const [contents, setContents] = useState(
     "171a1313103f171e111b131a08160b171c1e0d1a511b1a09",
   );
@@ -94,7 +94,7 @@ export function CopyEmailButton() {
     >
       <p
         className={twMerge(
-          "font-headings absolute -top-8 left-1/2 -translate-x-1/2 text-base text-white uppercase transition-opacity duration-300 group-hover:opacity-100 md:-top-12 md:text-2xl",
+          `font-headings absolute -top-8 left-1/2 -translate-x-1/2 text-base text-white uppercase transition-opacity duration-300 group-hover:opacity-100 ${short ? "md:-top-9" : "md:-top-12"} md:text-2xl`,
           forceHover ? "opacity-100" : "opacity-0",
         )}
       >

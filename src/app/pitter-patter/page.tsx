@@ -206,7 +206,7 @@ export default function PitterPatterPage() {
       </Section>
       <Section variant="brown" className="gap-0 pt-10">
         <Rule className="border-b-green border-b-1" />
-        <HomeSectionArticle className="border-l-green my-4 h-80 items-center justify-center border-r-0 border-l-1 pb-10 md:my-8">
+        <HomeSectionArticle className="border-l-green my-4 h-80 items-center justify-center border-r-0 border-l-1 pb-0 md:my-8">
           <SectionContent>
             <SectionHeader>become a sponsor</SectionHeader>
             <Paragraph>
@@ -220,15 +220,15 @@ export default function PitterPatterPage() {
         <Rule className="border-b-green border-b-1" />
       </Section>
       <Section variant="brown" className="gap-0">
-        <HomeSectionArticle className="border-r-green mb-4 h-80 items-center justify-center gap-8 border-r-1 border-l-0 pb-10 md:mb-8 lg:flex-row lg:gap-16">
+        <HomeSectionArticle className="border-r-green mb-4 h-80 items-center justify-center gap-8 border-r-1 border-l-0 pb-0 lg:flex-row lg:gap-16">
           <div className="flex flex-col items-center justify-center">
             <SectionHeader className="text-xl lg:text-2xl">
               REACH OUT
             </SectionHeader>
-            <CopyEmailButton />
+            <CopyEmailButton short />
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <SectionHeader className="mb-10 text-xl lg:text-2xl">
+          <div className="mb-4 flex flex-col items-center justify-center">
+            <SectionHeader className="mb-10 text-xl md:mb-12 lg:text-2xl">
               OR
             </SectionHeader>
             <ContributeDirectlyButton />
@@ -238,13 +238,15 @@ export default function PitterPatterPage() {
       </Section>
       <Section
         variant="brown"
-        className="flex-row justify-between gap-0 pb-4 lg:pb-8"
+        className="flex-col-reverse justify-between gap-0 pb-14 md:pb-14 lg:flex-row"
       >
-        <div className="ml-4 flex items-center justify-center gap-3 md:ml-8">
+        <div className="ml-4 flex items-center justify-center gap-3 lg:ml-8">
           <PitterPatterLogo height="1em" color="white" />
           <span className="text-md lg:text-md">by</span>
           <span className="font-headings">HANDLE WITH CARE</span>
         </div>
+        <Rule className="border-b-green my-4 block border-b-1 md:my-8 lg:hidden" />
+
         <StayConnectedForm />
       </Section>
     </main>
