@@ -21,7 +21,7 @@ export function StayConnectedForm() {
 
       const submitForm = async () => {
         try {
-          const req = await fetch(
+          const res = await fetch(
             "https://listmonk.handlewithcare.dev/api/public/subscription",
             {
               method: "POST",
@@ -34,8 +34,7 @@ export function StayConnectedForm() {
               }),
             },
           );
-          const res = await req.json();
-          if (req.status >= 400) {
+          if (res.status >= 400) {
             setHasError(true);
           } else {
             setHasError(false);
@@ -57,28 +56,26 @@ export function StayConnectedForm() {
       onSubmit={handleSubmit}
     >
       <span>Stay connected on our progress</span>
-      <div className="flex flex-row">
-        {(!hasSubmitted || hasError) && (
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="email address"
-              required
-              className="text-md w-[150px] rounded px-4 py-2 text-sm md:w-[250px] md:text-lg"
-            />
-            {hasError && (
-              <p className="text-md text-[#FF8A35] md:text-lg">
-                Something went wrong. Try again.
-              </p>
-            )}
-          </div>
-        )}
-        {hasSubmitted && !hasError && (
-          <p className="text-md text-[#29F462] md:text-lg">
-            Thanks for signing up!
-          </p>
-        )}
+      <div className="relative flex flex-row">
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="email address"
+            required
+            className="text-md w-[150px] rounded px-4 py-2 text-sm md:w-[250px] md:text-lg"
+          />
+          {hasError && (
+            <p className="text-md absolute text-[#FF8A35] md:text-lg">
+              Something went wrong. Try again?
+            </p>
+          )}
+          {hasSubmitted && !hasError && (
+            <p className="text-md absolute text-[#29F462] md:text-lg">
+              Thanks for signing up!
+            </p>
+          )}
+        </div>
 
         <div className="hidden">
           <label>{`Don't fill this out if you're human:`}</label>
