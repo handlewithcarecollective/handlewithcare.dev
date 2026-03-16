@@ -1,31 +1,7 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-
-interface Props {
-  targetId: string;
-}
-
-export function Cursor({ targetId }: Props) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [left, setLeft] = useState(0);
-  const [top, setTop] = useState(0);
-
-  useLayoutEffect(() => {
-    const target = document.getElementById(targetId);
-    if (!target) return;
-
-    const rect = target.getBoundingClientRect();
-
-    setLeft(rect.right);
-    setTop(rect.top);
-  }, []);
-
+export function Cursor() {
   return (
-    <div
-      style={{ top, left }}
-      className="bg-green animate-click absolute ml-0.5 h-[1.1em] w-0.5"
-      ref={ref}
-    />
+    <div className="bg-green animate-click relative ml-0.5 h-[1.1em] w-0.5" />
   );
 }

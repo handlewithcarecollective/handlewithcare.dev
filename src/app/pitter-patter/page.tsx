@@ -36,9 +36,9 @@ export default function PitterPatterPage() {
           <Rule className="border-b-green border-b-1 lg:border-b-2" />
           <PageHeader className="flex flex-col justify-center pt-0.5">
             <h1 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl lg:text-4xl">
-              <div className="justify-self-center">
+              <div className="flex justify-self-center">
                 <PitterPatterLogo id="pp-logo" height="1em" className="w-fit" />
-                <Cursor targetId="pp-logo" />
+                <Cursor />
               </div>
             </h1>
             <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
