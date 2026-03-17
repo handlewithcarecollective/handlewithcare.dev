@@ -57,7 +57,7 @@ export function StayConnectedForm() {
     >
       <span>Stay connected on our progress</span>
       <div
-        className={`relative flex w-full flex-row justify-between md:w-auto ${hasError ? "pb-4" : ""}`}
+        className={`relative flex w-full flex-row justify-between md:w-auto ${hasSubmitted ? "pb-4" : ""}`}
       >
         <div>
           <input
@@ -73,7 +73,7 @@ export function StayConnectedForm() {
             </p>
           )}
           {hasSubmitted && !hasError && (
-            <p className="absolute text-sm text-[#29F462] md:text-lg">
+            <p className="absolute px-4 text-sm text-[#29F462] md:text-lg">
               Thanks for signing up!
             </p>
           )}
