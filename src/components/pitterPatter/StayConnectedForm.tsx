@@ -56,22 +56,24 @@ export function StayConnectedForm() {
       onSubmit={handleSubmit}
     >
       <span>Stay connected on our progress</span>
-      <div className="relative flex flex-row">
+      <div
+        className={`relative flex w-full flex-row justify-between md:w-auto ${hasError ? "pb-4" : ""}`}
+      >
         <div>
           <input
             type="email"
             name="email"
             placeholder="email address"
             required
-            className="text-md w-[150px] rounded px-4 py-2 text-sm md:w-[250px] md:text-lg"
+            className="text-md w-[200px] rounded px-4 py-2 text-sm md:w-[250px] md:text-lg"
           />
           {hasError && (
-            <p className="text-md absolute text-[#FF8A35] md:text-lg">
+            <p className="absolute text-sm text-[#FF8A35] md:text-lg">
               Something went wrong. Try again?
             </p>
           )}
           {hasSubmitted && !hasError && (
-            <p className="text-md absolute text-[#29F462] md:text-lg">
+            <p className="absolute text-sm text-[#29F462] md:text-lg">
               Thanks for signing up!
             </p>
           )}
