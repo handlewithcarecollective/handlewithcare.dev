@@ -31,7 +31,7 @@ export default function HomePage() {
                 with Care
               </HomeHeading>
               <a
-                className="text-brown font-headings absolute top-44 right-8 z-50 rounded-[1.25rem] bg-white px-5 py-2 text-base leading-[normal] uppercase md:fixed md:top-[2.625rem] md:right-[4.25rem] md:text-xl"
+                className="text-brown font-headings absolute top-44 right-8 z-50 hidden rounded-[1.25rem] bg-white px-5 py-2 text-base leading-[normal] uppercase md:fixed md:top-[2.625rem] md:right-[4.25rem] md:block md:text-xl"
                 href="#get-in-touch"
               >
                 Get in touch
@@ -39,14 +39,14 @@ export default function HomePage() {
             </nav>
             <a
               href="#pitter-patter"
-              className="text-brown flex translate-y-0 flex-row items-center gap-2 self-center rounded-[1.25rem] bg-white px-5 py-2 text-2xl transition-shadow hover:shadow-md active:translate-y-1 active:bg-white/50 active:shadow-none"
+              className="text-brown flex translate-y-0 flex-row items-center gap-2 self-center rounded-[1.25rem] bg-white px-5 py-2 text-base transition-shadow hover:shadow-md active:translate-y-1 active:bg-white/50 active:shadow-none md:text-2xl"
             >
-              <div className="bg-green animate-breathe h-4 w-4 rounded-full drop-shadow-[0_0_calc(var(--spacing)/2)__var(--color-green)]" />
+              <div className="bg-green animate-breathe h-3 w-3 rounded-full drop-shadow-[0_0_calc(var(--spacing)/2)__var(--color-green)] md:h-4 md:w-4" />
               <p>We’re building something new</p>
             </a>
           </HomeSectionHeader>
           <Rule />
-          <HomeSectionArticle>
+          <HomeSectionArticle className="px-4">
             <HomeHeading
               order={2}
               className="mx-auto mb-24 max-w-[880px] self-center text-left md:mb-auto md:text-center"
@@ -188,7 +188,7 @@ export default function HomePage() {
             <HomeHeading order={2}>What we’re building</HomeHeading>
           </HomeSectionHeader>
           <Rule />
-          <HomeSectionArticle>
+          <HomeSectionArticle className="px-4">
             <div className="flex h-62 flex-col items-center justify-center px-7 py-0.5">
               <h2 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl lg:text-4xl">
                 <div className="justify-self-center">

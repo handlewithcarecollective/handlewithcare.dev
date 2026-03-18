@@ -16,6 +16,7 @@ import { ContributeDirectlyButton } from "@/components/pitterPatter/ContributeDi
 import { StayConnectedForm } from "@/components/pitterPatter/StayConnectedForm";
 import { Metadata } from "next";
 import { openGraph } from "../metadata";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Pitter Patter from Handle with Care",
@@ -32,9 +33,22 @@ export default function PitterPatterPage() {
   return (
     <main>
       <Section className="pt-4 md:pt-10">
-        <HomeSectionWrapper>
+        <HomeSectionWrapper className="relative">
           <Rule className="border-b-green border-b-1 lg:border-b-2" />
           <PageHeader className="flex flex-col justify-center pt-0.5">
+            <Link href="/" className="absolute top-4 left-4 md:top-8 md:left-8">
+              <HomeHeading order={2} className="text-lg leading-[0.9]">
+                Handle
+                <br />
+                with Care
+              </HomeHeading>
+            </Link>
+            <a
+              className="text-brown font-headings absolute top-58 right-4 z-50 rounded-[1.25rem] bg-white px-5 py-2 text-base leading-[normal] uppercase md:fixed md:top-16 md:right-16 md:text-xl"
+              href="#become-a-sponsor"
+            >
+              Help us build
+            </a>
             <h1 className="font-headings mx-auto text-[1.6875rem] font-extralight md:text-3xl lg:text-4xl">
               <div className="flex justify-self-center">
                 <PitterPatterLogo id="pp-logo" height="1em" className="w-fit" />
@@ -218,7 +232,7 @@ export default function PitterPatterPage() {
           </SectionContent>
         </HomeSectionArticle>
       </Section>
-      <Section variant="brown" className="gap-0 pt-10">
+      <Section variant="brown" className="gap-0 pt-10" id="become-a-sponsor">
         <Rule className="border-b-green border-b-1" />
         <HomeSectionArticle className="border-l-green my-4 h-80 items-center justify-center border-r-0 border-l-1 pb-0 md:my-8">
           <SectionContent>
