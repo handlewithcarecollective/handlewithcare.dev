@@ -116,10 +116,10 @@ export default function PitterPatterPage() {
             <SectionHeader>why now?</SectionHeader>
             <Paragraph className="pb-2">
               The ProseMirror ecosystem is mature. The underlying primitives are
-              excellent. What’s been missing is a suite of libraries that treats
-              the ecosystem — and the developers building on it — with the same
-              respect. Something you can adopt incrementally, without buying
-              into a stack you didn’t choose.
+              excellent. What’s been missing is a toolkit that makes building
+              editors easy while working <em>with</em> this ecosystem, rather
+              than trying to obscure it. Something you can adopt incrementally,
+              without buying into a stack you didn’t choose.
             </Paragraph>
             <Paragraph className="pt-4">
               We’ve spent years close enough to these problems to know what that
