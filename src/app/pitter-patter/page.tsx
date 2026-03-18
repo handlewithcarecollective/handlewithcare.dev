@@ -191,7 +191,7 @@ export default function PitterPatterPage() {
           </div>
         </HomeSectionWrapper>
       </Section>
-      <Section>
+      <Section id="funding">
         <HomeSectionArticle className="border-x-green my-4 items-center border-x-1 py-3 pb-10 md:my-8 md:px-8 md:py-5">
           <SectionContent>
             <SectionHeader>funding</SectionHeader>
