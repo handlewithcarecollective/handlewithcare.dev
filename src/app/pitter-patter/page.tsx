@@ -191,8 +191,8 @@ export default function PitterPatterPage() {
             </Paragraph>
             <FundingStatus
               className="my-7 md:my-12"
-              value="$21,000"
-              sponsorCount={2}
+              value="$31,000"
+              sponsorCount={3}
             />
             <Paragraph>
               After hitting our goal, we’ll transition to a sustainable
