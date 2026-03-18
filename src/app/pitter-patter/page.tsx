@@ -200,7 +200,7 @@ export default function PitterPatterPage() {
                 We’re raising $80,000/mo for six months to fund focused
                 development on Pitter Patter.
               </strong>{" "}
-              Following initial commitments from two companies, we’re opening
+              Following initial commitments from three companies, we’re opening
               this round to additional funders now.
             </Paragraph>
             <FundingStatus
