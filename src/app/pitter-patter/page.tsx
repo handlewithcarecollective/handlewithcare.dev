@@ -42,7 +42,7 @@ export default function PitterPatterPage() {
               </div>
             </h1>
             <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
-              better collaborative editing
+              building better editing
             </p>
           </PageHeader>
           <Rule className="border-b-green border-b-1 lg:border-b-2" />
@@ -65,11 +65,12 @@ export default function PitterPatterPage() {
           <SectionContent className="my-9 md:my-13 lg:my-28">
             <SectionHeader>what we’re building</SectionHeader>
             <Paragraph>
-              Pitter Patter is an ecosystem of ProseMirror-native libraries.
-              Each piece is useful on its own, and you can use what you need,
-              when you need it. Every library is built directly on ProseMirror’s
-              APIs, not on top of an abstraction layer. You always have full
-              access to the thing underneath. This includes:
+              Pitter Patter is a toolkit of feature-complete building blocks,
+              made with ProseMirror. Each piece is useful on its own, and you
+              can use what you need, when you need it. Every library is built
+              directly on ProseMirror’s APIs, not on top of an abstraction
+              layer. You always have full access to the thing underneath. This
+              includes:
             </Paragraph>
           </SectionContent>
           <div className="flex flex-col flex-wrap gap-y-10 px-4 md:flex-row md:px-10 lg:max-w-[1030px]">
