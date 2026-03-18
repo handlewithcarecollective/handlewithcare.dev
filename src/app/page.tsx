@@ -196,7 +196,7 @@ export default function HomePage() {
                 </div>
               </h2>
               <p className="font-headings justify-self-center text-center text-[1.6875rem] leading-[105%] opacity-60 md:text-3xl lg:text-4xl">
-                better collaborative editing
+                building better editing
               </p>
             </div>
             <div className="mx-auto flex max-w-[640px] flex-col gap-4">
