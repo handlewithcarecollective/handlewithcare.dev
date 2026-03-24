@@ -11,11 +11,13 @@
     "types": "tsc"
   },
   "dependencies": {
-    "@handlewithcare/react-prosemirror": "^2.7.0",
+    "@handlewithcare/react-prosemirror": "^2.8.4",
+    "@handlewithcare/remark-prosemirror": "^0.1.5",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.4",
     "@nytimes/react-prosemirror": "^1.0.3",
+    "@nytimes/react-prosemirror-unmemoized": "workspace:vendor/react-prosemirror-unmemoized",
     "@radix-ui/react-tabs": "^1.1.12",
     "@types/mdx": "^2.0.13",
     "bright": "^1.0.0",
@@ -30,12 +32,14 @@
     "prosemirror-model": "^1.25.1",
     "prosemirror-schema-basic": "^1.2.4",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-view": "1.39.2",
+    "prosemirror-view": "1.41.4",
     "react": "19.1.0",
     "react-best-merge-refs": "^1.0.2",
     "react-dom": "19.1.0",
     "react-reconciler": "^0.32.0",
+    "remark-parse": "^11.0.0",
     "tailwind-merge": "^3.3.1",
+    "unified": "^11.0.5",
     "zod": "^3.25.67"
   },
   "devDependencies": {
@@ -53,6 +57,9 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   },
+  "workspaces": [
+    "vendor/react-prosemirror-unmemoized"
+  ],
   "browserslist": [
     "defaults"
   ],

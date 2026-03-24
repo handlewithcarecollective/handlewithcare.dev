@@ -1,0 +1,90 @@
+import { UnmemoizedEditor } from "./components/UnmemoizedEditor.tsx";
+
+!slug making_react_prosemirror_really_really_fast
+
+!title Making React ProseMirror really, really fast
+
+!date Mar. 23, 2026
+
+!author Shane Friedman
+
+!snippet Since the dawn of time, React maintainers have claimed that React’s
+virtual DOM is fast enough for complex interactions as long as you memoized your
+components. Then someone tried to put an entire Harry Potter novel in React
+ProseMirror, and I had to find out if they were right.
+
+## !!sections intro
+
+[React ProseMirror](https://github.com/handlewithcarecollective/react-prosemirror)
+is, in many ways, a very boring project. It integrates React with ProseMirror.
+The actual resulting surface area of the library is quite small, because the
+premise is that it simply allows you to use React as you normally would and
+ProseMirror as you normally would, without having to worry about
+[all the jank](https://handlewithcare.dev/blog/why_i_rebuilt_prosemirror_view/)
+that normally results from such an integration.
+
+If you’ve read the article I linked above, though, you know that it turns out to
+be surprisingly challenging to do this correctly. So challenging, actually, that
+the “right” solution turns out to be to reimplement `prosemirror-view`’s
+rendering engine entirely in React. Ignoring the “draw the rest of the owl”-ness
+of this approach, it does solve the original problem statement quite well. If
+React is responsible for both state management _and_ rendering, you can no
+longer run into state tearing issues.
+
+It does, however, introduce a _new_ problem: How do you make it fast? And I
+mean, like, really fast. If your user is using a 60Hz display, your application
+has 16 milliseconds to produce the next rendered state before the display
+updates. If you miss the mark, the user might be waiting up to 32 milliseconds
+before they see a response to their input, which starts to creep into the
+territory of noticeable lag.
+
+Initially I thought this wasn’t much of a concern. [Dskrpt](https://dskrpt.de)
+users are writing entire legal textbook chapters with React ProseMirror, and
+none have complained of lag. And they’re writing in German, I might add — not
+exactly a language known for its terseness!
+
+But while working with the [Moment](https://moment.dev) folks on their
+local-first markdown editor, they insisted that React ProseMirror’s performance
+wasn’t good enough. As proof, they sent me a document with the entirety of the
+second Harry Potter novel pasted in. I tried to scoff (I really did!), but they
+followed up with a pretty solid use case: What if someone tries to write a W3C
+spec in Moment? Can we really say “sorry, our local-first markdown editor can’t
+handle your file, it’s too big?”
+
+No. We can’t say that. So instead, we had to make React ProseMirror much, much
+faster.
+
+## !!sections baseline
+
+### A baseline: unmemoized React ProseMirror
+
+To get a sense of the scope of this issue, let’s start out with an editor
+powered by React ProseMirror from _before_ we embarked on this journey.
+
+Try typing in the editor below. It’s using
+`@nytimes/react-prosemirror@0.7.0-next.10`, the last release candidate before we
+started working on performance.
+
+<UnmemoizedEditor />
+
+<p className="text-sm">
+  Herman Melville’s _Moby-Dick; or, The Whale_ is my go-to source for arbitrary
+  text. This is a practice that I inherited from the Oak team at The New York
+  Times and have simply never questioned.
+</p>
+
+It’s, uh, a _little_ laggy. I’m honestly a little surprised that it works as
+well as it does — Moby Dick is a long book! But it’s also definitely not usable
+as a text editor. A single keypress can take 177 milliseconds, and the React
+Profiler makes it pretty clear why:
+
+![A React Profiler flamechart showing a single commit taking 177 milliseconds. Each NodeView component, of which there are hundreds, has re-rendered, taking around a millisecond.](/images/rpm-unmemoized-profile.png)
+
+That’s a lot of re-rendering! For the most part, each NodeView component takes a
+millisecond or less to re-render, but there are 2560 paragraphs in this
+document, which nets us 5124 total nodes (including text nodes and the
+occasional blockquote) to render on each key press. Each node is wrapped in two
+or three actual React elements, too, which means we're rendering something like
+15,000 React elements per key press. I am actually now _more_ impressed that
+this works as well as it does — React really is quite fast, all things
+considered.

@@ -1,0 +1,59 @@
+{
+  "name": "@nytimes/react-prosemirror",
+  "version": "0.7.0-next.10",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./src": "./src/index.ts"
+  },
+  "files": [
+    "README.md",
+    "LICENSE.txt",
+    "dist"
+  ],
+  "scripts": {
+    "build:cjs": "swc ./src --ignore **/__tests__/** -d ./dist/cjs/ --no-swcrc --config-file .swcrc-cjs",
+    "build:esm": "swc ./src --ignore **/__tests__/** -d ./dist/esm/",
+    "build:types": "tsc --noEmit false --emitDeclarationOnly",
+    "build": "concurrently -P 'npm:build:* {@}' --",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint --cache .",
+    "check:types": "tsc",
+    "check": "concurrently -P 'npm:check:* {@}' --",
+    "clean": "rimraf \"./dist/!(cjs/package.json)\"",
+    "demo": "yarn vite",
+    "demo:build": "yarn vite build --outDir docs --base=/react-prosemirror/",
+    "dev": "yarn build -- --watch",
+    "fix:format": "prettier --write .",
+    "fix:lint": "eslint --cache --fix .",
+    "fix:toc": "markdown-toc --bullets='-' -i README.md",
+    "fix": "concurrently -P 'npm:fix:* {@}' --",
+    "prepack": "yarn build",
+    "test:wdio": "wdio run ./wdio.conf.ts",
+    "test:unit": "jest",
+    "test": "yarn test:unit && yarn test:wdio"
+  },
+  "peerDependencies": {
+    "prosemirror-model": "^1.0.0",
+    "prosemirror-state": "^1.0.0",
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "packageManager": "yarn@3.4.1",
+  "engines": {
+    "node": ">=16.9"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "prosemirror-view": "1.34.2"
+  },
+  "stableVersion": "0.7.0-next.9"
+}

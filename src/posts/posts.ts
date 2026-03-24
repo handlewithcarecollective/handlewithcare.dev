@@ -7,9 +7,11 @@ import TransitionLowPriorityEditorUpdates from "./mdx/TransitionLowPriorityEdito
 import { RicedCalculator } from "./mdx/TechDebtAsProductStrategy/components/RicedCalculator";
 import { EditorWithoutTransition } from "./mdx/TransitionLowPriorityEditorUpdates/components/EditorWithoutTransition";
 import { EditorWithTransition } from "./mdx/TransitionLowPriorityEditorUpdates/components/EditorWithTransition";
+import MakingReactProseMirrorReallyReallyFast from "./mdx/MakingReactProseMirrorReallyReallyFast/MakingReactProseMirrorReallyReallyFast.mdx";
 
 export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
+    parseRoot(MakingReactProseMirrorReallyReallyFast, Schema),
     parseRoot(TransitionLowPriorityEditorUpdates, Schema, {
       components: {
         EditorWithoutTransition: serverOnly
