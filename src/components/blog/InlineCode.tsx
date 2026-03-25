@@ -2,7 +2,6 @@ import { RawCode, Inline, highlight } from "codehike/code";
 
 export async function InlineMdxCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "dracula");
-  console.log(highlighted);
   return <Inline code={highlighted} />;
 }
 

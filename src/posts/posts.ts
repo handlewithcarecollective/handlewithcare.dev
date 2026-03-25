@@ -8,10 +8,19 @@ import { RicedCalculator } from "./mdx/TechDebtAsProductStrategy/components/Rice
 import { EditorWithoutTransition } from "./mdx/TransitionLowPriorityEditorUpdates/components/EditorWithoutTransition";
 import { EditorWithTransition } from "./mdx/TransitionLowPriorityEditorUpdates/components/EditorWithTransition";
 import MakingReactProseMirrorReallyReallyFast from "./mdx/MakingReactProseMirrorReallyReallyFast/MakingReactProseMirrorReallyReallyFast.mdx";
+import { MemoizedEditor } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/MemoizedEditor";
+import { UnmemoizedEditor } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/UnmemoizedEditor";
+import { PosUpdateDemo } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/PosUpdateDemo";
 
 export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
-    parseRoot(MakingReactProseMirrorReallyReallyFast, Schema),
+    parseRoot(MakingReactProseMirrorReallyReallyFast, Schema, {
+      components: {
+        UnmemoizedEditor: serverOnly ? () => null : UnmemoizedEditor,
+        MemoizedEditor: serverOnly ? () => null : MemoizedEditor,
+        PosUpdateDemo: serverOnly ? () => null : PosUpdateDemo,
+      },
+    }),
     parseRoot(TransitionLowPriorityEditorUpdates, Schema, {
       components: {
         EditorWithoutTransition: serverOnly
