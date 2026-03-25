@@ -13,7 +13,6 @@ export function Diff({
 }) {
   const firstChild = children[0];
   if (!firstChild) return null;
-  console.log(firstChild.props.codeblock.lang);
   return (
     <BrightCode
       lineNumbers

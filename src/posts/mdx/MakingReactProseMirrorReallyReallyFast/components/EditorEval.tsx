@@ -1,6 +1,8 @@
 import { EditorState, Plugin } from "prosemirror-state";
 import { createContext, ReactNode, useState } from "react";
 import { parseDoc } from "./parseMarkdown";
+import { keymap } from "prosemirror-keymap";
+import { baseKeymap } from "prosemirror-commands";
 
 interface Props {
   children: ReactNode;
@@ -29,12 +31,17 @@ export function EditorEval({ children, reactKeysPlugin }: Props) {
 
             const content = await res.text();
             const doc = await parseDoc(content);
-            setState(EditorState.create({ doc, plugins: [reactKeysPlugin()] }));
+            setState(
+              EditorState.create({
+                doc,
+                plugins: [reactKeysPlugin(), keymap(baseKeymap)],
+              }),
+            );
             setIsLoading(false);
             setEditing(true);
           }}
           disabled={isLoading}
-          className="border-brown hover:bg-brown/10 h-96 w-full overflow-auto rounded-2xl border-2 p-4 [&_p]:my-4"
+          className="border-brown h-96 w-full overflow-auto rounded-2xl border-2 bg-white/70 p-4 hover:bg-white/85 [&_p]:my-4"
         >
           {isLoading ? "Loading..." : "Load editor"}
         </button>
@@ -48,7 +55,7 @@ export function EditorEval({ children, reactKeysPlugin }: Props) {
         onClick={() => {
           setEditing(true);
         }}
-        className="[&_h1,&_h2,&_h3]:font-headings border-brown hover:bg-brown/10 max-h-96 overflow-auto rounded-2xl border-2 p-4 text-left opacity-70 [&_p]:my-4"
+        className="[&_h1,&_h2,&_h3]:font-headings border-brown max-h-96 overflow-auto rounded-2xl border-2 bg-white/70 p-4 text-left opacity-70 hover:bg-white/85 [&_p]:my-4"
       >
         {state.doc.children.map((child) => {
           if (child.type.name === "paragraph") {
@@ -77,7 +84,7 @@ export function EditorEval({ children, reactKeysPlugin }: Props) {
         onBlur={(event) => {
           setEditing(false);
         }}
-        className="border-brown focus-within:border-green hover:bg-brown/10 max-h-96 overflow-auto rounded-2xl border-2 p-4 [&_.ProseMirror]:outline-none [&_p]:my-4"
+        className="[&_h1,&_h2,&_h3]:font-headings border-brown focus-within:border-green max-h-96 overflow-auto rounded-2xl border-2 bg-white/70 p-4 [&_.ProseMirror]:outline-none [&_p]:my-4"
       >
         {children}
       </div>

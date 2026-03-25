@@ -1,5 +1,7 @@
 import { Diff } from "../../../brightExtensions/diff/diff.tsx";
 import { UnmemoizedEditor } from "./components/UnmemoizedEditor.tsx";
+import { MemoizedEditor } from "./components/MemoizedEditor.tsx";
+import { PosUpdateDemo } from "./components/PosUpdateDemo.tsx";
 
 !slug making_react_prosemirror_really_really_fast
 
@@ -79,7 +81,7 @@ well as it does — Moby Dick is a long book! But it’s also definitely not usa
 as a text editor. A single keypress can take 177 milliseconds, and the React
 Profiler makes it pretty clear why:
 
-![A React Profiler flamechart showing a single commit taking 177 milliseconds. Each NodeView component, of which there are hundreds, has re-rendered, taking around a millisecond.](/images/rpm-unmemoized-profile.png)
+![A React Profiler flamechart showing a single commit taking 177 milliseconds. Each NodeView component, of which there are thousands, has re-rendered, taking around a millisecond.](/images/rpm-unmemoized-profile.png)
 
 That’s a lot of re-rendering! For the most part, each NodeView component takes a
 millisecond or less to re-render, but there are 2560 paragraphs in this
@@ -122,3 +124,508 @@ export const NodeView = memo(function NodeView({
 ```
 
 </Diff>
+
+Though if we want that memoization to actually _do_ anything, we need to make
+sure that none of the props are changing unnecessarily as well. Right off the
+bat, we’re going to run into issues with that `pos` prop. The `pos` prop is the
+ProseMirror position at the start of this NodeView’s node. ProseMirror models
+positions as integers, and characters of text, leaf nodes, and the borders of
+non-leaf nodes all increment the position by 1.
+
+That means that each time a user types a new character (or deletes one), every
+NodeView _after_ that new character/deletion will have a new position. And that
+means they’ll re-render, because `React.memo` still re-renders your component if
+your props change. There’s not really a solution for this — we can’t pass `pos`
+as a prop if we want to prevent re-rendering thousands of NodeView components on
+each key press.
+
+<PosUpdateDemo />
+
+Let’s get rid of it!
+
+## !!sections doing-the-rest-of-the-work
+
+### Doing the rest of the work
+
+One of the balancing acts that React ProseMirror has to do is to expose the
+right API that violates as few expectations as possible for both React and
+ProseMirror users. In `prosemirror-view`, node view constructors are passed a
+`getPos` function:
+
+```ts
+function getPos(): number;
+```
+
+It just acts as a way for a node view constructor to access its node’s position
+at any time. In React, this felt odd — your node view component is being
+re-rendered any time the document changes, so (I thought) it should just get its
+position as a prop. Hence, `props.pos`.
+
+Now, however, we _don’t_ want your node view component to be re-rendered any
+time the document changes, so we _can’t_ pass its node’s position as a prop. But
+maybe we can pass `getPos`, instead?
+
+Previously, the code for determining a node’s position lived in the
+`ChildNodeViews` component, and it looked like this (roughly, I’m eliding some
+of the more complicated bits):
+
+```tsx
+export function ChildNodeViews({
+  pos,
+  node,
+  innerDecorations,
+}: {
+  pos: number;
+  node: Node | undefined;
+  innerDecorations: DecorationSource;
+}) {
+  // This is the start position of this node’s
+  // first child
+  const innerPos = pos + 1;
+
+  if (!node) return null;
+
+  const children: ReactNode[] = [];
+
+  // A convenience method for iterating through
+  // a node’s children, tracking each child’s
+  // decorations and relative position to the
+  // parent.
+  iterateChildren(
+    node,
+    innerDecorations,
+    (child, outerDeco, innerDeco, offset) => {
+      children.push(
+        <NodeView
+          node={child}
+          outerDeco={outerDeco}
+          innerDecorations={innerDeco}
+          pos={innerPos + offset}
+        />,
+      );
+    },
+  );
+
+  return <>{children}</>;
+}
+```
+
+So as a naïve first step, let’s try just replacing `pos` with a function,
+`getPos`:
+
+```tsx
+export function ChildNodeViews({
+  // focus(1:1)
+  getPos,
+  node,
+  innerDecorations,
+}: {
+  // focus(1:1)
+  getPos: () => number;
+  node: Node | undefined;
+  innerDecorations: DecorationSource;
+}) {
+  // This is the start position of this node’s
+  // first child
+  // focus(1:1)
+  const getInnerPos = () => getPos() + 1;
+
+  if (!node) return null;
+
+  const children: ReactNode[] = [];
+
+  // A convenience method for iterating through
+  // a node’s children, tracking each child’s
+  // decorations and relative position to the
+  // parent.
+  iterateChildren(
+    node,
+    innerDecorations,
+    (child, outerDeco, innerDeco, offset) => {
+      children.push(
+        <NodeView
+          node={child}
+          outerDeco={outerDeco}
+          innerDecorations={innerDeco}
+          // focus(1:1)
+          getPos={() => getInnerPos() + offset}
+        />,
+      );
+    },
+  );
+
+  return <>{children}</>;
+}
+```
+
+This works, but it’s actually worse than before — now we create a new `getPos`
+function on every render, even if the node’s position hasn’t actually changed.
+We could memoize it with `useMemo`, but then we’re back to our original problem,
+with a value that updates every time we type in front of the node.
+
+What we need is a stable function reference whose return value updates on
+render. We need a ref.
+
+```tsx
+export function ChildNodeViews({
+  getPos,
+  node,
+  innerDecorations,
+}: {
+  // focus(1:1)
+  getPos: MutableRefObject<() => number>;
+  node: Node | undefined;
+  innerDecorations: DecorationSource;
+}) {
+  if (!node) return null;
+  // This is the start position of this node’s
+  // first child
+  // focus(1:1)
+  const getInnerPos = useRef(() => getPos.current() + 1);
+
+  const children: ReactNode[] = [];
+
+  // A convenience method for iterating through
+  // a node’s children, tracking each child’s
+  // decorations and relative position to the
+  // parent.
+  iterateChildren(
+    node,
+    innerDecorations,
+    (child, outerDeco, innerDeco, offset) => {
+      children.push(
+        // focus(1:1)
+        <ChildElement
+          node={child}
+          outerDeco={outerDeco}
+          innerDecorations={innerDeco}
+          // focus(1:2)
+          getInnerPos={getInnerPos}
+          offset={offset}
+        />,
+      );
+    },
+  );
+
+  return <>{children}</>;
+}
+
+// focus(1:26)
+function ChildElement({
+  node,
+  outerDeco,
+  innerDecorations,
+  offset,
+  getInnerPos,
+}: {
+  node: Node;
+  outerDeco: Decoration[];
+  innerDecorations: DecorationSource;
+  offset: number;
+  getInnerPos: () => number;
+}) {
+  const getPos = useCallback(() => {
+    return getInnerPos() + offset;
+  }, [getInnerPos, offset]);
+
+  return (
+    <NodeView
+      node={node}
+      outerDeco={outerDeco}
+      innerDeco={innerDecorations}
+      getPos={getPos}
+    />
+  );
+}
+```
+
+We need to introduce a new element here, because we need to introduce yet
+another layer of memoization, and we can’t call `useCallback` in a hook.
+
+But… we haven’t really solved this problem yet. We’re still producing a new
+`getPos` function each time `offset` changes. This is _better_ than before —
+now, at least, if I type in the first paragraph, I don't need to re-render every
+text node in every paragraph after the first. But I still need to re-render
+every text node in the first paragraph, and every paragraph node after the
+first. It’s not 15,000 renders, but it is still probably 6,000!
+
+This problem is sort of fundamental, though. The `getPos` function relies on the
+`offset`, it’s a dependency in the most straightforward sense of the word.
+Offset isn’t a ref, so if its value changes, we need to create a new `getPos`
+function to close over the new value. If we want to get around it… we might need
+to cheat a little.
+
+## !!sections cheating-a-little
+
+### Cheating a little
+
+React has a lot of rules, because React components are designed around
+functional programming paradigms, but JavaScript makes it very easy to mutate
+and reassign values. React components are designed around functional programming
+paradigms in large part to enable “Concurrent Mode”, a suite of features that
+allow React to, among other things, interrupt and abandon renders. The rules
+help keep Concurrent Mode safe.
+
+One of these rules is that refs shouldn’t be modified during the render cycle
+([with one exception](https://react.dev/learn/referencing-values-with-refs#best-practices-for-refs)).
+This is because React could abandon a render after running the code that
+modifies the ref, leaving it in a modified state without having committed the
+rest of the render to the DOM. Here’s an extremely contrived example:
+
+```tsx
+function BadRefUpdateDemo({ value }: { value: number }) {
+  const valueRef = useRef(value);
+  // We update the ref value during the render to keep
+  // it in sync with the prop
+  valueRef.current = value;
+
+  const onClick = useCallback(() => {
+    saveValue(valueRef.current);
+  }, []);
+
+  return <button onClick={onClick}>Save ({value})</button>;
+}
+```
+
+Here’s the flow:
+
+1. The user takes some action that causes `value` (the prop) to change, say from
+   3 to 4
+2. React re-renders `<BadRefUpdateDemo />` with the new `value`, updating
+   `valueRef.current` to 4
+3. React abandons the render because a higher-priority update comes in
+4. The user still sees “Save (3)” on the button and clicks it
+5. The value 4 is saved to the backend, because the ref had been updated with
+   the value 4
+
+As I said, this is somewhat contrived, but it gets the point across. Updating a
+ref during render is technically a side effect, and therefore it can introduce a
+kind of state tearing that can lead to a user interface that doesn’t match some
+of the underlying state.
+
+However, we have a bit of leeway here because we have a lot of control over when
+our `getPos` ref is updated and how it gets used. It’s already a bad idea to
+access `getPos` during render, because React ProseMirror specifically will not
+re-render a node view component when its position changes (that’s our goal!).
+It’s safe to read a ref (even one that’s been written during render) in a
+`useEffect` or `useLayoutEffect` callback, because those won’t run at all if the
+render is abandoned.
+
+The only point of concern is the situation in the example above — if `getPos` is
+accessed in a callback function. Even here, though, we’re still likely safe. To
+dispatch a transaction or inspect the DOM at a position (the only two use cases
+that would really require accessing the node’s position), you have to make use
+of
+[`useEditorEventCallback`](https://github.com/handlewithcarecollective/react-prosemirror?tab=readme-ov-file#useeditoreventcallback-1),
+which provides access to the EditorView. The EditorView’s internal state is kept
+in sync during render as well, which means that any state related to the current
+position that’s read from the EditorView in the callback will be in sync with
+the `getPos` value.
+
+Is this perfect? I actually don’t think so, at least conceptually. Is it worth
+it? I think it is, even though React ProseMirror otherwise strives to follow the
+rules of React very strictly. This opens the door to perfect memoization,
+allowing us to only re-render exactly the text node (and its ancestors) that has
+actually changed after a change. It means rendering 6 elements instead of
+15,000. And the costs seem minimal — it’s very unlikely that a user would be
+able to trigger an event callback between an abandoned render and its successful
+follow-up, especially because no one is updating React ProseMirror in an
+[Action](https://react.dev/reference/react/useTransition#functions-called-in-starttransition-are-called-actions),
+because it has to update immediately while the user is interacting with it!
+
+So now that I’ve reasoned myself into a state of cognitive consonance with my
+decision to cheat a little, let’s get back to it.
+
+## !!sections doing-the-rest-of-the-work-again
+
+### Doing the rest of the work, again
+
+Before we get started, there’s one more important piece to this puzzle. React
+ProseMirror has a system for tracking ProseMirror nodes across changes called
+“the React keys plugin.” This turns out to not be totally trivial — ProseMirror
+nodes can only be uniquely identified by their position in a document, but
+obviously that position can change as transactions are dispatched. So the React
+keys plugin stores a map from position to unique key that it keeps up-to-date by
+mapping positions through transactions:
+
+```ts
+/**
+ * Keeps node keys stable across transactions.
+ *
+ * To accomplish this, we map each node position forwards
+ * through the transaction to identify its current position,
+ * and assign its key to that new position, dropping it if the
+ * node was deleted.
+ */
+apply(tr, value, _, newState) {
+  if (!tr.docChanged || composing) {
+    return value;
+  }
+
+  const next = {
+    posToKey: new Map<number, string>(),
+    keyToPos: new Map<string, number>(),
+  };
+  const posToKeyEntries = Array.from(value.posToKey.entries()).sort(
+    ([a], [b]) => a - b
+  );
+  for (const [pos, key] of posToKeyEntries) {
+    const { pos: newPos, deleted } = tr.mapping.mapResult(pos)
+    if (deleted) continue;
+
+    next.posToKey.set(newPos, key);
+    next.keyToPos.set(key, newPos);
+  }
+  newState.doc.descendants((_, pos) => {
+    if (next.posToKey.has(pos)) return true;
+
+    const key = createNodeKey();
+    next.posToKey.set(pos, key);
+    next.keyToPos.set(key, pos);
+    return true;
+  });
+  return next;
+},
+```
+
+This is crucial for React ProseMirror to work — we need to be able to assign
+stable keys to each element in the tree so that React doesn’t incorrectly
+reassign our state or prematurely remount our elements.
+
+It also turns out to be pretty useful for other things, like implementing
+`getPos`.
+
+It’s about to get a little weird.
+
+```tsx
+export function ChildNodeViews({
+  getPos,
+  node,
+  innerDecorations,
+}: {
+  getPos: MutableRefObject<() => number>;
+  node: Node | undefined;
+  innerDecorations: DecorationSource;
+}) {
+  // focus(1:9)
+  const reactKeys = useReactKeys();
+
+  const getInnerPos = useCallback(() => getPos() + 1, [getPos]);
+
+  const childMap = useRef(new Map<string, Child>()).current;
+
+  if (!node) return null;
+
+  const keysSeen = new Map<string, number>();
+
+  iterateChildren(
+    node,
+    innerDecorations,
+    (child, outerDeco, innerDeco, offset) => {
+      // focus(1:26)
+      const key = reactKeys.posToKey.get(getInnerPos() + offset);
+
+      const child = {
+        node: child,
+        offset,
+        index,
+        key,
+        innerDeco,
+        outerDeco,
+      };
+
+      // This is the info for this child (by key) from
+      // the last render
+      const prevChild = childMap.get(key);
+
+      // If this child hasn't changed (aside from its
+      // position), then update the position on the
+      // previous child object and reuse it. This prevents
+      // re-rendering the ChildElement unnecessarily, while
+      // keeping its getPos implementation up-to-date
+      if (prevChild && areChildrenEqual(prevChild, child)) {
+        prevChild.offset = offset;
+      } else {
+        childMap.set(key, child);
+      }
+      keysSeen.set(key, keysSeen.size);
+    },
+  );
+
+  // focus(1:10)
+  for (const key of childMap.keys()) {
+    if (!keysSeen.has(key)) {
+      childMap.delete(key);
+    }
+  }
+
+  const children = Array.from(childMap.values())
+    .sort((a, b) => keysSeen.get(a.key) - keysSeen.get(b.key))
+    .map((child) => (
+      <ChildElement key={child.key} child={child} getInnerPos={getInnerPos} />
+    ));
+
+  return <>{children}</>;
+}
+
+// focus(1:12)
+/**
+ * This is the same logic that prosemirror-view uses to determine
+ * whether to call the update method on a custom node view.
+ */
+function areChildrenEqual(a: Child, b: Child) {
+  return (
+    a.key === b.key &&
+    a.node.eq(b.node) &&
+    sameOuterDeco(a.outerDeco, b.outerDeco) &&
+    (a.innerDeco as InternalDecorationSource).eq(b.innerDeco)
+  );
+}
+
+// focus(1:25)
+function ChildElement({
+  child,
+  getInnerPos,
+}: {
+  child: Child;
+  getInnerPos: () => number;
+}) {
+  // We’re effectively using `child` as
+  // a ref. It has a stable reference as
+  // long as its node and decorations haven’t
+  // changed, but its offset will be kept
+  // up-to-date.
+  const getPos = useCallback(() => {
+    return getInnerPos() + child.offset;
+  }, [getInnerPos, child]);
+
+  return (
+    <NodeView
+      node={node}
+      outerDeco={outerDeco}
+      innerDeco={innerDecorations}
+      getPos={getPos}
+    />
+  );
+}
+```
+
+Gross, right?
+
+But, hear me out, it’s really fast:
+
+<MemoizedEditor />
+
+![A React Profiler flamechart showing a single commit taking 16 milliseconds. Of the thousands of NodeView components, only the very first has re-rendered.](/images/rpm-memoized-profile.png)
+
+## !!sections bragging
+
+### Postscript: Bragging a bit
+
+If you copy the text of Moby Dick from the editor above and paste it into the
+demo editor at [prosemirror.net](https://prosemirror.net) on Firefox, you’ll see
+something that honestly still shocks me a bit: it’s _much_ slower than the React
+ProseMirror demo! This isn’t reproducible on Chrome, so I suspect it’s a
+performance issue with Firefox’s built-in contenteditable implementation. But I
+think this is sort of fascinating. React’s virtual DOM update algorithm is so
+fast that it actually beats a native implementation by a noticeable amount!

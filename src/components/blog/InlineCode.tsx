@@ -1,15 +1,20 @@
 import { RawCode, Inline, highlight } from "codehike/code";
-import { ReactNode } from "react";
 
 export async function InlineMdxCode({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-light");
+  const highlighted = await highlight(codeblock, "dracula");
+  console.log(highlighted);
   return <Inline code={highlighted} />;
 }
 
 export async function InlineCode({ children }: { children: string }) {
   const highlighted = await highlight(
-    { lang: "tsx", meta: "", value: children },
-    "github-light",
+    { lang: "txt", meta: "", value: children },
+    "dracula",
   );
-  return <Inline className="text-sm md:text-lg" code={highlighted} />;
+  return (
+    <Inline
+      className="rounded-sm bg-[#282A36] px-[1px] pt-[2px] text-sm md:text-lg"
+      code={highlighted}
+    />
+  );
 }

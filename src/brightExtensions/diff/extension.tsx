@@ -63,9 +63,7 @@ export const diff: Extension = {
 
 /** @type {import("bright").BrightProps["Pre"]} */
 function Content(brightProps: BrightProps) {
-  console.log(brightProps);
   const { subProps } = brightProps;
-  console.log(subProps);
   const annotations = subProps![0].annotations!.concat(
     subProps![1].annotations!,
   );
