@@ -1878,16 +1878,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codehike@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "codehike@npm:1.0.7"
+"codehike@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "codehike@npm:1.1.0"
   dependencies:
     "@code-hike/lighter": "npm:1.0.1"
     diff: "npm:^5.1.0"
     estree-util-visit: "npm:^2.0.0"
     mdast-util-mdx-jsx: "npm:^3.0.0"
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10c0/b9d6e85559fac5190883d3b9d1c36525c9fe79cf6e7d0d929342c2db57cdc7836aa8d15c0197a5b857913f22d82e2aefffc0a3dd7b991537f170ef3d3b6b0a7e
+  checksum: 10c0/35a53ede9ae0ff04c62343f32d2a19fabd061fa59bec608193b51a01bdc3f0c618aac15cc0094e533799520c80bcfb67baf31989f7dce99720a809a2fdec1169
   languageName: node
   linkType: hard
 
@@ -2092,6 +2092,13 @@ __metadata:
   version: 5.2.0
   resolution: "diff@npm:5.2.0"
   checksum: 10c0/aed0941f206fe261ecb258dc8d0ceea8abbde3ace5827518ff8d302f0fc9cc81ce116c4d8f379151171336caf0516b79e01abdc1ed1201b6440d895a66689eb4
+  languageName: node
+  linkType: hard
+
+"diff@npm:^8.0.4":
+  version: 8.0.4
+  resolution: "diff@npm:8.0.4"
+  checksum: 10c0/7ee5d03926db4039be7252ac3b0abaae1bd122a2ca971e5ca7270e444e36ff83dd906fad1a719740ca347e97ed5dc8f458a76a8391dbcd7aff363bdafb348a00
   languageName: node
   linkType: hard
 
@@ -2978,7 +2985,8 @@ __metadata:
     "@types/react-reconciler": "npm:^0"
     bright: "npm:^1.0.0"
     classnames: "npm:^2.5.1"
-    codehike: "npm:^1.0.7"
+    codehike: "npm:^1.1.0"
+    diff: "npm:^8.0.4"
     escape-html: "npm:^1.0.3"
     eslint: "npm:^8"
     eslint-config-next: "npm:15.1.1"

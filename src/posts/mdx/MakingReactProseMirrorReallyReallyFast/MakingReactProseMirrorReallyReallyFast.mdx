@@ -1,3 +1,4 @@
+import { Diff } from "../../../brightExtensions/diff/diff.tsx";
 import { UnmemoizedEditor } from "./components/UnmemoizedEditor.tsx";
 
 !slug making_react_prosemirror_really_really_fast
@@ -67,11 +68,11 @@ started working on performance.
 
 <UnmemoizedEditor />
 
-<p className="text-sm">
+<div className="text-sm">
   Herman Melville’s _Moby-Dick; or, The Whale_ is my go-to source for arbitrary
   text. This is a practice that I inherited from the Oak team at The New York
   Times and have simply never questioned.
-</p>
+</div>
 
 It’s, uh, a _little_ laggy. I’m honestly a little surprised that it works as
 well as it does — Moby Dick is a long book! But it’s also definitely not usable
@@ -88,3 +89,36 @@ or three actual React elements, too, which means we're rendering something like
 15,000 React elements per key press. I am actually now _more_ impressed that
 this works as well as it does — React really is quite fast, all things
 considered.
+
+But not anywhere near fast enough, in this case! We have some work to do.
+
+## !!sections doing-work
+
+### Doing some work
+
+We need to memoize our components. Like, all of them. Luckily we don’t actually
+have that many. The first step looks the same across the board:
+
+<Diff>
+
+```tsx
+export function NodeView({
+  outerDeco,
+  pos,
+  node,
+  innerDeco,
+  ...props
+}: NodeViewProps) {
+```
+
+```tsx
+export const NodeView = memo(function NodeView({
+  outerDeco,
+  pos,
+  node,
+  innerDeco,
+  ...props
+}: NodeViewProps) {
+```
+
+</Diff>

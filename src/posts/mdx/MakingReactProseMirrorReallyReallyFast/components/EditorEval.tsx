@@ -11,11 +11,6 @@ export function EditorEval({ children, reactKeysPlugin }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState<EditorState | null>(null);
   const [editing, setEditing] = useState(false);
-  let i = 0;
-  state?.doc.descendants(() => {
-    i++;
-  });
-  console.log(i);
 
   if (!state) {
     return (
