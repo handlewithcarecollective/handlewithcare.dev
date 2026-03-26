@@ -1,5 +1,4 @@
 import { Diff } from "../../../brightExtensions/diff/diff.tsx";
-import { PitterPatterLogo } from "../../../components/pitterPatter/PitterPatterLogo.tsx";
 
 !slug making_react_prosemirror_really_really_fast
 
@@ -66,6 +65,13 @@ Try typing in the editor below. It’s using
 `@nytimes/react-prosemirror@0.7.0-next.10`, the last release candidate before we
 started working on performance.
 
+<div className="border-brown border-l-2 pl-4">
+  **Note**: This is a very old version of React ProseMirror. It may have some
+  _other_ bugs, in addition to the performance issues I’m trying to highlight.
+  Apologies if this doesn’t work well for you, especially on some Android
+  devices!
+</div>
+
 <UnmemoizedEditor />
 
 <div className="text-sm">
@@ -80,6 +86,14 @@ as a text editor. A single keypress can take 177 milliseconds, and the React
 Profiler makes it pretty clear why:
 
 ![A React Profiler flamechart showing a single commit taking 177 milliseconds. Each NodeView component, of which there are thousands, has re-rendered, taking around a millisecond.](/images/rpm-unmemoized-profile.png)
+
+<div className="border-brown border-l-2 pl-4">
+  **Another note**: I didn’t really think about this at the time, but in order
+  to use the React profiler, I had to run these tests in development mode. React
+  is _much_ faster in production mode, so while there’s still some lagginess on
+  the version of this blog post that you’re reading, my initial reaction was
+  based on a much less usable editor!
+</div>
 
 That’s a lot of re-rendering! For the most part, each NodeView component takes a
 millisecond or less to re-render, but there are 2560 paragraphs in this
@@ -613,6 +627,14 @@ Gross, right?
 But, hear me out, it’s really fast:
 
 <MemoizedEditor />
+
+<div className="border-brown border-l-2 pl-4">
+  **Note**: You may still run into a few issues if you’re on Android using a
+  keyboard other than Gboard or the stock Android keyboard. Also, it seems like
+  some Android devices (maybe due to memory constraints?) really struggle with
+  editors with this much content, regardless of whether it’s optimized or even
+  using React. Sorry if I crashed your browser!
+</div>
 
 ![A React Profiler flamechart showing a single commit taking 16 milliseconds. Of the thousands of NodeView components, only the very first has re-rendered.](/images/rpm-memoized-profile.png)
 

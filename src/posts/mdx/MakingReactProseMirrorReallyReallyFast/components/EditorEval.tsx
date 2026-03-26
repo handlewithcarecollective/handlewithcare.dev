@@ -57,7 +57,7 @@ export function EditorEval({ children, reactKeysPlugin }: Props) {
         }}
         className="[&_h1,&_h2,&_h3]:font-headings border-brown max-h-96 overflow-auto rounded-2xl border-2 bg-white/70 p-4 text-left opacity-70 hover:bg-white/85 [&_p]:my-4"
       >
-        {state.doc.children.map((child) => {
+        {state.doc.children.slice(0, 3).map((child) => {
           if (child.type.name === "paragraph") {
             return <p>{child.textContent}</p>;
           }
