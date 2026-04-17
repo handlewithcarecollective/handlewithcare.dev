@@ -18,13 +18,17 @@ import { Metadata } from "next";
 import { openGraph } from "../metadata";
 import Link from "next/link";
 
+const title = "Pitter Patter — Building better editing";
+const description =
+  "Pitter Patter is an open source toolkit for collaborative rich text editing, made with React and ProseMirror.";
+
 export const metadata: Metadata = {
-  title: "Pitter Patter from Handle with Care",
-  description: "Better collaborative editing",
+  title,
+  description,
   openGraph: {
     ...openGraph,
-    title: "Pitter Patter from Handle with Care",
-    description: "Better collaborative editing",
+    title,
+    description,
     url: "https://handlewithcare.dev/pitter-patter",
   },
 };
@@ -79,12 +83,12 @@ export default function PitterPatterPage() {
           <SectionContent className="my-9 md:my-13 lg:my-28">
             <SectionHeader>what we’re building</SectionHeader>
             <Paragraph>
-              Pitter Patter is a toolkit of feature-complete building blocks,
-              made with ProseMirror. Each piece is useful on its own, and you
-              can use what you need, when you need it. Every library is built
-              directly on ProseMirror’s APIs, not on top of an abstraction
-              layer. You always have full access to the thing underneath. This
-              includes:
+              Pitter Patter is an open source toolkit of feature-complete
+              building blocks, made with ProseMirror. Each piece is useful on
+              its own, and you can use what you need, when you need it. Every
+              library is built directly on ProseMirror’s APIs, not on top of an
+              abstraction layer. You always have full access to the thing
+              underneath. This includes:
             </Paragraph>
           </SectionContent>
           <div className="flex flex-col flex-wrap gap-y-10 px-4 md:flex-row md:px-10 lg:max-w-[1030px]">
