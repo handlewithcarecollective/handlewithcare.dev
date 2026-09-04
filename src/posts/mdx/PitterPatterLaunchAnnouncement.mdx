@@ -1,0 +1,101 @@
+!slug pitter_patter_launch_announcement
+
+!title Announcing Pitter Patter!
+
+!date Sept. 4, 2026
+
+!author Angela Guo
+
+!snippet We've been working on a new suite of collaborative rich text editing libraries, and we're so
+excited to share it with you.
+
+## !!sections intro
+
+At Handle With Care, we spend a lot of time working on different editing experiences- and we felt that the
+text editing toolkits that exist right now in the ProseMirror ecosystem fall short. There's a
+huge need for better editing and collaboration experiences (especially with the rise in AI interfaces!)
+that are open source, use-what-you-need, and flexible enough to grow with your product.
+
+## !!sections introduction
+
+### Introducing Pitter Patter!
+
+What is Pitter Patter?  Pitter Patter is an open source toolkit of feature-complete building blocks for collaborative
+rich text editors, made with ProseMirror. Each piece is useful on its own, and you can use what you need, when you need it.
+And every library is built directly on ProseMirror’s APIs, not on top of an abstraction layer, so you always have
+full access to the thing underneath.
+
+So far, we have three packages: shuffle (grid-based drag-and-drop), collab, and presence. Let's take a look at
+what they all do!
+
+## !!sections shuffle
+
+### Shuffle
+
+Shuffle is a ProseMirror plugin that supports smooth, grid-based drag-and-drop reordering, auto-grouping, repositioning
+and resizing. Check out [the docs](https://pitter-patter.dev/docs/shuffle/overview#demo) for a demo of its features!
+
+ProseMirror has built-in drag-and-drop behavior, but it's limited in functionality and relies on the
+browser’s native “ghosted” drag thumbnails. Shuffle focuses on clarity: users should be able to see how
+their actions are affecting their document in real time, and know exactly what the document will look
+like when they drop.
+
+Shuffle divides the editor width into 12 equal columns. Blocks snap to column boundaries when resized or repositioned.
+It lets you be extremely expressive- you can group blocks into horizontal rows and vertical columns, overlap blocks and enforce containment (e.g. certain nodes
+can't be moved outside their parent).
+
+## !!sections collab
+
+### Collab
+
+Fast, simple collaborative editing. Pitter Patter Collab takes care of both the client and server implementation, and guides you through the relevant
+database and API decisions, so you don't have to sweat the details. Pitter Patter Collab is based on prosemirror-collab-commit, an alternative
+prosemirror-collab implementation that provides improved throughput and fairness over the default implementation. It uses ProseMirror steps as the
+unit of change, just like prosemirror-collab (and just like non-collaborative ProseMirror), which makes it straightforward to inspect, debug, and analyze.
+
+You can add Pitter Patter Collab to your existing stack. You provide the database and API, and it manages the collaboration state and synchronization.
+
+See [the quick start](https://pitter-patter.dev/docs/collab/quick-start) guide for a summary of how to get Pitter Patter Collab set up.
+
+## !!sections presence
+
+### Presence
+
+Simple collaborative editing is great, but without presence indicators it quickly gets confusing. Like our collab package, Pitter Patter Presence takes
+care of both the client and server implementation, and guides you through the relevant API decisions as well. Just provide the API, and let 
+Pitter Patter presence manage presence state and synchronization.
+
+The [quick start guide](https://pitter-patter.dev/docs/presence/quick-start) has more details on how to configure Presence.
+
+## !!sections philosophy
+
+### Philosophy
+
+We're building Pitter Patter with a few core principles.
+
+- Don't hide Prosemirror. We think that better primitives built with ProseMirror can take us farther than abstractions that attempt to hide away ProseMirror’s internals.
+- Collaboration should be simple to implement and simple to debug. 
+- Correctness is worth it
+
+We want to enable you to build rich text editors that your users can trust, and that means that we need to build libraries that you can trust. Play around
+with it and let us know what you think!
+
+## !!sections next
+
+### What's Next?
+
+We're currently working on version history, which will include a way to enable Google Docs-style suggestions. Next on the docket after that is comments!
+
+Want to help us build these features faster? Pitter Patter development is funded via sponsors. If you’re building on ProseMirror and want to help shape this,
+or if you’re a company that would benefit from having genuine influence over the future of open-source collaborative editing infrastructure, we’d like to talk.
+
+Reach out at hello@handlewithcare.dev, or contribute directly via [Github Sponsors](https://github.com/sponsors/handlewithcarecollective)
+
+## !!sections hire-us
+
+### Need help with your text editor?
+
+We're a product development collective with years of experience bringing excellent ideas to life. We love React and ProseMirror, and we've got some availability
+to take on new clients. If you're building a text editor (with or without Pitter Patter) and need help, reach out at hello@handlewithcare.dev. We'd love to work with you!
+
+
