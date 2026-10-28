@@ -25,15 +25,19 @@ rich text editors, made with ProseMirror. Each piece is useful on its own, and y
 And every library is built directly on ProseMirror’s APIs, not on top of an abstraction layer, so you always have
 full access to the thing underneath.
 
-So far, we have three packages: shuffle (grid-based drag-and-drop), collab, and presence. Let's take a look at
-what they all do!
+So far, we have three packages: shuffle (grid-based drag-and-drop), collab, and presence. 
+
+Check out our [demo](https://pitter-patter.dev/demo/)
+to see the collab and shuffle features in action. In the demo, you can drag and drop nodes, resize content, watch how remote edits come in to
+an editor and even demo offline reconciliation!
 
 ## !!sections shuffle
 
 ### Shuffle
 
 Shuffle is a ProseMirror plugin that supports smooth, grid-based drag-and-drop reordering, auto-grouping, repositioning
-and resizing. Check out [the docs](https://pitter-patter.dev/docs/shuffle/overview#demo) for a demo of its features!
+and resizing. Check out [the docs](https://pitter-patter.dev/docs/shuffle/overview#demo) for a Shuffle specific demo
+that goes a little more in depth into its features!
 
 ProseMirror has built-in drag-and-drop behavior, but it's limited in functionality and relies on the
 browser’s native “ghosted” drag thumbnails. Shuffle focuses on clarity: users should be able to see how
