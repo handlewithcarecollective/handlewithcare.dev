@@ -1,0 +1,207 @@
+import { LeadIn } from "@/components/blog/LeadIn.tsx";
+
+!slug rust_tokio_vs_std_mutex
+
+!title Rust's Tokio vs Std Mutex: It's not about performance
+
+!date November 3, 2026
+
+!author Phillip Diffley
+
+!snippet Todo
+
+If you build a web server in Rust and need to manage a little bit of shared state you will likely use a Mutex. But you quickly run into a problem. There are two Mutex's to choose from, [std::sync::Mutex](https://doc.rust-lang.org/std/sync/struct.Mutex.html) and [tokio::sync::Mutex](https://docs.rs/tokio/latest/tokio/sync/struct.Mutex.html).
+
+
+The functional difference between them is that you can hold the tokio Mutex over an await, but holding a std mutex over an await results in an error.
+
+```rust 
+#[tokio::main]
+async fn main() {
+  tokio::spawn(async move { fails().await }); // This line returns an error
+  tokio::spawn(async move { succeeds().await });
+}
+
+async fn fails() {
+  let std_mutex = std::sync::Mutex::new(1usize);
+  {
+    let _guard = std_mutex.lock().unwrap();
+    do_async_stuff().await;
+  }
+}
+
+async fn succeeds() {
+  let tokio_mutex = tokio::sync::Mutex::new(1usize);
+  {
+    let _guard = tokio_mutex.lock().await;
+    do_async_stuff().await;
+  }
+}
+
+async fn do_async_stuff() {}
+```
+
+The std Mutex also blocks a thread until a lock is obtained, while the the Tokio mutex yields the thread with await. This makes the choice seem fairly obvious. You’re working in tokio’s async context, so you’d think you should just use the mutex that’s most compatible with that environment, but the recommendation is actually to default to std mutex and only switch to tokio’s mutex if needed.
+
+The immediately explanation for this choice is often performance <todo: link to forum?>. Tokio's mutex uses a std mutex under the hood in addition to doing a few other operations to make it work in the async context, so it is never going to be faster than the std mutex. The std mutex blocks a thread, which is usually a bad idea within an async context, but for the most common use cases, you won't block long enough to cause a problem. Just use the option that is more performant. 
+
+I would argue that this is not the most compelling reason for this choice though. Let’s make a quick benchmark for the std mutex vs tokio’s mutex.
+
+```rust
+#[tokio::main]
+async fn main() {
+  let n = 10000;
+
+  let std_mutex = std::sync::Mutex::new(0u64);
+  let start = Instant::now();
+  for _ in 0..n {
+    std_mutex.lock().unwrap();
+  }
+  let duration = start.elapsed();
+  println!("average time to lock std mutex: {}ns", duration.as_nanos() / n);
+  
+  let tokio_mutex = tokio::sync::Mutex::new(0u64);
+  let start = Instant::now();
+  for _ in 0..n {
+    tokio_mutex.lock().await;
+  }
+  let duration = start.elapsed();
+  println!("average time to lock tokio mutex: {}ns", duration.as_nanos() / n);
+}
+```
+Running this on my laptop, I got the following results.
+```
+average time to lock std mutex: 3ns
+average time to lock tokio mutex: 18ns
+```
+
+This gives a decent idea of how fast each mutex is. The std mutex is in fact significantly faster than tokio's mutex in absolute terms, about 6 times faster but here’s the thing. It. Doesn’t. Matter.
+
+Even though the std mutex is faster, the tokio mutex averaged about 18 nanoseconds to unlock. An operation that takes 18 nanoseconds can be measured in 10s of cpu cycles. Unless you're working for a low latency trading firm or locking lots of mutexes in a tight inner loop, your choice of mutex is not going to affect the performance of your web server's endpoint handler. 
+
+
+So what gives? The rust community tends to be no cost abstraction oriented, but surely they wouldn’t be telling the average web developer to use a mutex that is less good for a performance improvement that has no significance for their use case. I would argue there is a much more compelling reason than performance for the developer of a webserver to prefer using the std mutex by default. 
+
+
+Let's take a look at an only somewhat contrived example using a mutex in a web server. Let's say we have a webserver that needs to get data from a lot of postgres databases. Like, a lot a lot. We also want to be able to add new databases on the fly without restarting the server. We can make a [sqlx](https://docs.rs/sqlx/latest/sqlx/index.html) Postgres client for each database we connect to. Like most rust client tools, the sqlx client uses [Arcs](https://doc.rust-lang.org/std/sync/struct.Arc.html) and mutexes internally that allow you to just pass around a clonable reference, but since we needed a lot of these clients, we'll store them in a map with an id for each one. So that we can add to the map of clients while the server is running, we wrap the map in a mutex  <todo: insert rwlock footnote>. We'll add a single endpoint that gets data from a database of choice (we'll ignore the endpoint that creates new clients for now).
+
+```rust
+use std::{collections::HashMap, net::SocketAddr, sync::Arc};
+use axum::{Router, extract::{Path, State}, http::StatusCode, routing::get};
+use sqlx::PgPool;
+use tokio::sync::Mutex;
+use uuid::Uuid;
+
+#[derive(Clone, Default)]
+struct AppState {
+  client_map: Arc<Mutex<HashMap<Uuid, PgPool>>>,
+}
+
+#[tokio::main]
+async fn main() {
+  let state = AppState::default();
+  let app = Router::new()
+    .route("version/{id}", get(get_from_db))
+    .with_state(state);
+  let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+
+  axum_server::bind(addr).serve(app.into_make_service())
+    .await.unwrap();
+}
+
+async fn get_from_db(
+    State(state): State<AppState>,
+    Path(id): Path<Uuid>,
+) -> Result<String, StatusCode> {
+  // Lock the map
+  let map_guard = state.client_map.lock().await;
+  let client = map_guard.get(&id).ok_or(StatusCode::NOT_FOUND)?;
+
+  // Send a placeholder query retrieving the databases version
+  sqlx::query_scalar::<_, String>("SELECT version()")
+    .fetch_one(client).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)
+}
+```
+
+The get_from_db endpoint handler is pretty simple here. It locks the map of clients, gets the client for the database we need, and sends a query to it. But there's a problem. In my haste to implement this critical endpoint, I failed to notice that the lock for our `client_map` is not released until the end of the function, after we send our query to the database. This kills our server's concurrency, only allowing one network request to any database at a time, and will have a dramatic impact on our server's performance.
+
+And here’s the thing, this is hard to detect. From a correctness stand point, theres nothing wrong with this code. Basic correctness tests will pass. We won't see high cpu usage, because the cpu isn't being used. All requests are just waiting on the mutex. This performance issue will only show up under load if it shows up at all. In this particularly flagrant case, we'd probably notice the issue when this endpoint starts timing out under load, or if our engineers are really on top of their observability that the response time for the endpoint is high, but but if the code that incorrectly locks access to the database clients was on a les frequent path, the errors would likely be sporadic and be triggered by higher throughput paths that are not the source of the problem.
+
+Which gets to the main point of this article, holding a mutex over an await is usually a really bad idea, and allowing you to do that is often times an anti-feature. If we replace the tokio mutex with a std mutex in the code above, we receive a compiler error `the trait bound `fn(State<AppState>, axum::extract::Path<Uuid>) -> impl std::future::Future<Output = Result<std::string::String, StatusCode>> {get_from_db}: Handler<_, _>` is not satisfied`. This is... not the most helpful error unfortunately, but it is better than nothing. We can fix the error by releasing the lock before the database query is made.
+
+```rust
+async fn get_from_db(
+    State(state): State<AppState>,
+    Path(id): Path<Uuid>,
+) -> Result<String, StatusCode> {
+  // Lock the map
+  let client = {
+    let map_guard = state.pools.lock().unwrap();
+    map_guard.get(&id).ok_or(StatusCode::NOT_FOUND)?.clone()
+  };
+
+  // Send a placeholder query retrieving the databases version
+  sqlx::query_scalar::<_, String>("SELECT version()")
+    .fetch_one(&client).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)
+}
+```
+
+Since in most use cases, holding a mutex lock over an await boundary leads to significant performance degradation, the std mutex failing to compile in that case makes it preferable to the tokio mutex. In the end it's kind of about performance, but it's more about the rust ecosystem tying (again) to stop you from shooting yourself in the foot.
+
+But when should you use a tokio mutex? One example is request coallescing. I wrote a webhook auth library recently (It's called [Correct Hooks](https://github.com/handlewithcarecollective/correct-hooks). It's awesome and you should check it out.). One part of the library is responsible for retrieving and refreshing key sets from a known endpoint. The events that trigger this refresh can and likely will happen repeatedly in a short burst. If a refresh request is already in progress when another refresh is triggered, the library shouldn't send another http request. The results of the refresh that is already in progress are sufficient, and we would like the secondary refresh to use those results as its own. This is a great time to use an async mutex. Here is a slimmed down example.
+
+```rust
+use std::sync::Arc;
+use serde_json::json;
+use uuid::Uuid;
+
+struct KeySet {
+  key_set_json: serde_json::Value,
+  refresh_id: Uuid,
+}
+
+pub struct Verifier {
+  key_set: Arc<std::sync::RwLock<KeySet>>,
+  refresh_lock: Arc<tokio::sync::Mutex<()>>,
+}
+
+impl Verifier {
+  async fn refresh_jwks(&self) -> Result<(), String> {
+    // get the old refresh id
+    let old_id = { self.key_set.read().unwrap().refresh_id };
+    
+    // acquire the tokio refresh lock
+    let _refresh_lock = self.refresh_lock.lock().await;
+    
+    // if the refresh id has changed, the key set has already been updated. Return early.
+    let current_id = { self.key_set.read().unwrap().refresh_id };
+    if current_id != old_id {
+      return Ok(());
+    }
+
+    // fetch the new key set
+    let new_key_set_json = self.fetch_key_set().await;
+
+    // set the new key set and refresh id values
+    *self.key_set.write().unwrap() = KeySet {
+      key_set_json: new_key_set_json,
+      refresh_id: Uuid::new_v4(),
+    };
+
+    Ok(())
+  }
+
+  // mock function fetching the key set from an endpoint
+  async fn fetch_key_set(&self) -> serde_json::Value {
+    json!({})
+  }
+}
+```
+
+Here we use two locks, one std RwLock and one tokio Mutex. We briefly lock the RwLock to access or set values on the key set, and use the tokio mutex to regulate request flow.
+
+When the refresh function is called, we first get the current `refresh_id` and then acquire a lock on the tokio mutex. If there is no existing refresh in progress, the lock is acquired, the new key set is retrieved, and the refresh id is updated. If there is a refresh in progress, when the lock is eventually acquired, the new refresh id is detected and the function returns early since the key set was already updated. 
+
+The tokio mutex is not only preferred, but necessary here. 
+
+In this use case we **want** to only have one network request being sent at a time. The Tokio mutex allows us to consolidate request this way. 
