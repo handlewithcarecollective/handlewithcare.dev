@@ -9,7 +9,7 @@ interface Props {
 
 export function Testimonial({ name, title, children }: Props) {
   return (
-    <div className="basis-1/2 px-4">
+    <div className="border-x-blueprint grow basis-1/2 px-4 pb-4 md:border-none md:pb-20">
       <p className="font-headings my-2 text-lg font-extralight uppercase md:text-2xl">
         {name}
       </p>

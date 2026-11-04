@@ -282,7 +282,18 @@ export default function HomePage() {
             <HomeHeading order={2}>Testimonials</HomeHeading>
           </HomeSectionHeader>
           <Rules />
-          <HomeSectionArticle className="flex flex-col gap-4 md:flex-row">
+          <HomeSectionArticle className="md:border-x-blueprint mb-0 flex flex-col gap-4 border-none p-0 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
+            <Testimonial name="Madi Mullen" title="Director of Product, Libro">
+              Working with Handle with Care has been invaluable for our company.
+              Shane joined us to help build LibroSync, which allows readers to
+              read along with the ebook as they listen to the audiobook. Shane's
+              knowledge and expertise have helped us move quickly and smoothly
+              through this project. He cares deeply about the product and user
+              experience as a whole, not just the code, and has worked
+              collaboratively with our team to build out what will be a
+              cornerstone of our ebooks launch. He's a pleasure to work with!
+            </Testimonial>
+            <Rule vertical />
             <Testimonial name="Alex Ulmer" title="Co-founder, dskrpt">
               Working with Handle with Care might be the best thing you can do
               for your project! Shane is a brilliant engineer whose virtually
@@ -297,7 +308,9 @@ export default function HomePage() {
               architecture. The quality of Handle with Care’s work is beyond
               reproach and will in fact help your team to become better.
             </Testimonial>
-            <Rule vertical />
+          </HomeSectionArticle>
+          <Rules />
+          <HomeSectionArticle className="md:border-x-blueprint mb-0 flex flex-col gap-4 border-none p-0 md:flex-row md:gap-8 md:px-7 md:py-0.5 md:pb-0">
             <Testimonial
               name="Alex Clemmer"
               title="Co-founder & CEO, Moment Technologies"
@@ -317,6 +330,8 @@ export default function HomePage() {
               think this would have taken 10x longer, and we would have ended up
               with a noticeably worse experience.
             </Testimonial>
+            <Rule vertical className="mb-8 hidden md:block" />
+            <Spacer direction="right" className="mb-8 hidden md:block" />
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
