@@ -1,4 +1,5 @@
 import { parseRoot } from "codehike/blocks";
+import PitterPatterLaunchAnnouncement from "./mdx/PitterPatterLaunchAnnouncement.mdx";
 import NoSuchThingIsomorphicLayoutEffect from "./mdx/NoSuchThingIsomorphicLayoutEffect.mdx";
 import { Schema } from "./schema";
 import { WhyIRebuiltProseMirrorView } from "./tsx/WhyIRebuiltProseMirrorView/WhyIRebuiltProseMirrorView";
@@ -14,6 +15,7 @@ import { PosUpdateDemo } from "./mdx/MakingReactProseMirrorReallyReallyFast/comp
 
 export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
+    parseRoot(PitterPatterLaunchAnnouncement, Schema),
     parseRoot(MakingReactProseMirrorReallyReallyFast, Schema, {
       components: {
         UnmemoizedEditor: serverOnly ? () => null : UnmemoizedEditor,
