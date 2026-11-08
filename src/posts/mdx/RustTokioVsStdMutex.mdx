@@ -44,7 +44,7 @@ async fn fails() {
 async fn do_async_stuff() {}
 ```
 
-Since you’re working in Tokio’s async context, so you’d think you should just use the async mutex, but the recommendation is actually to default to std mutex and only switch to Tokio’s mutex if needed.
+Since you’re working in Tokio’s async context, you’d think you should just use the async mutex, but the recommendation is actually to default to std mutex and only switch to Tokio’s mutex if needed.
 
 The immediately explanation for this choice is often performance. Tokio's mutex uses a std mutex under the hood in addition to doing a few other operations to make it work in the async context, so it is never going to be faster than the std mutex. The std mutex blocks a thread, which is usually a bad idea within an async context, but for the most common use cases, you won't block long enough to cause a problem. The conventional wisdom is to just use the option that is more performant. 
 
