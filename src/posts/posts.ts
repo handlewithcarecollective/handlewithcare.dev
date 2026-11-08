@@ -1,5 +1,6 @@
 import { parseRoot } from "codehike/blocks";
 import NoSuchThingIsomorphicLayoutEffect from "./mdx/NoSuchThingIsomorphicLayoutEffect.mdx";
+import RustTokioVsStdMutex from "./mdx/RustTokioVsStdMutex.mdx";
 import { Schema } from "./schema";
 import { WhyIRebuiltProseMirrorView } from "./tsx/WhyIRebuiltProseMirrorView/WhyIRebuiltProseMirrorView";
 import TechDebtAsProductStrategy from "./mdx/TechDebtAsProductStrategy/TechDebtAsProductStrategy.mdx";
@@ -14,6 +15,7 @@ import { PosUpdateDemo } from "./mdx/MakingReactProseMirrorReallyReallyFast/comp
 
 export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
+    parseRoot(RustTokioVsStdMutex, Schema),
     parseRoot(MakingReactProseMirrorReallyReallyFast, Schema, {
       components: {
         UnmemoizedEditor: serverOnly ? () => null : UnmemoizedEditor,

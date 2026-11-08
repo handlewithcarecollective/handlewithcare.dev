@@ -17,6 +17,8 @@
   --animate-breathe: breathe 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   --animate-click: click 4s step-end infinite;
+
+  --animate-fn-flash: fn-flash 2s ease-out;
 }
 
 @keyframes breathe {
@@ -30,6 +32,16 @@
   50% {
     opacity: 25%;
     filter: drop-shadow(0 0 0 var(--color-green));
+  }
+}
+
+@keyframes fn-flash {
+  0% {
+    background-color: var(--color-yellow-200);
+  }
+
+  100% {
+    background-color: transparent;
   }
 }
 

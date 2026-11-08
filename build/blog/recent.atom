@@ -7,7 +7,7 @@
   </author>
   <icon>https://handlewithcare.dev/favicon.ico</icon>
   <id>https://handlewithcare.dev/blog/recent.atom</id>
-  <updated>2026-03-23T04:00:00.000Z</updated>
+  <updated>2026-11-03T05:00:00.000Z</updated>
   <link href="https://handlewithcare.dev/" />
   <link href="https://handlewithcare.dev/blog/recent.atom" rel="self" />
   <entry>
@@ -92,6 +92,22 @@ virtual DOM is fast enough for complex interactions as long as you memoized your
 components. Then someone tried to put an entire Harry Potter novel in React
 ProseMirror, and I had to find out if they were right.</summary>
     <content type="html" xml:lang="en" xml:base="http://handlewithcare.dev/blog/making_react_prosemirror_really_really_fast/">
+      
+    </content>
+  </entry>
+
+  <entry>
+    <title type="text">Rust Tokio Mutex vs Std Mutex: It's not about performance</title>
+    <id>https://handlewithcare.dev/blog/rust_tokio_vs_std_mutex/</id>
+    <updated>2026-11-03T05:00:00.000Z</updated>
+    <published>2026-11-03T05:00:00.000Z</published>
+    <link href="https://handlewithcare.dev/blog/rust_tokio_vs_std_mutex/" />
+    <author>
+      <name>Phillip Diffley</name>
+      <uri>https://handlewithcare.dev/#Phillip Diffley</uri>
+    </author>
+    <summary type="text">Todo</summary>
+    <content type="html" xml:lang="en" xml:base="http://handlewithcare.dev/blog/rust_tokio_vs_std_mutex/">
       
     </content>
   </entry>
