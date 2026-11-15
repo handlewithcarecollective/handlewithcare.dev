@@ -177,8 +177,28 @@ export default function HomePage() {
                 record of bringing structure and clarity to complex projects.
               </HomeParagraph>
             </PartnerBio>
-            <Rule vertical className="mb-8 hidden md:block" />
-            <Spacer direction="right" className="mb-8 hidden md:block" />
+            <Rule vertical />
+            <PartnerBio
+              className="basis-1/2"
+              firstName="Mark"
+              lastName="Tengi"
+              title="Engineering & Architecture"
+            >
+              <HomeParagraph>
+                Mark has spent more than a decade building internal and
+                customer-facing products, as well as the infrastructure to
+                support them. He began his career developing fraud detectors for
+                Xandr's global ad exchange before moving on to Formation Bio,
+                where he worked on clinical trial data capture and analysis
+                tools. He was then the technical co-founder of a health tech
+                startup, building tools to help patients understand their
+                healthcare data, and most recently he focused on stability and
+                performance for Scaled Cognition's agentic AI platform. Mark
+                views building quality software as an investment, where
+                thoughtful planning and a full understanding of the problem lead
+                to simple, functional, and maintainable products.
+              </HomeParagraph>
+            </PartnerBio>
           </HomeSectionArticle>
         </HomeSectionWrapper>
       </HomeSection>
