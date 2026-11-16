@@ -47,7 +47,13 @@ class Xor {
   }
 }
 
-export function CopyEmailButton({ short = false }: { short?: boolean }) {
+export function CopyEmailButton({
+  short = false,
+  inline = false,
+}: {
+  short?: boolean;
+  inline?: boolean;
+}) {
   const [contents, setContents] = useState(
     "171a1313103f171e111b131a08160b171c1e0d1a511b1a09",
   );
@@ -83,18 +89,24 @@ export function CopyEmailButton({ short = false }: { short?: boolean }) {
         }, 300);
       }
     }, 1000);
-  }, []);
+  }, [contents]);
 
   return (
     <button
       ref={buttonRef}
       type="button"
-      className={`group hover:text-brown hover:bg-canvas before:bg-green relative flex content-center items-center gap-3 rounded-[3.75rem] px-6 py-3 text-xl transition-colors duration-300 before:block before:h-3 before:w-3 before:rounded-full before:content-[""] active:opacity-80 md:px-8 md:py-4 md:text-[2.5rem] md:before:h-6 md:before:w-6`}
+      className={
+        inline
+          ? "group decoration-green relative inline cursor-pointer font-bold underline underline-offset-4 active:opacity-80"
+          : `group hover:text-brown hover:bg-canvas before:bg-green relative flex content-center items-center gap-3 rounded-[3.75rem] px-6 py-3 text-xl transition-colors duration-300 before:block before:h-3 before:w-3 before:rounded-full before:content-[""] active:opacity-80 md:px-8 md:py-4 md:text-[2.5rem] md:before:h-6 md:before:w-6`
+      }
       onClick={handleClick}
     >
       <p
         className={twMerge(
-          `font-headings absolute -top-8 left-1/2 -translate-x-1/2 text-base text-white uppercase transition-opacity duration-300 group-hover:opacity-100 ${short ? "md:-top-9" : "md:-top-12"} md:text-2xl`,
+          inline
+            ? "font-headings pointer-events-none absolute -top-5 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white px-2 py-0.5 text-sm leading-tight font-normal uppercase no-underline shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+            : `font-headings absolute -top-8 left-1/2 -translate-x-1/2 text-base text-white uppercase transition-opacity duration-300 group-hover:opacity-100 ${short ? "md:-top-9" : "md:-top-12"} md:text-2xl`,
           forceHover ? "opacity-100" : "opacity-0",
         )}
       >
