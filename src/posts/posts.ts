@@ -11,11 +11,16 @@ import { EditorWithTransition } from "./mdx/TransitionLowPriorityEditorUpdates/c
 import MakingReactProseMirrorReallyReallyFast from "./mdx/MakingReactProseMirrorReallyReallyFast/MakingReactProseMirrorReallyReallyFast.mdx";
 import { MemoizedEditor } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/MemoizedEditor";
 import { UnmemoizedEditor } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/UnmemoizedEditor";
+import { CopyEmailButton } from "@/components/home/CopyEmailButton";
 import { PosUpdateDemo } from "./mdx/MakingReactProseMirrorReallyReallyFast/components/PosUpdateDemo";
 
 export function getPosts({ serverOnly }: { serverOnly?: boolean } = {}) {
   return [
-    parseRoot(PitterPatterLaunchAnnouncement, Schema),
+    parseRoot(PitterPatterLaunchAnnouncement, Schema, {
+      components: {
+        CopyEmailButton: serverOnly ? () => null : CopyEmailButton,
+      },
+    }),
     parseRoot(MakingReactProseMirrorReallyReallyFast, Schema, {
       components: {
         UnmemoizedEditor: serverOnly ? () => null : UnmemoizedEditor,
